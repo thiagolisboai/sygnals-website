@@ -1,0 +1,13 @@
+{
+  "name": "sygnals-website",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node serve.mjs",
+    "shot": "node screenshot.mjs"
+  },
+  "devDependencies": {
+    "puppeteer": "24.37.5"
+  }
+}
