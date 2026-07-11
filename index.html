@@ -449,6 +449,14 @@ addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 12),
 
 // Language preference persistence (EN page)
 try {
+  // BR geo-redirect (only if user hasn't explicitly chosen EN)
+  if (!localStorage.getItem('syg_lang')) {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+    const lang = (navigator.language || '').toLowerCase();
+    if ((tz.includes('Sao_Paulo') || tz.includes('Fortaleza') || tz.includes('Recife') || tz.includes('Manaus') || lang === 'pt-br' || lang === 'pt') && !location.pathname.startsWith('/pt-br')) {
+      location.replace('/pt-br/');
+    }
+  }
   if (localStorage.getItem('syg_lang') === 'pt-br' && !location.pathname.startsWith('/pt-br')) {
     location.replace('/pt-br/');
   }
