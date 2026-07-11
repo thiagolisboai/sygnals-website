@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sygnals — Brand Guidelines</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --cyan:    #00d4f5;
+  --cyan-lt: #0094b3;
+  --black:   #000000;
+  --surf:    #0a0a0a;
+  --elev:    #181818;
+  --border:  #1a1a1a;
+  --border2: #262626;
+  --text:    #edf2f5;
+  --muted:   #9f9f9f;
+  --dim:     #3a3a3a;
+  --green:   #00c758;
+  --red:     #ff2323;
+  --amber:   #edb200;
+  --blue:    #47a8ff;
+}
+
+body {
+  background: #000;
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+/* ── Document ── */
+.doc {
+  width: 1200px;
+  margin: 0 auto;
+  padding: 64px 72px 96px;
+}
+
+/* ── Header ── */
+.doc-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding-bottom: 56px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 64px;
+}
+
+.doc-header-left h1 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 52px;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--text);
+}
+
+.doc-header-left h1 span {
+  color: var(--cyan);
+}
+
+.doc-header-left p {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 14px;
+}
+
+/* ── Content Grid ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.grid-full {
+  grid-column: 1 / -1;
+}
+
+/* ── Section ── */
+.section {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  padding: 40px 44px 44px;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-bottom: 36px;
+}
+
+.section-title::before {
+  content: '●';
+  color: var(--cyan);
+  font-size: 7px;
+}
+
+/* ── Logo display ── */
+.logo-hero {
+  background: #000;
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+  padding: 40px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.logo-sub {
+  font-size: 10px;
+  color: var(--dim);
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+/* ── Logo variations ── */
+.var-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 8px;
+}
+
+.var-cell {
+  border-radius: 4px;
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.var-cell.dk { background: #000; border: 1px solid var(--border2); }
+.var-cell.surf { background: #131313; }
+.var-cell.lt { background: #ffffff; }
+
+.var-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.var-label.dk { color: #2a2a2a; }
+.var-label.surf { color: #3a3a3a; }
+.var-label.lt { color: #c8c8c8; }
+
+/* ── Clearspace ── */
+.clearspace-wrap {
+  border: 1px dashed #222;
+  border-radius: 4px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: #000;
+}
+
+.clearspace-inner {
+  border: 1px dashed var(--cyan);
+  border-radius: 2px;
+  padding: 20px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.clear-measure {
+  position: absolute;
+  font-size: 8px;
+  font-family: ui-monospace, monospace;
+  color: var(--cyan);
+  letter-spacing: 0.06em;
+}
+
+.clear-measure.top    { top: -1px; left: 50%; transform: translateX(-50%) translateY(-50%); background:#000; padding: 0 6px; }
+.clear-measure.bottom { bottom: -1px; left: 50%; transform: translateX(-50%) translateY(50%); background:#000; padding: 0 6px; }
+.clear-measure.left   { left: -1px; top: 50%; transform: translateY(-50%) translateX(-50%) rotate(-90deg); background:#000; padding: 0 6px; }
+.clear-measure.right  { right: -1px; top: 50%; transform: translateY(-50%) translateX(50%) rotate(90deg); background:#000; padding: 0 6px; }
+
+.clear-note {
+  margin-top: 20px;
+  font-size: 10px;
+  color: var(--dim);
+  line-height: 1.6;
+}
+
+.clear-note span { color: var(--cyan); font-family: ui-monospace, monospace; }
+
+/* ── Typography ── */
+.type-specimen {
+  margin-bottom: 32px;
+}
+
+.type-specimen:last-child { margin-bottom: 0; }
+
+.type-preview {
+  font-size: 52px;
+  line-height: 1;
+  margin-bottom: 14px;
+  letter-spacing: -0.03em;
+}
+
+.type-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.type-name {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+.type-weight {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--dim);
+  padding: 2px 8px;
+  border: 1px solid var(--border2);
+  border-radius: 999px;
+}
+
+.type-alphabet {
+  font-size: 11px;
+  color: var(--dim);
+  line-height: 1.9;
+  letter-spacing: 0.04em;
+}
+
+.type-use {
+  font-size: 9px;
+  color: var(--cyan);
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+.type-divider { height: 1px; background: var(--border); margin: 28px 0; }
+
+/* ── Color palette ── */
+.palette-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+}
+
+.swatch {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.swatch-chip {
+  width: 100%;
+  aspect-ratio: 1;
+  border-radius: 6px;
+}
+
+.swatch-name {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.swatch-hex {
+  font-size: 9px;
+  font-family: ui-monospace, 'SF Mono', monospace;
+  color: var(--dim);
+  margin-top: -2px;
+}
+
+/* ── Badges ── */
+.badge-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.badge.hot   { background: rgba(255,35,35,0.15);  color: #ff6b6b; border: 1px solid rgba(255,35,35,0.3); }
+.badge.warm  { background: rgba(237,178,0,0.12);  color: #e3b341; border: 1px solid rgba(237,178,0,0.25); }
+.badge.active { background: rgba(0,199,88,0.12); color: #00c758; border: 1px solid rgba(0,199,88,0.25); }
+.badge.new   { background: rgba(0,212,245,0.10); color: var(--cyan); border: 1px solid rgba(0,212,245,0.22); }
+.badge.partial { background: rgba(71,168,255,0.10); color: #47a8ff; border: 1px solid rgba(71,168,255,0.22); }
+.badge.paused { background: rgba(100,100,100,0.10); color: #666; border: 1px solid rgba(100,100,100,0.22); }
+
+.badge-dot {
+  width: 5px; height: 5px; border-radius: 50%;
+}
+.badge.hot   .badge-dot { background: #ff2323; }
+.badge.warm  .badge-dot { background: #edb200; }
+.badge.active .badge-dot { background: #00c758; }
+.badge.new   .badge-dot { background: var(--cyan); }
+.badge.partial .badge-dot { background: #47a8ff; }
+.badge.paused .badge-dot { background: #555; }
+
+.badge-section-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* ── Buttons ── */
+.btn-row { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border-radius: 999px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+  cursor: pointer;
+  border: none;
+  transition: none;
+}
+
+.btn.primary { background: var(--cyan); color: #000; }
+.btn.secondary { background: transparent; color: var(--text); border: 1px solid var(--border2); }
+.btn.danger { background: transparent; color: #ff6b6b; border: 1px solid rgba(255,35,35,0.3); }
+.btn.sm { padding: 5px 14px; font-size: 11px; }
+
+.btn-note {
+  font-size: 9px;
+  color: var(--dim);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ── Intent score card ── */
+.score-card {
+  background: #000;
+  border: 1px solid var(--border2);
+  border-radius: 8px;
+  padding: 18px 20px;
+  font-size: 11px;
+}
+
+.score-card-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  border-bottom: 1px solid var(--border);
+}
+.score-card-row:last-child { border-bottom: none; }
+
+.score-card-label { color: var(--dim); }
+.score-card-value { font-family: ui-monospace, monospace; }
+.score-card-value.pos { color: var(--text); }
+.score-card-value.neg { color: var(--dim); }
+
+.score-card-total {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 10px;
+  margin-top: 6px;
+  border-top: 1px solid var(--border2);
+  font-weight: 600;
+}
+
+.score-total-num {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--cyan);
+  letter-spacing: -0.03em;
+}
+
+/* ── Signal status indicators ── */
+.status-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: #000;
+  border: 1px solid var(--border2);
+  border-radius: 4px;
+}
+
+.status-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.status-dot {
+  width: 6px; height: 6px; border-radius: 50%;
+}
+
+.status-name { font-size: 11px; font-weight: 500; color: var(--text); }
+.status-count { font-size: 10px; font-family: ui-monospace, monospace; color: var(--dim); }
+
+/* ── Do/Don't ── */
+.do-dont {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.dd-cell {
+  padding: 16px 18px;
+  border-radius: 4px;
+  font-size: 10px;
+  line-height: 1.6;
+}
+
+.dd-cell.do   { background: rgba(0,199,88,0.06); border: 1px solid rgba(0,199,88,0.15); }
+.dd-cell.dont { background: rgba(255,35,35,0.06); border: 1px solid rgba(255,35,35,0.15); }
+
+.dd-label {
+  font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+
+.dd-cell.do   .dd-label { color: var(--green); }
+.dd-cell.dont .dd-label { color: var(--red); }
+.dd-cell p { color: var(--dim); }
+
+/* ── Footer ── */
+.doc-footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.doc-footer p {
+  font-size: 9px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--dim);
+  font-family: ui-monospace, monospace;
+}
+</style>
+</head>
+<body>
+<div class="doc">
+
+  <!-- ── HEADER ── -->
+  <div class="doc-header">
+    <div class="doc-header-left">
+      <h1><span>Brand</span><br>Guidelines</h1>
+      <p>Sygnals · Visual Identity · v1.0 · Abril 2026</p>
+    </div>
+    <svg width="280" height="65" viewBox="0 0 172 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20"
+            stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+      <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
+      <text x="50" y="20"
+            font-family="'DM Sans',-apple-system,sans-serif"
+            font-weight="700" font-size="30" letter-spacing="-1.35"
+            dominant-baseline="middle">
+        <tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan>
+      </text>
+    </svg>
+  </div>
+
+
+  <!-- ── CONTENT GRID ── -->
+  <div class="grid">
+
+
+    <!-- ══ COMPANY LOGO ══ -->
+    <div class="section">
+      <p class="section-title">Company Logo</p>
+
+      <div class="logo-hero">
+        <svg width="320" height="74" viewBox="0 0 172 40" fill="none">
+          <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20"
+                stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+          <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
+          <text x="50" y="20"
+                font-family="'DM Sans',-apple-system,sans-serif"
+                font-weight="700" font-size="30" letter-spacing="-1.35"
+                dominant-baseline="middle">
+            <tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan>
+          </text>
+        </svg>
+      </div>
+      <p class="logo-sub">Primary logo · dark background</p>
+
+      <div style="margin-top:24px; display:flex; gap:10px;">
+        <div style="flex:1; background:#000; border:1px solid #1a1a1a; border-radius:4px; padding:20px; display:flex; align-items:center; justify-content:center;">
+          <svg width="44" height="40" viewBox="0 0 44 40" fill="none">
+            <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20"
+                  stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+            <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
+          </svg>
+        </div>
+        <div style="flex:2; background:#000; border:1px solid #1a1a1a; border-radius:4px; padding:16px 20px; display:flex; flex-direction:column; gap:6px; justify-content:center;">
+          <p style="font-size:9px; color:var(--dim); letter-spacing:0.1em; text-transform:uppercase; font-weight:600;">Mark isolado</p>
+          <p style="font-size:10px; color:#2a2a2a; line-height:1.6;">Usar em favicons, avatares e contextos onde apenas o mark é exibido, abaixo de 172px wide.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ LOGO VARIATIONS ══ -->
+    <div class="section">
+      <p class="section-title">Logo Variations</p>
+
+      <div class="var-grid">
+        <div class="var-cell dk">
+          <span class="var-label dk">Dark bg</span>
+          <svg width="100%" viewBox="0 0 172 40" fill="none" style="max-width:140px;">
+            <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20"
+                  stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+            <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
+            <text x="50" y="20" font-family="'DM Sans',-apple-system,sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle">
+              <tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan>
+            </text>
+          </svg>
+        </div>
+        <div class="var-cell surf">
+          <span class="var-label surf">Surface</span>
+          <svg width="100%" viewBox="0 0 172 40" fill="none" style="max-width:140px;">
+            <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20"
+                  stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+            <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
+            <text x="50" y="20" font-family="'DM Sans',-apple-system,sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle">
+              <tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan>
+            </text>
+          </svg>
+        </div>
+        <div class="var-cell lt">
+          <span class="var-label lt">Light bg</span>
+          <svg width="100%" viewBox="0 0 172 40" fill="none" style="max-width:140px;">
+            <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20"
+                  stroke="#0094b3" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+            <circle cx="18" cy="5.5" r="3.6" fill="#0094b3"/>
+            <text x="50" y="20" font-family="'DM Sans',-apple-system,sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle">
+              <tspan fill="#141414">s</tspan><tspan fill="#0094b3">y</tspan><tspan fill="#141414">gnals</tspan>
+            </text>
+          </svg>
+        </div>
+      </div>
+
+      <div class="do-dont">
+        <div class="dd-cell do">
+          <p class="dd-label">✓ Fazer</p>
+          <p>Usar SVG inline com dominant-baseline="middle". Manter proporções originais. Usar #0094b3 em fundo claro.</p>
+        </div>
+        <div class="dd-cell dont">
+          <p class="dd-label">✕ Não fazer</p>
+          <p>Rotacionar o logo. Trocar DM Sans por outra fonte. Usar stroke-linecap="round". Distorcer proporções.</p>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ LOGO CLEARSPACE ══ -->
+    <div class="section">
+      <p class="section-title">Logo Clearspace</p>
+
+      <div class="clearspace-wrap">
+        <span class="clear-measure top">1× altura mark</span>
+        <span class="clear-measure bottom">1× altura mark</span>
+        <span class="clear-measure left">1×</span>
+        <span class="clear-measure right">1×</span>
+        <div class="clearspace-inner">
+          <svg width="240" height="56" viewBox="0 0 172 40" fill="none">
+            <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20"
+                  stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+            <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
+            <text x="50" y="20" font-family="'DM Sans',-apple-system,sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle">
+              <tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan>
+            </text>
+          </svg>
+        </div>
+      </div>
+
+      <p class="clear-note" style="margin-top:20px;">
+        Manter uma zona de exclusão mínima equivalente a <span>1×</span> a altura do mark em todos os lados. Tamanho mínimo logo completo: <span>172px</span>. Mark isolado: <span>20px</span>.
+      </p>
+    </div>
+
+
+    <!-- ══ TYPOGRAPHY ══ -->
+    <div class="section">
+      <p class="section-title">Typography</p>
+
+      <!-- DM Sans -->
+      <div class="type-specimen">
+        <div class="type-preview" style="font-family:'DM Sans',sans-serif; font-weight:700; color:var(--text);">Ag</div>
+        <div class="type-meta">
+          <span class="type-name" style="font-family:'DM Sans',sans-serif;">DM Sans</span>
+          <span class="type-weight">700 Bold</span>
+        </div>
+        <div class="type-alphabet" style="font-family:'DM Sans',sans-serif; font-weight:700;">
+          ABCDEFGHIJKLM<br>NOPQRSTUVWXYZ<br>abcdefghijklm<br>nopqrstuvwxyz<br>0123456789
+        </div>
+        <p class="type-use">Logo · Headings · CTAs · Wordmark</p>
+      </div>
+
+      <div class="type-divider"></div>
+
+      <!-- Inter -->
+      <div class="type-specimen">
+        <div class="type-preview" style="font-family:'Inter',sans-serif; font-weight:500; color:var(--muted);">Ag</div>
+        <div class="type-meta">
+          <span class="type-name" style="font-family:'Inter',sans-serif;">Inter</span>
+          <span class="type-weight">400 · 500</span>
+        </div>
+        <div class="type-alphabet" style="font-family:'Inter',sans-serif; font-weight:400;">
+          ABCDEFGHIJKLM<br>NOPQRSTUVWXYZ<br>abcdefghijklm<br>nopqrstuvwxyz<br>0123456789
+        </div>
+        <p class="type-use">UI · Body · Labels · Data · Tabelas</p>
+      </div>
+    </div>
+
+
+    <!-- ══ BRAND PALETTE ══ -->
+    <div class="section grid-full">
+      <p class="section-title">Brand Palette</p>
+
+      <div class="palette-grid">
+
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#00d4f5;"></div>
+          <span class="swatch-name">Cyan</span>
+          <span class="swatch-hex">#00d4f5</span>
+          <span style="font-size:9px;color:var(--dim);margin-top:-2px;">Accent principal · dark</span>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#0094b3;"></div>
+          <span class="swatch-name">Cyan Light</span>
+          <span class="swatch-hex">#0094b3</span>
+          <span style="font-size:9px;color:var(--dim);margin-top:-2px;">Accent principal · light</span>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#000; border:1px solid #2a2a2a;"></div>
+          <span class="swatch-name">Black</span>
+          <span class="swatch-hex">#000000</span>
+          <span style="font-size:9px;color:var(--dim);margin-top:-2px;">Background base</span>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#0a0a0a;"></div>
+          <span class="swatch-name">Surface</span>
+          <span class="swatch-hex">#0a0a0a</span>
+          <span style="font-size:9px;color:var(--dim);margin-top:-2px;">Sidebar · painéis</span>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#181818;"></div>
+          <span class="swatch-name">Elevated</span>
+          <span class="swatch-hex">#181818</span>
+          <span style="font-size:9px;color:var(--dim);margin-top:-2px;">Cards · dropdowns</span>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#edf2f5;"></div>
+          <span class="swatch-name">Text</span>
+          <span class="swatch-hex">#edf2f5</span>
+          <span style="font-size:9px;color:var(--dim);margin-top:-2px;">Corpo principal</span>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#9f9f9f;"></div>
+          <span class="swatch-name">Muted</span>
+          <span class="swatch-hex">#9f9f9f</span>
+          <span style="font-size:9px;color:var(--dim);margin-top:-2px;">Texto secundário</span>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#00c758;"></div>
+          <span class="swatch-name">Green</span>
+          <span class="swatch-hex">#00c758</span>
+          <span style="font-size:9px;color:var(--dim);margin-top:-2px;">Sucesso · ativo</span>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#ff2323;"></div>
+          <span class="swatch-name">Red</span>
+          <span class="swatch-hex">#ff2323</span>
+          <span style="font-size:9px;color:var(--dim);margin-top:-2px;">Erro · Hot intent</span>
+        </div>
+
+        <div class="swatch">
+          <div class="swatch-chip" style="background:#edb200;"></div>
+          <span class="swatch-name">Amber</span>
+          <span class="swatch-hex">#edb200</span>
+          <span style="font-size:9px;color:var(--dim);margin-top:-2px;">Aviso · Warm intent</span>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ══ BADGES & STATUS ══ -->
+    <div class="section">
+      <p class="section-title">Intent Badges & Status</p>
+
+      <p class="badge-section-label">Intent Score</p>
+      <div class="badge-row">
+        <span class="badge hot"><span class="badge-dot"></span>Hot · 80–100</span>
+        <span class="badge warm"><span class="badge-dot"></span>Warm · 60–79</span>
+      </div>
+
+      <p class="badge-section-label">Signal Status</p>
+      <div class="badge-row">
+        <span class="badge active"><span class="badge-dot"></span>Active</span>
+        <span class="badge new"><span class="badge-dot"></span>New</span>
+        <span class="badge partial"><span class="badge-dot"></span>Partial</span>
+        <span class="badge paused"><span class="badge-dot"></span>Paused</span>
+      </div>
+
+      <p class="badge-section-label">Intent Score Breakdown</p>
+      <div class="score-card">
+        <div class="score-card-row">
+          <span class="score-card-label">Frequência (3×)</span>
+          <span class="score-card-value pos">+30</span>
+        </div>
+        <div class="score-card-row">
+          <span class="score-card-label">Seniority (VP)</span>
+          <span class="score-card-value pos">+40</span>
+        </div>
+        <div class="score-card-row">
+          <span class="score-card-label">Tipo (Comentário)</span>
+          <span class="score-card-value pos">+20</span>
+        </div>
+        <div class="score-card-row">
+          <span class="score-card-label">Recência (5 dias)</span>
+          <span class="score-card-value neg">−17</span>
+        </div>
+        <div class="score-card-total">
+          <span style="font-size:11px; color:var(--muted);">Intent Score</span>
+          <span class="score-total-num">73 <span class="badge warm" style="font-size:10px; vertical-align:middle;">Warm</span></span>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- ══ BUTTON STYLE ══ -->
+    <div class="section">
+      <p class="section-title">Button Style</p>
+
+      <p class="badge-section-label">Primary</p>
+      <div class="btn-row">
+        <button class="btn primary">Iniciar monitoramento →</button>
+        <button class="btn primary sm">Export CSV</button>
+      </div>
+      <p class="btn-note">DM Sans 700 · pill · #00d4f5 bg · #000 text</p>
+
+      <p class="badge-section-label" style="margin-top:20px;">Secondary</p>
+      <div class="btn-row">
+        <button class="btn secondary">Ver no LinkedIn ↗</button>
+        <button class="btn secondary sm">Filtros</button>
+      </div>
+      <p class="btn-note">DM Sans 700 · pill · transparent · border #262626</p>
+
+      <p class="badge-section-label" style="margin-top:20px;">Destructive</p>
+      <div class="btn-row">
+        <button class="btn danger">Excluir signal</button>
+      </div>
+      <p class="btn-note">DM Sans 700 · pill · transparent · red border</p>
+
+      <div style="margin-top:28px; padding:20px; background:#000; border:1px solid #1a1a1a; border-radius:6px;">
+        <p style="font-size:9px; color:var(--dim); font-weight:600; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px;">Focus ring</p>
+        <div style="display:inline-block; box-shadow: 0 0 0 2px #000, 0 0 0 4px #00d4f5; border-radius:999px;">
+          <button class="btn primary">Conversa iniciada ✓</button>
+        </div>
+        <p style="font-size:10px; color:#2a2a2a; margin-top:12px;">box-shadow: 0 0 0 2px #000, 0 0 0 4px #00d4f5</p>
+      </div>
+    </div>
+
+
+    <!-- ══ SIGNAL STATUS UI ══ -->
+    <div class="section grid-full">
+      <p class="section-title">Signal Status UI</p>
+
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
+
+        <div>
+          <p class="badge-section-label">Signal list — sidebar</p>
+          <div class="status-row">
+            <div class="status-item">
+              <div class="status-left">
+                <div class="status-dot" style="background:#00c758;"></div>
+                <span class="status-name">Raphael Bozza</span>
+              </div>
+              <span class="badge active sm" style="font-size:9px; padding:3px 8px;">Active</span>
+            </div>
+            <div class="status-item">
+              <div class="status-left">
+                <div class="status-dot" style="background:#47a8ff;"></div>
+                <span class="status-name">David Costa Lima</span>
+              </div>
+              <span class="badge partial" style="font-size:9px; padding:3px 8px;"><span class="badge-dot"></span>Partial</span>
+            </div>
+            <div class="status-item">
+              <div class="status-left">
+                <div class="status-dot" style="background:#00d4f5; animation:pulse 1.4s infinite;"></div>
+                <span class="status-name">Guilherme Mussi</span>
+              </div>
+              <span class="badge new" style="font-size:9px; padding:3px 8px;"><span class="badge-dot"></span>Updating</span>
+            </div>
+            <div class="status-item">
+              <div class="status-left">
+                <div class="status-dot" style="background:#333;"></div>
+                <span class="status-name">Ana Beatriz Cunha</span>
+              </div>
+              <span class="badge paused" style="font-size:9px; padding:3px 8px;"><span class="badge-dot"></span>Paused</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="badge-section-label">Credit usage</p>
+          <div style="background:#000; border:1px solid #1a1a1a; border-radius:6px; padding:20px;">
+            <div style="display:flex; justify-content:space-between; align-items:baseline; margin-bottom:12px;">
+              <span style="font-size:11px; color:var(--muted);">Starter Plan</span>
+              <span style="font-family:ui-monospace,monospace; font-size:11px; color:var(--text);">6.240 <span style="color:var(--dim);">/ 10.000</span></span>
+            </div>
+            <div style="height:4px; background:#111; border-radius:2px; overflow:hidden; margin-bottom:14px;">
+              <div style="height:100%; width:62.4%; background:var(--cyan); border-radius:2px;"></div>
+            </div>
+            <div style="display:flex; justify-content:space-between;">
+              <span style="font-size:9px; color:var(--dim);">62% utilizado</span>
+              <span style="font-size:9px; color:var(--dim);">Renova em 8 dias</span>
+            </div>
+          </div>
+
+          <div style="margin-top:8px; background:#000; border:1px solid rgba(237,178,0,0.2); border-radius:6px; padding:14px 16px;">
+            <div style="display:flex; align-items:center; gap:8px;">
+              <div style="width:6px; height:6px; border-radius:50%; background:#edb200;"></div>
+              <span style="font-size:10px; color:#e3b341;">80% dos créditos utilizados — considere fazer upgrade.</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div><!-- end .grid -->
+
+
+  <!-- ── FOOTER ── -->
+  <div class="doc-footer">
+    <p>Sygnals · Brand Guidelines · v1.0 · Abril 2026</p>
+    <p>DM Sans 700 · Inter · #00d4f5 · stroke 3.2 butt/miter</p>
+  </div>
+
+</div>
+
+<style>
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+</style>
+
+</body>
+</html>

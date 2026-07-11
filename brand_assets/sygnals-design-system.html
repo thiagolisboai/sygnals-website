@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sygnals — Logo Final</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --cyan: #00d4f5; --cyan-lt: #0094b3;
+  --black: #000; --surface: #0a0a0a; --border: #111; --border2: #1a1a1a;
+  --text: #edf2f5; --dim: #2a2a2a;
+  --green: #00c758; --red: #ff2323; --amber: #edb200;
+}
+body { background: var(--black); font-family: 'Inter', -apple-system, sans-serif; color: var(--text); -webkit-font-smoothing: antialiased; }
+.page { max-width: 960px; margin: 0 auto; padding: 0 64px 120px; }
+.section { padding: 80px 0 0; }
+.section-label { font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); margin-bottom: 40px; display: flex; align-items: center; gap: 12px; }
+.section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+.hero { padding: 100px 0 96px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border); }
+.col2 { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; }
+.vcell { padding: 56px 52px; display: flex; align-items: center; justify-content: center; }
+.vcell.dk { background: var(--black); border: 1px solid var(--border); }
+.vcell.lt { background: #fff; }
+.vcell.surf { background: var(--surface); }
+.icon-row { display: flex; align-items: flex-end; gap: 40px; padding: 48px 0 8px; }
+.icon-item { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.icon-item .px { font-size: 9px; font-weight: 600; letter-spacing: 0.08em; color: var(--dim); }
+.app-icon { background: var(--surface); border: 1px solid var(--border2); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.swatch-row { display: flex; gap: 12px; flex-wrap: wrap; padding: 48px 0 8px; }
+.swatch { display: flex; flex-direction: column; gap: 10px; }
+.swatch-chip { width: 64px; height: 64px; border-radius: 6px; }
+.swatch-name { font-size: 11px; font-weight: 500; }
+.swatch-hex { font-size: 10px; font-family: ui-monospace, monospace; color: #3a3a3a; margin-top: -4px; }
+.specs-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+.specs-table tr { border-bottom: 1px solid var(--border); }
+.specs-table tr:last-child { border-bottom: none; }
+.specs-table td { padding: 12px 0; font-size: 11px; vertical-align: top; }
+.specs-table .key { color: var(--dim); font-weight: 500; width: 200px; }
+.specs-table .val { font-family: ui-monospace, monospace; color: #3a3a3a; font-size: 10.5px; }
+.specs-table .val .cy { color: var(--cyan); }
+.code-section { margin-top: 40px; }
+.code-title { font-size: 9px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 12px; }
+.code-block { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 20px 24px; font-family: ui-monospace, monospace; font-size: 11px; line-height: 2; overflow-x: auto; white-space: pre; margin-bottom: 20px; color: #2e2e2e; }
+.code-block .tag { color: #1e4a5a; } .code-block .attr { color: #2a5a6a; } .code-block .val { color: #3a6a7a; } .code-block .cy { color: var(--cyan); } .code-block .wh { color: #3a4a50; } .code-block .cm { color: #1e2e2e; font-style: italic; }
+.usage-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 2px; margin-top: 40px; }
+.usage-cell { padding: 28px 32px; background: var(--surface); border: 1px solid var(--border); }
+.usage-cell h4 { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dim); margin-bottom: 12px; }
+.usage-cell p { font-size: 11px; color: #2e2e2e; line-height: 1.7; }
+.usage-cell code { font-family: ui-monospace, monospace; font-size: 10px; color: var(--cyan); background: rgba(0,212,245,0.07); padding: 1px 5px; border-radius: 3px; }
+.footer { margin-top: 80px; padding: 24px 0; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; }
+.footer p { font-size: 9px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--dim); font-family: ui-monospace, monospace; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<div style="padding:48px 0 0; display:flex; justify-content:space-between; align-items:center;">
+  <p style="font-size:9px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:var(--dim);">Sygnals · Logo System · v2</p>
+  <p style="font-size:9px;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:#1a1a1a;font-family:ui-monospace,monospace;">Abril 2026</p>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <svg width="560" height="130" viewBox="0 0 172 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+    <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
+    <text x="50" y="20" font-family="'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle">
+      <tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan>
+    </text>
+  </svg>
+</div>
+
+<!-- 01 VARIANTES -->
+<div class="section">
+  <p class="section-label">01 · Variantes</p>
+  <div class="col2">
+
+    <div class="vcell dk">
+      <svg width="100%" viewBox="0 0 172 40" fill="none" style="max-width:400px;">
+        <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+        <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
+        <text x="50" y="20" font-family="'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle">
+          <tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan>
+        </text>
+      </svg>
+    </div>
+
+    <div class="vcell lt">
+      <svg width="100%" viewBox="0 0 172 40" fill="none" style="max-width:400px;">
+        <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#0094b3" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+        <circle cx="18" cy="5.5" r="3.6" fill="#0094b3"/>
+        <text x="50" y="20" font-family="'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle">
+          <tspan fill="#141414">s</tspan><tspan fill="#0094b3">y</tspan><tspan fill="#141414">gnals</tspan>
+        </text>
+      </svg>
+    </div>
+
+    <div class="vcell surf" style="padding:40px 52px; align-items:flex-start; flex-direction:column; justify-content:center; gap:28px;">
+      <div>
+        <p style="font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;">Nav · 60%</p>
+        <svg width="100%" viewBox="0 0 172 40" fill="none" style="max-width:240px;">
+          <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+          <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
+          <text x="50" y="20" font-family="'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle">
+            <tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan>
+          </text>
+        </svg>
+      </div>
+      <div>
+        <p style="font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);margin-bottom:14px;">Compact · 40%</p>
+        <svg width="100%" viewBox="0 0 172 40" fill="none" style="max-width:160px;">
+          <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+          <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
+          <text x="50" y="20" font-family="'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle">
+            <tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan>
+          </text>
+        </svg>
+      </div>
+    </div>
+
+    <div class="vcell dk" style="padding:40px 52px; flex-direction:column; align-items:flex-start; justify-content:center; gap:16px;">
+      <p style="font-size:9px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);">Mark isolado</p>
+      <svg width="132" height="120" viewBox="0 0 44 40" fill="none">
+        <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+        <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+<!-- 02 APP ICON -->
+<div class="section">
+  <p class="section-label">02 · App icon</p>
+  <div class="icon-row">
+
+    <div class="icon-item">
+      <div class="app-icon" style="width:128px;height:128px;border-radius:28px;">
+        <svg width="88" height="80" viewBox="0 0 44 40" fill="none">
+          <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+          <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
+        </svg>
+      </div>
+      <span class="px">128px</span>
+    </div>
+
+    <div class="icon-item">
+      <div class="app-icon" style="width:64px;height:64px;border-radius:14px;">
+        <svg width="44" height="40" viewBox="0 0 44 40" fill="none">
+          <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+          <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
+        </svg>
+      </div>
+      <span class="px">64px</span>
+    </div>
+
+    <div class="icon-item">
+      <div class="app-icon" style="width:48px;height:48px;border-radius:10px;">
+        <svg width="33" height="30" viewBox="0 0 44 40" fill="none">
+          <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.5" stroke-linecap="butt" stroke-linejoin="miter"/>
+          <circle cx="18" cy="5.5" r="4" fill="#00d4f5"/>
+        </svg>
+      </div>
+      <span class="px">48px</span>
+    </div>
+
+    <div class="icon-item">
+      <div class="app-icon" style="width:32px;height:32px;border-radius:7px;">
+        <svg width="22" height="20" viewBox="0 0 44 40" fill="none">
+          <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.8" stroke-linecap="butt" stroke-linejoin="miter"/>
+          <circle cx="18" cy="5.5" r="4.2" fill="#00d4f5"/>
+        </svg>
+      </div>
+      <span class="px">32px</span>
+    </div>
+
+    <div class="icon-item">
+      <div class="app-icon" style="width:20px;height:20px;border-radius:4px;">
+        <svg width="14" height="13" viewBox="0 0 44 40" fill="none">
+          <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="4.5" stroke-linecap="butt" stroke-linejoin="miter"/>
+          <circle cx="18" cy="5.5" r="4.8" fill="#00d4f5"/>
+        </svg>
+      </div>
+      <span class="px">20px</span>
+    </div>
+
+    <div class="icon-item">
+      <div class="app-icon" style="width:16px;height:16px;border-radius:3px;">
+        <svg width="11" height="10" viewBox="0 0 44 40" fill="none">
+          <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="5" stroke-linecap="butt" stroke-linejoin="miter"/>
+          <circle cx="18" cy="7" r="5.2" fill="#00d4f5"/>
+        </svg>
+      </div>
+      <span class="px">16px</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- 03 CORES -->
+<div class="section">
+  <p class="section-label">03 · Cores</p>
+  <div class="swatch-row">
+    <div class="swatch"><div class="swatch-chip" style="background:#00d4f5;"></div><span class="swatch-name">Cyan</span><span class="swatch-hex">#00d4f5</span></div>
+    <div class="swatch"><div class="swatch-chip" style="background:#0094b3;"></div><span class="swatch-name">Cyan Light</span><span class="swatch-hex">#0094b3</span></div>
+    <div class="swatch"><div class="swatch-chip" style="background:#000;border:1px solid #2a2a2a;"></div><span class="swatch-name">Black</span><span class="swatch-hex">#000000</span></div>
+    <div class="swatch"><div class="swatch-chip" style="background:#0a0a0a;"></div><span class="swatch-name">Surface</span><span class="swatch-hex">#0a0a0a</span></div>
+    <div class="swatch"><div class="swatch-chip" style="background:#252525;"></div><span class="swatch-name">Elevated</span><span class="swatch-hex">#252525</span></div>
+    <div class="swatch"><div class="swatch-chip" style="background:#edf2f5;"></div><span class="swatch-name">Text</span><span class="swatch-hex">#edf2f5</span></div>
+    <div class="swatch"><div class="swatch-chip" style="background:#9f9f9f;"></div><span class="swatch-name">Muted</span><span class="swatch-hex">#9f9f9f</span></div>
+    <div class="swatch"><div class="swatch-chip" style="background:#00c758;"></div><span class="swatch-name">Green</span><span class="swatch-hex">#00c758</span></div>
+    <div class="swatch"><div class="swatch-chip" style="background:#ff2323;"></div><span class="swatch-name">Red</span><span class="swatch-hex">#ff2323</span></div>
+    <div class="swatch"><div class="swatch-chip" style="background:#edb200;"></div><span class="swatch-name">Amber</span><span class="swatch-hex">#edb200</span></div>
+  </div>
+</div>
+
+<!-- 04 SPECS -->
+<div class="section">
+  <p class="section-label">04 · Especificações técnicas</p>
+  <table class="specs-table">
+    <tr><td class="key">Mark — viewBox</td><td class="val">0 0 44 40</td></tr>
+    <tr><td class="key">Mark — path</td><td class="val">M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20</td></tr>
+    <tr><td class="key">stroke-width</td><td class="val">3.2</td></tr>
+    <tr><td class="key">stroke-linecap</td><td class="val">butt</td></tr>
+    <tr><td class="key">stroke-linejoin</td><td class="val">miter</td></tr>
+    <tr><td class="key">Dot — posição</td><td class="val">cx=18  cy=5.5  r=3.6</td></tr>
+    <tr><td class="key">Amplitude vertical</td><td class="val">±12 unidades  (pico y=8 · trough y=32 · baseline y=20)</td></tr>
+    <tr><td class="key">Cor mark (dark)</td><td class="val"><span class="cy">#00d4f5</span></td></tr>
+    <tr><td class="key">Cor mark (light)</td><td class="val"><span class="cy">#0094b3</span></td></tr>
+    <tr><td class="key">Wordmark — fonte</td><td class="val">DM Sans · weight 700</td></tr>
+    <tr><td class="key">Wordmark — tamanho</td><td class="val">font-size: 30  (SVG units)</td></tr>
+    <tr><td class="key">Wordmark — tracking</td><td class="val">letter-spacing: -1.35  (= -0.045em @ 30px)</td></tr>
+    <tr><td class="key">Wordmark — alinhamento</td><td class="val">dominant-baseline="middle"  y=20</td></tr>
+    <tr><td class="key">y accent (dark)</td><td class="val"><span class="cy">#00d4f5</span>  via SVG tspan</td></tr>
+    <tr><td class="key">Gap mark → wordmark</td><td class="val">8 unidades SVG  (text x=50)</td></tr>
+    <tr><td class="key">Logo completo — viewBox</td><td class="val">0 0 172 40</td></tr>
+    <tr><td class="key">Tamanho mínimo</td><td class="val">Logo completo: 172px wide  ·  Mark isolado: 20px</td></tr>
+  </table>
+</div>
+
+<!-- 05 SVG SOURCE -->
+<div class="section">
+  <p class="section-label">05 · SVG source</p>
+  <div class="code-section">
+
+    <p class="code-title">Mark — isolado</p>
+    <div class="code-block"><span class="cm">&lt;!-- Mark isolado · viewBox="0 0 44 40" --&gt;</span>
+<span class="tag">&lt;svg</span> <span class="attr">width</span>=<span class="val">"44"</span> <span class="attr">height</span>=<span class="val">"40"</span> <span class="attr">viewBox</span>=<span class="val">"0 0 44 40"</span> <span class="attr">fill</span>=<span class="val">"none"</span> <span class="attr">xmlns</span>=<span class="val">"http://www.w3.org/2000/svg"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;path</span>
+    <span class="attr">d</span>=<span class="val">"M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20"</span>
+    <span class="attr">stroke</span>=<span class="val">"<span class="cy">#00d4f5</span>"</span> <span class="attr">stroke-width</span>=<span class="val">"3.2"</span>
+    <span class="attr">stroke-linecap</span>=<span class="val">"butt"</span> <span class="attr">stroke-linejoin</span>=<span class="val">"miter"</span>
+  <span class="tag">/&gt;</span>
+  <span class="tag">&lt;circle</span> <span class="attr">cx</span>=<span class="val">"18"</span> <span class="attr">cy</span>=<span class="val">"6.5"</span> <span class="attr">r</span>=<span class="val">"3.6"</span> <span class="attr">fill</span>=<span class="val">"<span class="cy">#00d4f5</span>"</span><span class="tag">/&gt;</span>
+<span class="tag">&lt;/svg&gt;</span></div>
+
+    <p class="code-title">Logo horizontal — dark</p>
+    <div class="code-block"><span class="cm">&lt;!-- Logo horizontal · dark · viewBox="0 0 172 40" --&gt;</span>
+<span class="tag">&lt;svg</span> <span class="attr">width</span>=<span class="val">"516"</span> <span class="attr">height</span>=<span class="val">"120"</span> <span class="attr">viewBox</span>=<span class="val">"0 0 172 40"</span> <span class="attr">fill</span>=<span class="val">"none"</span> <span class="attr">xmlns</span>=<span class="val">"http://www.w3.org/2000/svg"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;path</span>
+    <span class="attr">d</span>=<span class="val">"M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20"</span>
+    <span class="attr">stroke</span>=<span class="val">"<span class="cy">#00d4f5</span>"</span> <span class="attr">stroke-width</span>=<span class="val">"3.2"</span>
+    <span class="attr">stroke-linecap</span>=<span class="val">"butt"</span> <span class="attr">stroke-linejoin</span>=<span class="val">"miter"</span>
+  <span class="tag">/&gt;</span>
+  <span class="tag">&lt;circle</span> <span class="attr">cx</span>=<span class="val">"18"</span> <span class="attr">cy</span>=<span class="val">"6.5"</span> <span class="attr">r</span>=<span class="val">"3.6"</span> <span class="attr">fill</span>=<span class="val">"<span class="cy">#00d4f5</span>"</span><span class="tag">/&gt;</span>
+  <span class="tag">&lt;text</span> <span class="attr">x</span>=<span class="val">"50"</span> <span class="attr">y</span>=<span class="val">"20"</span>
+    <span class="attr">font-family</span>=<span class="val">"'DM Sans',-apple-system,sans-serif"</span>
+    <span class="attr">font-weight</span>=<span class="val">"700"</span> <span class="attr">font-size</span>=<span class="val">"30"</span> <span class="attr">letter-spacing</span>=<span class="val">"-1.35"</span>
+    <span class="attr">dominant-baseline</span>=<span class="val">"middle"</span>
+  <span class="tag">&gt;</span>
+    <span class="tag">&lt;tspan</span> <span class="attr">fill</span>=<span class="val">"<span class="wh">#edf2f5</span>"</span><span class="tag">&gt;</span>s<span class="tag">&lt;/tspan&gt;</span><span class="tag">&lt;tspan</span> <span class="attr">fill</span>=<span class="val">"<span class="cy">#00d4f5</span>"</span><span class="tag">&gt;</span>y<span class="tag">&lt;/tspan&gt;</span><span class="tag">&lt;tspan</span> <span class="attr">fill</span>=<span class="val">"<span class="wh">#edf2f5</span>"</span><span class="tag">&gt;</span>gnals<span class="tag">&lt;/tspan&gt;</span>
+  <span class="tag">&lt;/text&gt;</span>
+<span class="tag">&lt;/svg&gt;</span></div>
+
+    <p class="code-title">Logo horizontal — light</p>
+    <div class="code-block"><span class="cm">&lt;!-- Logo horizontal · light · stroke #0094b3 --&gt;</span>
+<span class="tag">&lt;svg</span> <span class="attr">width</span>=<span class="val">"516"</span> <span class="attr">height</span>=<span class="val">"120"</span> <span class="attr">viewBox</span>=<span class="val">"0 0 172 40"</span> <span class="attr">fill</span>=<span class="val">"none"</span> <span class="attr">xmlns</span>=<span class="val">"http://www.w3.org/2000/svg"</span><span class="tag">&gt;</span>
+  <span class="tag">&lt;path</span>
+    <span class="attr">d</span>=<span class="val">"M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20"</span>
+    <span class="attr">stroke</span>=<span class="val">"<span class="cy">#0094b3</span>"</span> <span class="attr">stroke-width</span>=<span class="val">"3.2"</span>
+    <span class="attr">stroke-linecap</span>=<span class="val">"butt"</span> <span class="attr">stroke-linejoin</span>=<span class="val">"miter"</span>
+  <span class="tag">/&gt;</span>
+  <span class="tag">&lt;circle</span> <span class="attr">cx</span>=<span class="val">"18"</span> <span class="attr">cy</span>=<span class="val">"6.5"</span> <span class="attr">r</span>=<span class="val">"3.6"</span> <span class="attr">fill</span>=<span class="val">"<span class="cy">#0094b3</span>"</span><span class="tag">/&gt;</span>
+  <span class="tag">&lt;text</span> <span class="attr">x</span>=<span class="val">"50"</span> <span class="attr">y</span>=<span class="val">"20"</span>
+    <span class="attr">font-family</span>=<span class="val">"'DM Sans',-apple-system,sans-serif"</span>
+    <span class="attr">font-weight</span>=<span class="val">"700"</span> <span class="attr">font-size</span>=<span class="val">"30"</span> <span class="attr">letter-spacing</span>=<span class="val">"-1.35"</span>
+    <span class="attr">dominant-baseline</span>=<span class="val">"middle"</span>
+  <span class="tag">&gt;</span>
+    <span class="tag">&lt;tspan</span> <span class="attr">fill</span>=<span class="val">"#141414"</span><span class="tag">&gt;</span>s<span class="tag">&lt;/tspan&gt;</span><span class="tag">&lt;tspan</span> <span class="attr">fill</span>=<span class="val">"<span class="cy">#0094b3</span>"</span><span class="tag">&gt;</span>y<span class="tag">&lt;/tspan&gt;</span><span class="tag">&lt;tspan</span> <span class="attr">fill</span>=<span class="val">"#141414"</span><span class="tag">&gt;</span>gnals<span class="tag">&lt;/tspan&gt;</span>
+  <span class="tag">&lt;/text&gt;</span>
+<span class="tag">&lt;/svg&gt;</span></div>
+
+  </div>
+</div>
+
+<!-- 06 USO -->
+<div class="section">
+  <p class="section-label">06 · Uso e restrições</p>
+  <div class="usage-grid">
+    <div class="usage-cell"><h4>Fonte</h4><p>Logo usa <code>DM Sans 700</code>. UI usa <code>Inter Variable</code>. Identidades tipográficas separadas — marca e produto são linguagens distintas.</p></div>
+    <div class="usage-cell"><h4>Next.js</h4><p>Carregar via <code>next/font/google</code>, <code>weight: '700'</code>. SVG inline no componente — evita FOUT e garante alinhamento consistente.</p></div>
+    <div class="usage-cell"><h4>Cores</h4><p>Dark: <code>#00d4f5</code>. Light: <code>#0094b3</code>. Nunca usar <code>#00d4f5</code> sobre branco — contraste insuficiente.</p></div>
+    <div class="usage-cell"><h4>Tamanho mínimo</h4><p>Logo completo: <code>172px</code> wide. Abaixo disso, mark isolado. Mark mínimo: <code>20px</code>. Favicon: <code>16px</code> com dot proporcional.</p></div>
+    <div class="usage-cell"><h4>Alinhamento</h4><p>Sempre SVG com <code>dominant-baseline="middle"</code>. Nunca HTML+CSS para o logo — alinhamento entre mark e wordmark não é garantido fora do SVG.</p></div>
+    <div class="usage-cell"><h4>Não fazer</h4><p>Não rotacionar. Não distorcer proporções. Não trocar DM Sans. Não usar <code>stroke-linecap="round"</code> — destrói o caráter angular do mark.</p></div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <p>Sygnals · Logo System · v3.0 · Abril 2026</p>
+  <p>DM Sans 700 · 30px · stroke 3.2 butt/miter · dot cy=5.5 r=3.6 · #00d4f5</p>
+</div>
+
+</div>
+</body>
+</html>
