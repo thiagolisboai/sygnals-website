@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sygnals — LinkedIn Engagement Intelligence</title>
-  <meta name="description" content="Sygnals captures who reacts, comments, views and follows on LinkedIn, scores their buying intent 0–100, and routes qualified leads straight to Clay. No cookies, no account at risk.">
+  <meta name="description" content="Sygnals captures who reacts, comments, views and follows on LinkedIn, scores their buying intent 0–100, and routes qualified leads straight to Clay and webhooks. No cookies, no account at risk.">
   <meta property="og:title" content="Sygnals — LinkedIn Engagement Intelligence">
   <meta property="og:description" content="Your ICP is moving on LinkedIn right now. In 72h, the signal is gone.">
   <meta property="og:type" content="website">
@@ -458,6 +458,29 @@ section[id]{scroll-margin-top:82px}
 .field.invalid,.tryagent .form input.invalid{border-color:var(--red)!important;box-shadow:0 0 0 1px rgba(229,82,82,.3)!important}
 .mag{will-change:transform}
 @media(prefers-reduced-motion:reduce){.mag,.hero-visual .appwin{transform:none!important}}
+/* quote visual */
+.ql-pulse{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);width:100%;height:130px;opacity:.45}
+.ql-pulse path{stroke-dasharray:960;stroke-dashoffset:960;animation:qlDraw 2.8s cubic-bezier(.16,1,.3,1) forwards .2s}
+@keyframes qlDraw{to{stroke-dashoffset:0}}
+.ql-chip{position:absolute;display:flex;align-items:center;gap:8px;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:9px 13px;font-family:var(--font-display);font-weight:600;font-size:13px;box-shadow:0 12px 34px -14px rgba(0,0,0,.7)}
+.ql-chip .d{width:7px;height:7px;border-radius:50%;background:var(--cyan);animation:sdotPulse 2.4s ease-in-out infinite}
+.ql-chip .g{width:7px;height:7px;border-radius:50%;background:var(--green)}
+.ql-chip.a{top:23%;left:11%}
+.ql-chip.b{bottom:21%;right:11%;color:var(--green)}
+/* report example */
+.exq{display:flex;align-items:center;gap:10px;background:var(--elevated);border:1px solid var(--border);border-radius:10px;padding:13px 15px;font-family:var(--mono);font-size:13px;margin-bottom:6px;overflow:hidden}
+.exq .k{color:var(--cyan);flex-shrink:0}
+.exq .v{color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+/* channels live detailed list */
+.livelist{display:flex;flex-direction:column;gap:11px;margin-top:6px}
+.ll{display:flex;gap:12px;align-items:baseline}
+.ll .lc{font-family:var(--mono);font-size:11px;font-weight:600;width:54px;flex-shrink:0}
+.ll .ld{font-size:13px;color:var(--muted);line-height:1.4}
+/* final cta centered */
+.cta .hero-cta{justify-content:center}
+@media(max-width:820px){.ql-chip{display:none}}
+@media(max-width:520px){.nav svg[aria-label="Sygnals"]{height:26px!important}.nav-right{gap:8px}.nav-right .btn.primary{padding:8px 13px;font-size:13px}.lang-btn{padding:6px 9px;gap:5px}}
+@media(prefers-reduced-motion:reduce){.ql-pulse path{animation:none!important;stroke-dashoffset:0!important}}
   </style>
 </head>
 <body>
@@ -469,7 +492,7 @@ section[id]{scroll-margin-top:82px}
   <header class="nav" id="nav">
     <div class="pad nav-inner">
       <a href="/" aria-label="Sygnals home">
-        <svg viewBox="0 0 172 40" fill="none" role="img" aria-label="Sygnals" style="height:25px;width:auto">
+        <svg viewBox="0 0 172 40" fill="none" role="img" aria-label="Sygnals" style="height:33px;width:auto">
           <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
           <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
           <text x="50" y="20" font-family="'Outfit',sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle"><tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan></text>
@@ -514,17 +537,15 @@ section[id]{scroll-margin-top:82px}
     <div class="hero-copy">
     <div class="hero-eyebrow pre-reveal"><span class="d"></span>LinkedIn Engagement Intelligence</div>
     <h1 class="pre-reveal">
-      <span class="l1">Your ICP is moving on
-        <svg viewBox="0 0 24 24" width="0.9em" height="0.9em" aria-hidden="true" style="border-radius:5px"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M7.2 9.6H4.5V19h2.7V9.6ZM5.85 8.4a1.57 1.57 0 1 0 0-3.15 1.57 1.57 0 0 0 0 3.15ZM19.5 19v-5.15c0-2.76-.59-4.62-3.8-4.62-1.55 0-2.58.85-3 1.65h-.04V9.6H10v9.4h2.7v-4.65c0-1.23.23-2.42 1.75-2.42 1.5 0 1.52 1.4 1.52 2.5V19h2.53Z"/></svg>
-        LinkedIn now.</span>
+      <span class="l1">Your ICP is moving on LinkedIn<svg viewBox="0 0 24 24" width="0.9em" height="0.9em" aria-hidden="true" style="border-radius:5px"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M7.2 9.6H4.5V19h2.7V9.6ZM5.85 8.4a1.57 1.57 0 1 0 0-3.15 1.57 1.57 0 0 0 0 3.15ZM19.5 19v-5.15c0-2.76-.59-4.62-3.8-4.62-1.55 0-2.58.85-3 1.65h-.04V9.6H10v9.4h2.7v-4.65c0-1.23.23-2.42 1.75-2.42 1.5 0 1.52 1.4 1.52 2.5V19h2.53Z"/></svg> now.</span>
       <span class="l2">In <b>72h</b>, the signal is gone.</span>
     </h1>
-    <p class="hero-sub pre-reveal">Sygnals captures who reacts, comments, views and follows on LinkedIn, scores each engager 0–100, and routes qualified leads straight to Clay — no cookies, no account at risk.</p>
+    <p class="hero-sub pre-reveal">Sygnals captures who reacts, comments, views and follows on LinkedIn, scores each engager 0–100, and routes qualified leads straight to Clay and webhooks — no cookies, no account at risk.</p>
     <div class="hero-cta pre-reveal">
       <a href="#demo" class="btn primary">Book a demo</a>
       <a href="#features" class="btn dark">See the signals</a>
     </div>
-    <p class="hero-note pre-reveal">First signal captured in under 10 minutes · No credit card</p>
+    <p class="hero-note pre-reveal">First signal captured in under 10 minutes.</p>
     </div>
     <div class="hero-visual pre-reveal" aria-label="Sygnals dashboard preview">
     <div class="appwin">
@@ -677,14 +698,14 @@ section[id]{scroll-margin-top:82px}
       <div class="fleft pre-reveal">
         <span class="eyebrow">Automatic pipeline</span>
         <h3>Connect once, capture daily</h3>
-        <p>Connect a LinkedIn seat through Unipile for LENS and WAVE — no password stored, no cookies. Public-profile signals need no seat. Runs refresh every day.</p>
+        <p>Connect your LinkedIn account for LENS and WAVE — no password stored, no cookies. Public-profile signals need no connection. Runs refresh every day.</p>
         <button class="learn">See the flow</button>
       </div>
       <div class="fdiv"></div>
       <div class="fright pre-reveal">
         <div class="miniflow">
           <div class="mf-nodes">
-            <div class="mnode ok"><div class="mnode-h"><span class="dt" style="background:var(--blue)"></span>Connect seat</div><div class="mnode-b"><span>Unipile</span><span class="mpill">1 seat</span></div></div>
+            <div class="mnode ok"><div class="mnode-h"><span class="dt" style="background:var(--blue)"></span>Connect account</div><div class="mnode-b"><span>LinkedIn</span><span class="mpill">1 account</span></div></div>
             <div class="mconn"></div>
             <div class="mnode ok"><div class="mnode-h"><span class="dt" style="background:var(--cyan)"></span>Score intent</div><div class="mnode-b"><span>Output</span><span class="mpill">0–100</span></div></div>
           </div>
@@ -748,7 +769,7 @@ section[id]{scroll-margin-top:82px}
       <div class="fdiv"></div>
       <div class="fright pre-reveal">
         <div class="deliver">
-          <div class="dh"><span class="clay"></span>Clay destination<span class="live"><span class="d"></span>Delivering</span></div>
+          <div class="dh"><span class="clay"></span>Clay &amp; webhook destination<span class="live"><span class="d"></span>Delivering</span></div>
           <div class="drow"><span>Mode</span><b>1 lead / request</b></div>
           <div class="drow"><span>Min intent score</span><b>≥ 60</b></div>
           <div class="drow"><span>Seniority</span><span class="tag">Leader · Manager</span></div>
@@ -761,7 +782,12 @@ section[id]{scroll-margin-top:82px}
 
   <!-- QUOTE -->
   <section class="quote">
-    <div class="ql"><div class="glow"></div></div>
+    <div class="ql">
+      <div class="glow"></div>
+      <svg class="ql-pulse" viewBox="0 0 440 130" preserveAspectRatio="none" aria-hidden="true"><path d="M0 65 H150 L168 65 L178 28 L196 104 L210 65 L246 65 L262 44 L276 90 L290 65 H440" fill="none" stroke="#00d4f5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="ql-chip a"><span class="d"></span>Signal captured</div>
+      <div class="ql-chip b"><span class="g"></span>Meeting booked</div>
+    </div>
     <div class="qr pre-reveal">
       <div class="qtop">
         <div class="qbrand">TRA Studio <span style="color:var(--cyan)">◆</span></div>
@@ -777,27 +803,23 @@ section[id]{scroll-margin-top:82px}
   <section class="report" id="report">
     <div class="rl pre-reveal">
       <h2>See who's engaging with your ICP</h2>
-      <p>Give us a LinkedIn profile and we'll show you a sample of the engagers Sygnals would capture and score — free, in minutes.</p>
-      <form class="lead" novalidate onsubmit="return leadSubmit(event,this)" data-loading="Analyzing…" data-done="Sample on its way ✓">
-        <label class="fld-label" for="rl-url">LinkedIn profile URL</label>
-        <input id="rl-url" class="field" type="text" required placeholder="linkedin.com/in/your-prospect" aria-label="LinkedIn profile URL" autocomplete="url">
-        <span class="fld-err" role="alert" aria-live="polite"></span>
-        <button class="analyze" type="submit">Get my free sample</button>
-        <p class="fld-help">We'll email your sample in minutes. No spam.</p>
-      </form>
+      <p>Point a signal at any LinkedIn profile, competitor or post — Sygnals captures every engager and scores their intent. Here's what one signal returns.</p>
+      <div class="exq"><span class="k">Monitoring</span><span class="v">linkedin.com/in/vp-of-sales</span></div>
+      <div class="exq"><span class="k">Signal</span><span class="v">SPARK · post engagement · 72h window</span></div>
       <div class="ins">
-        <div class="il">You'll see:</div>
+        <div class="il">What a signal returns:</div>
         <ul>
           <li><span class="ck">✓</span>Who reacted and commented</li>
-          <li><span class="ck">✓</span>Their intent score, 0–100</li>
+          <li><span class="ck">✓</span>An intent score, 0–100</li>
           <li><span class="ck">✓</span>Title, company, seniority</li>
           <li><span class="ck">✓</span>Hot and Warm breakdown</li>
         </ul>
       </div>
+      <a href="#demo" class="btn primary" style="margin-top:6px">Book a demo</a>
     </div>
     <div class="rr pre-reveal">
       <div class="rr-panel">
-        <div class="rr-head"><span class="dico"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4f5" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg></span><span class="cc">SPARK</span> · engagers preview<span class="cnt">312 captured</span></div>
+        <div class="rr-head"><span class="dico"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4f5" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg></span><span class="cc">SPARK</span> · example output<span class="cnt">312 engagers</span></div>
         <div class="rr-body">
           <div class="dhot-row top">
             <span class="av" style="background:#5c1a3a">CD</span><div class="per"><div class="pn">Carolina Duarte</div><div class="ps">Head of Growth · Nubank</div></div>
@@ -828,10 +850,17 @@ section[id]{scroll-margin-top:82px}
     </div>
     <div class="chan-grid pad">
       <div class="chan live pre-reveal">
-        <span class="ceyebrow"><span class="d"></span>Live now</span>
+        <span class="ceyebrow"><span class="d"></span>Live now · 6 signals</span>
         <div class="ct">Demand in motion</div>
         <div class="cs">Someone is already doing something. Intercept while the signal is still hot.</div>
-        <div class="chips"><span class="sig-chip"><b class="k-spark">SPARK</b></span><span class="sig-chip"><b class="k-rival">RIVAL</b></span><span class="sig-chip"><b class="k-halo">HALO</b></span><span class="sig-chip"><b class="k-flare">FLARE</b></span><span class="sig-chip"><b class="k-lens">LENS</b></span><span class="sig-chip"><b class="k-wave">WAVE</b></span></div>
+        <div class="livelist">
+          <div class="ll"><span class="lc k-spark">SPARK</span><span class="ld">Reactions &amp; comments on any profile's posts</span></div>
+          <div class="ll"><span class="lc k-rival">RIVAL</span><span class="ld">People engaging with your competitors' posts</span></div>
+          <div class="ll"><span class="lc k-halo">HALO</span><span class="ld">Engagers of niche influencers in your space</span></div>
+          <div class="ll"><span class="lc k-flare">FLARE</span><span class="ld">Everyone who engaged with one specific post</span></div>
+          <div class="ll"><span class="lc k-lens">LENS</span><span class="ld">Who viewed your profile, filtered by ICP</span></div>
+          <div class="ll"><span class="lc k-wave">WAVE</span><span class="ld">New followers — a deliberate subscription</span></div>
+        </div>
       </div>
       <div class="chan soon pre-reveal">
         <span class="ceyebrow">On the roadmap</span>
@@ -852,7 +881,7 @@ section[id]{scroll-margin-top:82px}
   <section class="pricing" id="pricing">
     <div class="pad ph pre-reveal">
       <h2>Pricing that scales with your pipeline</h2>
-      <p>One deal closed pays for a year. Start free, upgrade when the leads flow.</p>
+      <p>One deal closed pays for a year. Book a demo and start on your terms.</p>
     </div>
     <div class="plan-grid">
       <div class="plan pre-reveal">
@@ -866,7 +895,7 @@ section[id]{scroll-margin-top:82px}
           <li><span class="ck">✓</span><span>Intent score &amp; enrichment</span></li>
           <li><span class="ck">✓</span><span>Clay, webhook &amp; CSV export</span></li>
         </ul>
-        <a href="#demo" class="btn dark" style="width:100%">Start free</a>
+        <a href="#demo" class="btn dark" style="width:100%">Book a demo</a>
       </div>
       <div class="plan pop pre-reveal">
         <div class="ptop"><span class="pname">Explorer</span><span class="badge-pop">Most popular</span></div>
@@ -895,7 +924,7 @@ section[id]{scroll-margin-top:82px}
         <a href="#demo" class="btn dark" style="width:100%">Book a demo</a>
       </div>
     </div>
-    <div class="pad"><p class="price-note">Free trial: 2,000 credits · 7 days · no card. Credit packs and extra LinkedIn accounts ($15/account/mo) available. Prices in USD.</p></div>
+    <div class="pad"><p class="price-note">Prices in USD. Overage billed per 1,000 credits.</p></div>
   </section>
 
   <!-- ROADMAP -->
@@ -923,16 +952,16 @@ section[id]{scroll-margin-top:82px}
   <!-- TRY -->
   <section class="tryagent">
     <div class="tl pre-reveal">
-      <h2>Try your first signal free</h2>
-      <p>Paste a profile URL, run SPARK, and watch scored engagers show up in minutes. 2,000 credits, no card.</p>
-      <form class="lead" novalidate onsubmit="return leadSubmit(event,this)" data-loading="…" data-done="Check your inbox ✓">
-        <label class="fld-label" for="try-email">Work email</label>
+      <h2>Get the signal, weekly</h2>
+      <p>One sharp email a week on LinkedIn buying intent, outbound plays, and what's working right now.</p>
+      <form class="lead" novalidate onsubmit="return leadSubmit(event,this)" data-subj="Sygnals newsletter" data-loading="…" data-done="Subscribed ✓">
+        <label class="fld-label" for="nl-email">Work email</label>
         <div class="form">
-          <input id="try-email" type="email" required placeholder="you@company.com" aria-label="Work email" autocomplete="email">
-          <button class="btn light" type="submit">Start free</button>
+          <input id="nl-email" type="email" required placeholder="you@company.com" aria-label="Work email" autocomplete="email">
+          <button class="btn light" type="submit">Subscribe</button>
         </div>
         <span class="fld-err" role="alert" aria-live="polite"></span>
-        <span class="tnote">2,000 credits · 7 days · no credit card</span>
+        <span class="tnote">One email a week. Unsubscribe anytime.</span>
       </form>
     </div>
     <div class="tr pre-reveal">
@@ -948,7 +977,7 @@ section[id]{scroll-margin-top:82px}
     <p class="pre-reveal">Your next customer is engaging on LinkedIn right now. Book a demo and see them scored.</p>
     <div class="hero-cta pre-reveal">
       <a href="https://cal.com/sygnals/demo" class="btn primary">Book a demo</a>
-      <a href="#pricing" class="btn dark">Start free</a>
+      <a href="#pricing" class="btn dark">See pricing</a>
     </div>
   </section>
 </div>
@@ -959,7 +988,7 @@ section[id]{scroll-margin-top:82px}
   <div class="pad">
     <div class="foot-grid">
       <div class="foot-brand">
-        <svg viewBox="0 0 172 40" fill="none" role="img" aria-label="Sygnals" style="height:24px;width:auto">
+        <svg viewBox="0 0 172 40" fill="none" role="img" aria-label="Sygnals" style="height:31px;width:auto">
           <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
           <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
           <text x="50" y="20" font-family="'Outfit',sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle"><tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan></text>
@@ -1013,7 +1042,7 @@ if(FINE&&!RM){document.querySelectorAll('.btn.primary').forEach(b=>{b.classList.
 // hero dashboard parallax tilt
 (function(){const hero=document.querySelector('.hero'),win=document.querySelector('.hero-visual .appwin');if(hero&&win&&FINE&&!RM){hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-0.5,y=(e.clientY-r.top)/r.height-0.5;win.style.transform='perspective(1300px) rotateY('+(x*2.4)+'deg) rotateX('+(-y*2.4)+'deg)';});hero.addEventListener('pointerleave',()=>{win.style.transform='';});}})();
 // lead forms — real client-side validation + feedback
-function leadSubmit(e,form){e.preventDefault();const pt=(document.documentElement.lang||'').toLowerCase().indexOf('pt')===0;const inp=form.querySelector('input');const err=form.querySelector('.fld-err');const btn=form.querySelector('button');const v=(inp.value||'').trim();let m='';if(!v)m=inp.type==='email'?(pt?'Digite seu e-mail profissional.':'Enter your work email.'):(pt?'Cole a URL de um perfil.':'Paste a profile URL.');else if(inp.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v))m=pt?'Esse e-mail parece errado — confira.':'That email looks off — check it.';if(m){inp.classList.add('invalid');inp.setAttribute('aria-invalid','true');if(err)err.textContent=m;inp.focus();return false;}inp.classList.remove('invalid');inp.removeAttribute('aria-invalid');if(err)err.textContent='';const isE=inp.type==='email';const subj=pt?(isE?'Sygnals — teste grátis':'Sygnals — amostra grátis'):(isE?'Sygnals — free trial':'Sygnals — free sample');const body=(isE?(pt?'E-mail: ':'Email: '):(pt?'Perfil: ':'Profile: '))+v;try{window.location.href='mailto:hello@sygnals.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);}catch(_){}const orig=btn.textContent;btn.disabled=true;btn.textContent=form.dataset.loading||'…';setTimeout(()=>{btn.textContent=form.dataset.done||'✓';setTimeout(()=>{btn.textContent=orig;btn.disabled=false;},2200);},700);return false;}
+function leadSubmit(e,form){e.preventDefault();const pt=(document.documentElement.lang||'').toLowerCase().indexOf('pt')===0;const inp=form.querySelector('input');const err=form.querySelector('.fld-err');const btn=form.querySelector('button');const v=(inp.value||'').trim();let m='';if(!v)m=inp.type==='email'?(pt?'Digite seu e-mail profissional.':'Enter your work email.'):(pt?'Cole a URL de um perfil.':'Paste a profile URL.');else if(inp.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v))m=pt?'Esse e-mail parece errado — confira.':'That email looks off — check it.';if(m){inp.classList.add('invalid');inp.setAttribute('aria-invalid','true');if(err)err.textContent=m;inp.focus();return false;}inp.classList.remove('invalid');inp.removeAttribute('aria-invalid');if(err)err.textContent='';const subj=form.dataset.subj||'Sygnals';const body=(pt?'E-mail: ':'Email: ')+v;try{window.location.href='mailto:hello@sygnals.com?subject='+encodeURIComponent(subj)+'&body='+encodeURIComponent(body);}catch(_){}const orig=btn.textContent;btn.disabled=true;btn.textContent=form.dataset.loading||'…';setTimeout(()=>{btn.textContent=form.dataset.done||'✓';setTimeout(()=>{btn.textContent=orig;btn.disabled=false;},2200);},700);return false;}
 </script>
 </body>
 </html>
