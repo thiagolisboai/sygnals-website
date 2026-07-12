@@ -22,9 +22,12 @@
   <link rel="alternate" hreflang="pt-BR" href="https://sygnals.in/pt-br/">
   <link rel="alternate" hreflang="x-default" href="https://sygnals.in/">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 40'%3E%3Cpath d='M2 20 H14 L18 8 L23 32 L28 20 H42' fill='none' stroke='%2300d4f5' stroke-width='3.6'/%3E%3Ccircle cx='18' cy='5.5' r='3.8' fill='%2300d4f5'/%3E%3C/svg%3E">
+  <meta name="theme-color" content="#050505">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap"></noscript>
   <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -417,6 +420,7 @@ img{max-width:100%;display:block}
 .skip{position:absolute;left:-999px;top:8px;z-index:200;background:var(--cyan);color:#03181d;padding:10px 16px;border-radius:8px;font-family:var(--font-display);font-weight:600;font-size:14px}
 .skip:focus{left:12px}
 h1,h2,h3{text-wrap:balance}
+section[id]{scroll-margin-top:82px}
 .nav-links a{padding:6px 2px}
 .nav-links a.here{color:var(--text)}
 .lang-btn{min-height:38px}
