@@ -413,9 +413,25 @@ img{max-width:100%;display:block}
   .hero h1{max-width:none}
   :root{--pad:22px}
 }
+/* ===== next-level polish (motion + a11y) ===== */
+.skip{position:absolute;left:-999px;top:8px;z-index:200;background:var(--cyan);color:#03181d;padding:10px 16px;border-radius:8px;font-family:var(--font-display);font-weight:600;font-size:14px}
+.skip:focus{left:12px}
+h1,h2,h3{text-wrap:balance}
+.nav-links a{padding:6px 2px}
+.nav-links a.here{color:var(--text)}
+.lang-btn{min-height:38px}
+.ring circle{transition:stroke-dashoffset .9s cubic-bezier(.16,1,.3,1)}
+.sigcard::after,.plan::after,.ibreak::after,.deliver::after{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(220px 220px at var(--mx,-999px) var(--my,-999px),rgba(0,212,245,.12),transparent 68%);opacity:0;transition:opacity .25s;pointer-events:none;z-index:1}
+.sigcard:hover::after,.plan:hover::after,.ibreak:hover::after,.deliver:hover::after{opacity:1}
+.sigcard>*,.plan>*,.ibreak>*,.deliver>*{position:relative;z-index:2}
+.fld-err{display:block;font-size:12px;color:var(--red);margin-top:8px;font-family:var(--mono);min-height:1px}
+.field.invalid,.tryagent .form input.invalid{border-color:var(--red)!important;box-shadow:0 0 0 1px rgba(229,82,82,.3)!important}
+.mag{will-change:transform}
+@media(prefers-reduced-motion:reduce){.mag,.hero-visual .appwin{transform:none!important}}
   </style>
 </head>
 <body>
+<a class="skip" href="#features">Pular para o conteúdo</a>
 <div class="grain" aria-hidden="true"></div>
 <div class="frame">
 
@@ -730,10 +746,13 @@ img{max-width:100%;display:block}
     <div class="rl pre-reveal">
       <h2>Veja quem engaja com o seu ICP</h2>
       <p>Passe uma URL de perfil do LinkedIn e mostramos uma amostra dos engajadores que o Sygnals capturaria e pontuaria — grátis, em minutos.</p>
-      <label class="fld-label" for="rl-url">URL de perfil do LinkedIn</label>
-      <input id="rl-url" class="field" type="text" placeholder="linkedin.com/in/seu-prospect" aria-label="URL de perfil do LinkedIn">
-      <button class="analyze" onclick="fakeSubmit(this,'Analisando…','Amostra a caminho ✓')">Ver minha amostra grátis</button>
-      <p class="fld-help">Enviamos sua amostra por e-mail em minutos. Sem spam.</p>
+      <form class="lead" novalidate onsubmit="return leadSubmit(event,this)" data-loading="Analisando…" data-done="Amostra a caminho ✓">
+        <label class="fld-label" for="rl-url">URL de perfil do LinkedIn</label>
+        <input id="rl-url" class="field" type="text" required placeholder="linkedin.com/in/seu-prospect" aria-label="URL de perfil do LinkedIn" autocomplete="url">
+        <span class="fld-err" role="alert" aria-live="polite"></span>
+        <button class="analyze" type="submit">Ver minha amostra grátis</button>
+        <p class="fld-help">Enviamos sua amostra por e-mail em minutos. Sem spam.</p>
+      </form>
       <div class="ins">
         <div class="il">Você vai ver:</div>
         <ul>
@@ -874,12 +893,15 @@ img{max-width:100%;display:block}
     <div class="tl pre-reveal">
       <h2>Experimente seu primeiro sinal grátis</h2>
       <p>Cole a URL de um perfil, rode o SPARK e veja engajadores pontuados aparecerem em minutos. 2.000 créditos, sem cartão.</p>
-      <label class="fld-label" for="try-email">E-mail profissional</label>
-      <div class="form">
-        <input id="try-email" type="email" placeholder="voce@empresa.com" aria-label="E-mail profissional">
-        <button class="btn light" onclick="fakeSubmit(this,'…','Confira seu e-mail ✓')">Começar grátis</button>
-      </div>
-      <span class="tnote">2.000 créditos · 7 dias · sem cartão</span>
+      <form class="lead" novalidate onsubmit="return leadSubmit(event,this)" data-loading="…" data-done="Confira seu e-mail ✓">
+        <label class="fld-label" for="try-email">E-mail profissional</label>
+        <div class="form">
+          <input id="try-email" type="email" required placeholder="voce@empresa.com" aria-label="E-mail profissional" autocomplete="email">
+          <button class="btn light" type="submit">Começar grátis</button>
+        </div>
+        <span class="fld-err" role="alert" aria-live="polite"></span>
+        <span class="tnote">2.000 créditos · 7 dias · sem cartão</span>
+      </form>
     </div>
     <div class="tr pre-reveal">
       <div class="cursor k1"></div><div class="chip c1"><span class="ci" style="background:rgba(0,212,245,.14)"><svg viewBox="0 0 24 24" fill="none" stroke="#00d4f5" stroke-width="2"><path d="M13 2 3 14h7l-1 8 10-12h-7l1-8Z"/></svg></span>SPARK</div>
@@ -938,8 +960,21 @@ document.addEventListener('keydown',(e)=>{if(e.key==='Escape'){document.getEleme
 function toggleMenu(){const l=document.querySelector('.nav-links');const b=document.getElementById('navBurger');const open=l.classList.toggle('open');b.setAttribute('aria-expanded',open);}
 document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('.nav-links').classList.remove('open');document.getElementById('navBurger')?.setAttribute('aria-expanded','false');}));
 
-// form submit feedback cycle
-function fakeSubmit(btn,loading,done){if(btn.dataset.busy)return;const orig=btn.textContent;btn.dataset.busy='1';btn.style.opacity='.7';btn.textContent=loading;setTimeout(()=>{btn.textContent=done;btn.style.opacity='1';setTimeout(()=>{btn.textContent=orig;delete btn.dataset.busy;},1900);},800);}
+// ===== next-level interactions =====
+const RM=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const FINE=matchMedia('(pointer:fine)').matches;
+function easeOut(p){return 1-Math.pow(1-p,3);}
+function countTo(el,to){if(RM||to<=0){el.textContent=to;return;}const d=900,s=performance.now();(function f(n){let p=Math.min(1,(n-s)/d);el.textContent=Math.round(to*easeOut(p));if(p<1)requestAnimationFrame(f);})(s);}
+document.querySelectorAll('.ring').forEach(r=>{const cs=r.querySelectorAll('circle');const c=cs[cs.length-1];const t=r.querySelector('text');if(c){r.dataset.off=c.getAttribute('stroke-dashoffset');if(!RM)c.style.strokeDashoffset='97.4';}if(t){r.dataset.num=parseInt(t.textContent,10)||0;if(!RM)t.textContent='0';}});
+const drawObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const r=e.target,cs=r.querySelectorAll('circle'),last=cs[cs.length-1];if(last&&r.dataset.off)last.style.strokeDashoffset=r.dataset.off;const t=r.querySelector('text');if(t)countTo(t,+r.dataset.num);drawObs.unobserve(r);}});},{threshold:.4});
+document.querySelectorAll('.ring').forEach(r=>drawObs.observe(r));
+document.querySelectorAll('.ib-score .num').forEach(n=>{const to=parseInt(n.textContent,10)||0;if(!RM)n.textContent='0';const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){countTo(n,to);o.disconnect();}});},{threshold:.5});o.observe(n);});
+const spySecs=['features','pricing','roadmap'].map(i=>document.getElementById(i)).filter(Boolean);
+if(spySecs.length){const spy=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)document.querySelectorAll('.nav-links a').forEach(a=>a.classList.toggle('here',a.getAttribute('href')==='#'+e.target.id));});},{rootMargin:'-45% 0px -50% 0px'});spySecs.forEach(s=>spy.observe(s));}
+if(FINE){document.querySelectorAll('.sigcard,.plan,.ibreak,.deliver').forEach(c=>{c.addEventListener('pointermove',e=>{const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');});});}
+if(FINE&&!RM){document.querySelectorAll('.btn.primary').forEach(b=>{b.classList.add('mag');b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform='translate('+((e.clientX-r.left-r.width/2)*0.18)+'px,'+((e.clientY-r.top-r.height/2)*0.3)+'px)';});b.addEventListener('pointerleave',()=>{b.style.transform='';});});}
+(function(){const hero=document.querySelector('.hero'),win=document.querySelector('.hero-visual .appwin');if(hero&&win&&FINE&&!RM){hero.addEventListener('pointermove',e=>{const r=hero.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-0.5,y=(e.clientY-r.top)/r.height-0.5;win.style.transform='perspective(1300px) rotateY('+(x*2.4)+'deg) rotateX('+(-y*2.4)+'deg)';});hero.addEventListener('pointerleave',()=>{win.style.transform='';});}})();
+function leadSubmit(e,form){e.preventDefault();const pt=(document.documentElement.lang||'').toLowerCase().indexOf('pt')===0;const inp=form.querySelector('input');const err=form.querySelector('.fld-err');const btn=form.querySelector('button');const v=(inp.value||'').trim();let m='';if(!v)m=inp.type==='email'?(pt?'Digite seu e-mail profissional.':'Enter your work email.'):(pt?'Cole a URL de um perfil.':'Paste a profile URL.');else if(inp.type==='email'&&!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v))m=pt?'Esse e-mail parece errado — confira.':'That email looks off — check it.';if(m){inp.classList.add('invalid');inp.setAttribute('aria-invalid','true');if(err)err.textContent=m;inp.focus();return false;}inp.classList.remove('invalid');inp.removeAttribute('aria-invalid');if(err)err.textContent='';const orig=btn.textContent;btn.disabled=true;btn.textContent=form.dataset.loading||'…';setTimeout(()=>{btn.textContent=form.dataset.done||'✓';setTimeout(()=>{btn.textContent=orig;btn.disabled=false;},2200);},700);return false;}
 </script>
 </body>
 </html>
