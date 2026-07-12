@@ -8,6 +8,20 @@
   <meta property="og:title" content="Sygnals — LinkedIn Engagement Intelligence">
   <meta property="og:description" content="Your ICP is moving on LinkedIn right now. In 72h, the signal is gone.">
   <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Sygnals">
+  <meta property="og:url" content="https://sygnals.in/">
+  <meta property="og:image" content="https://sygnals.in/og.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Sygnals — LinkedIn Engagement Intelligence">
+  <meta name="twitter:description" content="Your ICP is moving on LinkedIn right now. In 72h, the signal is gone.">
+  <meta name="twitter:image" content="https://sygnals.in/og.png">
+  <link rel="canonical" href="https://sygnals.in/">
+  <link rel="alternate" hreflang="en" href="https://sygnals.in/">
+  <link rel="alternate" hreflang="pt-BR" href="https://sygnals.in/pt-br/">
+  <link rel="alternate" hreflang="x-default" href="https://sygnals.in/">
+  <script>try{if(!localStorage.getItem('syg_lang')){var tz=(Intl.DateTimeFormat().resolvedOptions().timeZone||'');var lg=(navigator.language||'').toLowerCase();if((/Sao_Paulo|Fortaleza|Recife|Manaus|Bahia|Belem|Cuiaba|Araguaina|Maceio|Noronha/.test(tz)||lg.indexOf('pt')===0)&&location.pathname.indexOf('/pt-br')!==0){location.replace('/pt-br/');}}}catch(e){}</script>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 44 40'%3E%3Cpath d='M2 20 H14 L18 8 L23 32 L28 20 H42' fill='none' stroke='%2300d4f5' stroke-width='3.6'/%3E%3Ccircle cx='18' cy='5.5' r='3.8' fill='%2300d4f5'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -454,8 +468,8 @@ img{max-width:100%;display:block}
             <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
           </button>
           <div class="lang-menu" role="menu">
-            <a href="/" class="active" role="menuitem">English<span class="code">EN</span></a>
-            <a href="/pt-br/" role="menuitem">Português (Brasil)<span class="code">PT</span></a>
+            <a href="/" class="active" role="menuitem" onclick="try{localStorage.setItem('syg_lang','en')}catch(e){}">English<span class="code">EN</span></a>
+            <a href="/pt-br/" role="menuitem" onclick="try{localStorage.setItem('syg_lang','pt')}catch(e){}">Português (Brasil)<span class="code">PT</span></a>
           </div>
         </div>
         <a href="#demo" class="btn primary" style="padding:9px 18px;font-size:14px">Book a demo</a>
