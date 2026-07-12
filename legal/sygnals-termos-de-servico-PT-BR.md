@@ -164,7 +164,7 @@ O Sygnals não garante disponibilidade, precisão ou segurança de plataformas d
 
 ## 13. Conteúdo de Terceiros e Notificação de Violação
 
-Caso o Cliente identifique conteúdo que viole direitos autorais ou outros direitos de propriedade intelectual disponibilizado através do Serviço, deverá notificar o Sygnals pelo e-mail **[suporte@sygnals.ai]**, com identificação do material, titularidade do direito e localização no Serviço, para as providências cabíveis.
+Caso o Cliente identifique conteúdo que viole direitos autorais ou outros direitos de propriedade intelectual disponibilizado através do Serviço, deverá notificar o Sygnals pelo e-mail **[hello@sygnals.in]**, com identificação do material, titularidade do direito e localização no Serviço, para as providências cabíveis.
 
 ## 14. Confidencialidade
 
@@ -222,4 +222,4 @@ Estes Termos são regidos pelas leis da República Federativa do Brasil. Fica el
 
 ---
 
-**Contato:** [suporte@sygnals.ai] · **Encarregado de Dados (DPO):** [privacidade@sygnals.ai]
+**Contato:** [hello@sygnals.in] · **Encarregado de Dados (DPO):** [admin@sygnals.in]

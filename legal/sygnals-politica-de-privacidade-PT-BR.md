@@ -167,7 +167,7 @@ Você pode, a qualquer momento e **sem necessidade de criar conta**:
 - **Se opor** ao tratamento de seus dados com base em legítimo interesse, nos termos do art. 18, § 2º da LGPD;
 - **Solicitar correção** de dados imprecisos.
 
-Para exercer qualquer um desses direitos, envie um e-mail para **[privacidade@sygnals.ai]** com o link do seu perfil do LinkedIn para que possamos localizar seus dados. Responderemos em até 15 (quinze) dias.
+Para exercer qualquer um desses direitos, envie um e-mail para **[admin@sygnals.in]** com o link do seu perfil do LinkedIn para que possamos localizar seus dados. Responderemos em até 15 (quinze) dias.
 
 ### O que não fazemos
 
@@ -208,7 +208,7 @@ Podemos atualizar esta Política periodicamente. Alterações materiais serão c
 Para exercer seus direitos, esclarecer dúvidas sobre esta Política, ou reportar uma preocupação de privacidade:
 
 **Encarregado de Proteção de Dados (DPO):** [NOME]
-**E-mail:** [privacidade@sygnals.ai]
+**E-mail:** [admin@sygnals.in]
 **Endereço:** Av. Paulista, 1106, Sala 01, Bela Vista, São Paulo/SP, CEP 01310-914
 
 Você também pode registrar reclamação junto à Autoridade Nacional de Proteção de Dados (ANPD) em **gov.br/anpd**.

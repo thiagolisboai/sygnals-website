@@ -167,7 +167,7 @@ At any time, and **without needing to create an account**, you can:
 - **Object** to processing based on legitimate interest, under LGPD Art. 18 §2 or GDPR Art. 21;
 - **Request correction** of inaccurate data.
 
-To exercise any of these rights, email **[privacy@sygnals.ai]** with a link to your LinkedIn profile so we can locate your data. We will respond within 30 days (or sooner where required by applicable law).
+To exercise any of these rights, email **[admin@sygnals.in]** with a link to your LinkedIn profile so we can locate your data. We will respond within 30 days (or sooner where required by applicable law).
 
 ### What we don't do
 
@@ -208,7 +208,7 @@ We may update this Policy from time to time. Material changes will be communicat
 To exercise your rights, ask questions about this Policy, or report a privacy concern:
 
 **Data Protection Officer:** [NAME]
-**Email:** [privacy@sygnals.ai]
+**Email:** [admin@sygnals.in]
 **Address:** Av. Paulista, 1106, Sala 01, Bela Vista, São Paulo/SP, CEP 01310-914
 
 Brazilian data subjects may also file a complaint with the Autoridade Nacional de Proteção de Dados (ANPD) at **gov.br/anpd**. EU/UK data subjects may file a complaint with their local supervisory authority.

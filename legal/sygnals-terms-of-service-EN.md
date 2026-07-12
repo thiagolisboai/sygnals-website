@@ -164,7 +164,7 @@ Sygnals does not warrant the availability, accuracy, or security of third-party 
 
 ## 13. Third-Party Content and Infringement Notices
 
-If Customer identifies content made available through the Service that infringes copyright or other intellectual property rights, it should notify Sygnals at **[support@sygnals.ai]**, identifying the material, the right holder, and its location within the Service, so that we can take appropriate action.
+If Customer identifies content made available through the Service that infringes copyright or other intellectual property rights, it should notify Sygnals at **[hello@sygnals.in]**, identifying the material, the right holder, and its location within the Service, so that we can take appropriate action.
 
 ## 14. Confidentiality
 
@@ -222,4 +222,4 @@ These Terms are governed by the laws of the Federative Republic of Brazil. The c
 
 ---
 
-**Contact:** [support@sygnals.ai] · **Data Protection Officer:** [privacy@sygnals.ai]
+**Contact:** [hello@sygnals.in] · **Data Protection Officer:** [admin@sygnals.in]
