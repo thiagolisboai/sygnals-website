@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sygnals — Sinais de vendas para vencer no LinkedIn</title>
-  <meta name="description" content="A Sygnals monitora a atividade no LinkedIn, pontua a intenção de compra em tempo real e revela os leads quentes que valem seu tempo.">
-  <meta property="og:title" content="Sygnals — Sinais de vendas para vencer no LinkedIn">
-  <meta property="og:description" content="Aborde no momento em que demonstram intenção de compra.">
+  <title>Sygnals — Inteligência de engajamento no LinkedIn</title>
+  <meta name="description" content="O Sygnals captura quem reage, comenta, visita e segue no LinkedIn, pontua a intenção de compra de 0 a 100 e envia os leads qualificados direto pro Clay. Sem cookies, sem sua conta em risco.">
+  <meta property="og:title" content="Sygnals — Inteligência de engajamento no LinkedIn">
+  <meta property="og:description" content="Seu ICP está se movendo no LinkedIn agora. Em 72h, o sinal some.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -18,10 +18,11 @@
   --bg:#000;--panel:#0a0a0a;--panel2:#111;--elev:#161616;--elev2:#1d1d1d;
   --border:#232323;--border2:#2c2c2c;--dash:#2a2a2a;
   --text:#edf2f5;--muted:#9f9f9f;--dim:#6b6b6b;--faint:#3a3a3a;
-  --green:#00c758;--blue:#54a2ff;--violet:#a685ff;--orange:#ff8b1a;--red:#ff6568;--amber:#edb200;
+  --green:#00c758;--blue:#54a2ff;--violet:#a685ff;--orange:#ff8b1a;--red:#ff6568;--amber:#e3b341;
+  --hot:#ff6b6b;--warm:#e3b341;
   --font-display:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
   --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
-  --mono:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;
+  --mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
   --maxw:1180px;--pad:40px;
 }
 html{scroll-behavior:smooth;background:var(--bg)}
@@ -30,258 +31,284 @@ a{color:inherit;text-decoration:none}
 h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;letter-spacing:-.03em;line-height:1.02}
 img{max-width:100%;display:block}
 
-/* ---- blueprint frame ---- */
 .frame{max-width:var(--maxw);margin:0 auto;position:relative;border-left:1px dashed var(--dash);border-right:1px dashed var(--dash)}
 .pad{padding-left:var(--pad);padding-right:var(--pad)}
 .dsep{border-top:1px dashed var(--dash)}
-.ssep{border-top:1px solid var(--border)}
 
-/* ---- buttons (brand: cyan pill primary) ---- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.01em;border-radius:999px;padding:12px 22px;cursor:pointer;border:1px solid transparent;transition:transform .15s ease,background .15s ease,border-color .15s ease;white-space:nowrap}
-.btn.primary{background:var(--cyan);color:#000}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.01em;border-radius:999px;padding:12px 22px;cursor:pointer;border:1px solid transparent;transition:transform .15s cubic-bezier(.16,1,.3,1),background .15s,border-color .15s;white-space:nowrap}
+.btn.primary{background:var(--cyan);color:#03181d}
 .btn.primary:hover{transform:translateY(-1px);background:var(--cyan-lt)}
-.btn.dark{background:#2a2a2a;color:var(--text);border-color:#333}
-.btn.dark:hover{background:#333;transform:translateY(-1px)}
-.btn.ghost{background:#1c1c1c;color:var(--text);border-color:#2a2a2a;font-size:14px;padding:9px 16px}
+.btn.primary:active{transform:scale(.985)}
+.btn.dark{background:#1c1c1c;color:var(--text);border-color:#2c2c2c}
+.btn.dark:hover{background:#242424;border-color:#3a3a3a;transform:translateY(-1px)}
+.btn.ghost{background:#161616;color:var(--text);border-color:#2a2a2a;font-size:14px;padding:9px 15px}
 .btn.ghost:hover{border-color:#3a3a3a}
-.btn.light{background:#fff;color:#000}
+.btn.light{background:#fff;color:#0b0b0b}
 .btn.light:hover{background:#e9e9e9;transform:translateY(-1px)}
 .btn:focus-visible{outline:none;box-shadow:0 0 0 2px #000,0 0 0 4px var(--cyan)}
-.learn{align-self:flex-start;background:#232323;color:var(--text);font-family:var(--font-display);font-weight:600;font-size:14px;border:none;border-radius:8px;padding:9px 15px;cursor:pointer;transition:background .15s}
-.learn:hover{background:#2e2e2e}
+.learn{align-self:flex-start;background:#1e1e1e;color:var(--text);font-family:var(--font-display);font-weight:600;font-size:14px;border:1px solid #2a2a2a;border-radius:8px;padding:8px 14px;cursor:pointer;transition:background .15s,border-color .15s}
+.learn:hover{background:#262626;border-color:#3a3a3a}
 
-/* reveal */
 .pre-reveal{opacity:0;transform:translateY(14px)}
-.revealed{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
+.revealed{opacity:1;transform:none;transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
 @media (prefers-reduced-motion:reduce){.pre-reveal{opacity:1;transform:none}.revealed{transition:none}*{scroll-behavior:auto}}
 
-/* ---- nav ---- */
-.nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
+.nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px;gap:20px}
 .nav-links{display:flex;gap:26px;align-items:center}
 .nav-links a{font-size:14px;color:var(--muted);font-weight:500;transition:color .15s}
 .nav-links a:hover{color:var(--text)}
-.nav-right{display:flex;gap:12px;align-items:center}
+.nav-right{display:flex;gap:10px;align-items:center}
 .nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:24px;height:24px;background:none;border:none;cursor:pointer}
 .nav-burger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
-/* index banner */
+.lang{position:relative}
+.lang-btn{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted);background:#161616;border:1px solid var(--border2);border-radius:999px;padding:7px 12px;cursor:pointer;font-family:var(--font);font-weight:500;transition:border-color .15s,color .15s}
+.lang-btn:hover{color:var(--text);border-color:#3a3a3a}
+.lang-btn .globe{width:15px;height:15px;opacity:.85}
+.lang-btn .cur{color:var(--text);font-weight:600}
+.lang-btn .caret{width:10px;height:10px;opacity:.6;transition:transform .2s}
+.lang.open .lang-btn .caret{transform:rotate(180deg)}
+.lang-menu{position:absolute;top:calc(100% + 8px);right:0;background:#111;border:1px solid var(--border2);border-radius:12px;padding:6px;min-width:190px;box-shadow:0 24px 60px -24px rgba(0,0,0,.8);opacity:0;visibility:hidden;transform:translateY(-6px);transition:opacity .18s,transform .18s,visibility .18s;z-index:130}
+.lang.open .lang-menu{opacity:1;visibility:visible;transform:none}
+.lang-menu a{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 11px;border-radius:8px;font-size:14px;color:var(--muted);transition:background .15s,color .15s}
+.lang-menu a:hover{background:#1b1b1b;color:var(--text)}
+.lang-menu a.active{color:var(--cyan)}
+.lang-menu a .code{font-family:var(--mono);font-size:11px;color:var(--dim);border:1px solid var(--border2);border-radius:5px;padding:2px 7px}
+.lang-menu a.active .code{color:var(--cyan);border-color:rgba(0,212,245,.3)}
+
 .banner{border-top:1px dashed var(--dash);border-bottom:1px dashed var(--dash);background:#0b0b0b}
-.banner-inner{display:flex;align-items:center;justify-content:center;gap:14px;height:56px;font-size:15px;flex-wrap:wrap}
-.banner-tag{background:rgba(0,212,245,.1);color:var(--cyan);border:1px solid rgba(0,212,245,.2);border-radius:8px;padding:5px 12px;font-weight:600;font-size:14px}
+.banner-inner{display:flex;align-items:center;justify-content:center;gap:14px;height:54px;font-size:15px;flex-wrap:wrap}
+.banner-tag{background:rgba(0,212,245,.1);color:var(--cyan);border:1px solid rgba(0,212,245,.2);border-radius:8px;padding:4px 11px;font-weight:600;font-size:13px;font-family:var(--mono);letter-spacing:.02em}
 .banner-inner .b-txt{color:var(--muted)}
 .banner-inner a{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
 .banner-inner a:hover .b-txt{color:var(--text)}
 
-/* ---- hero ---- */
-.hero{text-align:center;padding-top:clamp(48px,7vw,90px);position:relative;overflow:hidden}
+.hero{text-align:center;padding-top:clamp(48px,7vw,88px);position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(90% 60% at 50% -5%,rgba(0,212,245,.10),transparent 60%);pointer-events:none}
-.hero h1{position:relative;font-size:clamp(44px,8vw,92px);font-weight:500;line-height:.98;letter-spacing:-.04em;margin-bottom:26px}
-.hero h1 .l2{display:inline-flex;align-items:center;justify-content:center;gap:16px;margin-top:.06em}
-.hero-sub{position:relative;color:var(--muted);font-size:clamp(17px,1.9vw,22px);line-height:1.45;max-width:580px;margin:0 auto 34px}
-.hero-cta{position:relative;display:flex;gap:12px;justify-content:center;margin-bottom:clamp(48px,6vw,80px)}
-/* hero product panel */
-.panel{border:1px solid var(--border2);border-top:1px solid var(--border2);border-radius:14px 14px 0 0;background:var(--panel);overflow:hidden;position:relative}
-.panel-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border)}
-.panel-head .t{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;font-size:14px}
-.panel-head .t .chev{color:var(--dim)}
+.hero h1{position:relative;font-size:clamp(40px,6.6vw,78px);font-weight:600;line-height:1.0;letter-spacing:-.04em;margin-bottom:24px}
+.hero h1 .l1{display:inline-flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap}
+.hero h1 .l2{display:block;margin-top:.12em;color:var(--muted);font-weight:500}
+.hero h1 .l2 b{color:var(--cyan);font-weight:600}
+.hero-sub{position:relative;color:var(--muted);font-size:clamp(16px,1.7vw,20px);line-height:1.5;max-width:660px;margin:0 auto 32px}
+.hero-cta{position:relative;display:flex;gap:12px;justify-content:center;margin-bottom:16px}
+.hero-note{position:relative;font-size:13px;color:var(--dim);margin-bottom:clamp(44px,6vw,76px);font-family:var(--mono);letter-spacing:.01em}
+
+.panel{border:1px solid var(--border2);border-radius:14px 14px 0 0;background:var(--panel);overflow:hidden;position:relative;box-shadow:0 40px 90px -40px rgba(0,212,245,.14)}
+.panel-head{display:flex;align-items:center;justify-content:space-between;padding:13px 18px;border-bottom:1px solid var(--border)}
+.panel-head .t{display:flex;align-items:center;gap:9px;font-family:var(--font-display);font-weight:600;font-size:14px}
+.panel-head .t .ab{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cyan);border:1px solid rgba(0,212,245,.3);border-radius:5px;padding:2px 6px}
 .panel-head .actions{display:flex;gap:8px}
-.pipe{display:grid;grid-template-columns:230px 1fr 340px;min-height:560px}
+.pipe{display:grid;grid-template-columns:236px 1fr 330px;min-height:540px}
 .pipe-col{padding:16px;border-right:1px solid var(--border)}
 .pipe-col:last-child{border-right:none}
-.tabs{display:flex;gap:4px;background:#161616;border-radius:9px;padding:4px;margin-bottom:18px}
+.tabs{display:flex;gap:4px;background:#161616;border-radius:9px;padding:4px;margin-bottom:16px}
 .tabs button{flex:1;font-family:var(--font);font-size:13px;color:var(--muted);background:none;border:none;padding:7px;border-radius:6px;cursor:pointer}
 .tabs button.on{background:#2a2a2a;color:var(--text)}
-.pipe-lbl{font-size:12px;color:var(--dim);margin:14px 0 9px;text-transform:none}
-.node-item{display:flex;align-items:center;gap:9px;background:#141414;border:1px solid var(--border);border-radius:8px;padding:9px 11px;margin-bottom:7px;font-size:13px}
-.node-item .ic{width:16px;height:16px;border-radius:5px;flex-shrink:0}
-/* canvas */
-.canvas{position:relative;display:flex;flex-direction:column;align-items:center;gap:0;padding:20px 0}
-.cnode{width:270px;background:#141414;border:1px solid var(--border2);border-radius:12px;overflow:hidden}
+.pipe-lbl{font-size:11px;color:var(--dim);margin:12px 0 8px;font-family:var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.node-item{display:flex;align-items:center;gap:9px;background:#141414;border:1px solid var(--border);border-radius:8px;padding:8px 11px;margin-bottom:6px;font-size:13px}
+.node-item .ab{font-family:var(--mono);font-size:10px;font-weight:600;color:var(--cyan);flex-shrink:0;width:34px}
+.node-item.dim{opacity:.5}
+.node-item.dim .ab{color:var(--dim)}
+.canvas{position:relative;display:flex;flex-direction:column;align-items:center;padding:20px 0}
+.cnode{width:262px;background:#141414;border:1px solid var(--border2);border-radius:12px;overflow:hidden}
 .cnode.ok{border-color:rgba(0,199,88,.5)}
 .cnode-h{display:flex;align-items:center;gap:8px;padding:12px 14px;font-size:14px;font-weight:600;font-family:var(--font-display)}
 .cnode-h .dot{width:16px;height:16px;border-radius:5px;background:var(--cyan)}
-.cnode-b{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-top:1px solid var(--border);font-size:13px;color:var(--muted)}
-.pill-out{background:rgba(0,212,245,.12);color:var(--cyan);border-radius:6px;padding:3px 9px;font-size:12px;font-weight:500}
-.connector{width:1px;height:26px;background:var(--border2);position:relative}
+.cnode-b{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-top:1px solid var(--border);font-size:13px;color:var(--muted)}
+.pill-out{background:rgba(0,212,245,.12);color:var(--cyan);border-radius:6px;padding:3px 9px;font-size:12px;font-weight:500;font-family:var(--mono)}
+.connector{width:1px;height:24px;background:var(--border2);position:relative}
 .connector::after{content:'+';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:20px;height:20px;background:#161616;border:1px solid var(--border2);border-radius:50%;font-size:13px;color:var(--dim);display:flex;align-items:center;justify-content:center}
-.badge-ok{display:inline-flex;align-items:center;gap:6px;background:rgba(0,199,88,.12);color:var(--green);border-radius:6px;padding:3px 9px;font-size:12px;font-weight:500;align-self:flex-end;margin:-4px 0 6px auto}
+.badge-ok{display:inline-flex;align-items:center;gap:6px;background:rgba(0,199,88,.12);color:var(--green);border-radius:6px;padding:3px 9px;font-size:12px;font-weight:500;align-self:flex-end;margin:-2px 0 6px auto;font-family:var(--mono)}
 .badge-ok::before{content:'✓';font-size:11px}
-/* right output list */
-.out-item{margin-bottom:16px}
+.out-item{margin-bottom:15px}
 .out-item .name{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;font-family:var(--font-display);margin-bottom:8px}
-.out-item .name .ck{width:15px;height:15px;border-radius:50%;background:var(--green);color:#000;font-size:10px;display:flex;align-items:center;justify-content:center}
+.out-item .name .ck{width:15px;height:15px;border-radius:50%;background:var(--green);color:#00160c;font-size:10px;display:flex;align-items:center;justify-content:center}
 .out-row{display:flex;align-items:center;gap:8px;background:#131313;border:1px solid var(--border);border-radius:8px;padding:8px 11px;margin-bottom:6px;font-size:13px;color:var(--muted)}
 .out-row .ch{color:var(--dim)}
 
-/* ---- logos ---- */
 .logos{text-align:center;padding-top:clamp(56px,7vw,90px)}
-.logos .lead{color:var(--muted);font-size:16px;margin-bottom:48px}
-.logo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:44px 20px;align-items:center;justify-items:center}
-.logo-grid span{font-family:var(--font-display);font-weight:700;font-size:22px;color:#cfd3d6;letter-spacing:-.02em;opacity:.82}
-@media(max-width:820px){.logo-grid{grid-template-columns:repeat(3,1fr);gap:36px 12px}.logo-grid span{font-size:18px}}
+.logos .lead{color:var(--muted);font-size:15px;margin-bottom:44px}
+.logo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:40px 20px;align-items:center;justify-items:center}
+.logo-grid span{font-family:var(--font-display);font-weight:700;font-size:21px;color:#cfd3d6;letter-spacing:-.02em;opacity:.8}
+@media(max-width:820px){.logo-grid{grid-template-columns:repeat(3,1fr);gap:34px 12px}.logo-grid span{font-size:17px}}
 
-/* ---- statement ---- */
 .statement{padding-top:clamp(80px,11vw,150px)}
-.statement p{font-family:var(--font-display);font-weight:500;font-size:clamp(26px,3.4vw,42px);line-height:1.2;letter-spacing:-.02em;max-width:920px}
+.statement p{font-family:var(--font-display);font-weight:500;font-size:clamp(25px,3.3vw,42px);line-height:1.22;letter-spacing:-.02em;max-width:960px}
 .statement .hl{color:var(--text)}
-.statement .lo{color:#2b2b2b}
+.statement .lo{color:#2e2e2e}
 
-/* ---- features ---- */
-.features h2.big{font-size:clamp(34px,5vw,58px);font-weight:500;line-height:1.02;letter-spacing:-.03em;margin-bottom:22px}
-.features .intro{color:var(--muted);font-size:clamp(16px,1.7vw,19px);max-width:640px;margin-bottom:8px}
+.features h2.big{font-size:clamp(32px,4.8vw,56px);font-weight:600;line-height:1.02;letter-spacing:-.03em;margin-bottom:20px}
+.features .intro{color:var(--muted);font-size:clamp(16px,1.6vw,19px);max-width:680px}
 .frow{display:grid;grid-template-columns:340px 1px 1fr;border-top:1px dashed var(--dash)}
 .frow .fleft{padding:44px 40px 44px 0;display:flex;flex-direction:column;gap:14px}
+.frow .fleft .eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);font-weight:600}
 .frow .fdiv{background:repeating-linear-gradient(to bottom,var(--dash) 0 5px,transparent 5px 10px)}
 .frow .fright{padding:44px 0 44px 40px;display:flex;align-items:center;min-width:0;overflow:hidden}
-.frow h3{font-size:22px;font-weight:600}
-.frow p{color:var(--muted);font-size:15px;max-width:290px}
+.frow h3{font-size:23px;font-weight:600}
+.frow p{color:var(--muted);font-size:15px;max-width:310px}
 @media(max-width:860px){.frow{grid-template-columns:1fr}.frow .fdiv{display:none}.frow .fleft{padding:36px 0 8px}.frow .fright{padding:8px 0 40px}}
 
-/* feature mock: search */
-.mock{width:100%}
-.m-title{text-align:center;color:var(--muted);font-size:15px;margin-bottom:18px}
-.searchbox{background:#141414;border:1px solid var(--border2);border-radius:12px;padding:16px 18px}
-.searchbox .q{font-size:16px;margin-bottom:14px}
-.searchbox .q .cur{color:var(--cyan)}
-.searchbox .qrow{display:flex;align-items:center;justify-content:space-between}
-.searchbox .qrow .l{display:flex;gap:6px}
-.searchbox .qrow .l i{width:30px;height:26px;background:#1e1e1e;border-radius:7px;display:inline-block}
-.searchbox .qrow .r{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted)}
-.searchbox .qrow .r .an{background:#fff;color:#000;border-radius:7px;padding:5px 13px;font-weight:600;font-size:13px}
-.klist{margin-top:14px}
-.klbl{font-size:12px;color:var(--dim);margin-bottom:8px}
-.krow{display:flex;justify-content:space-between;padding:11px 12px;border-radius:8px;font-size:14px}
-.krow:first-of-type{background:#1a1a1a}
-.krow .kv{color:var(--muted)}
-/* feature mock: chart */
-.chart-wrap{width:100%}
-.persona-row{display:flex;flex-wrap:wrap;gap:18px 26px;margin-bottom:20px}
-.persona{font-size:14px}
-.persona .nm{color:var(--muted);display:flex;align-items:center;gap:7px;margin-bottom:3px}
-.persona .nm .d{width:8px;height:8px;border-radius:50%}
-.persona .pv{font-family:var(--font-display);font-weight:600;font-size:17px}
-.persona .pv small{font-size:13px;font-weight:500;margin-left:4px}
-/* analytics stats */
-.stat-row{display:flex;flex-wrap:wrap;gap:26px 40px;margin-bottom:22px}
-.stat .sl{color:var(--dim);font-size:14px;margin-bottom:4px}
-.stat .sv{font-family:var(--font-display);font-weight:600;font-size:24px}
-.stat .sv small{color:var(--green);font-size:14px;font-weight:500;margin-left:6px}
-/* projects mock */
-.projcard{width:100%;border:1px solid var(--border);border-radius:14px;padding:26px;background:var(--panel)}
-.projcard h4{font-size:20px;margin-bottom:20px}
-.pj-lbl{font-size:13px;color:var(--dim);margin-bottom:12px}
-.pj-sug{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
-.pj-item{background:#141414;border:1px solid var(--border);border-radius:10px;padding:16px}
-.pj-item .top{display:flex;justify-content:space-between;font-size:13px;color:var(--dim);margin-bottom:10px}
-.pj-item .top .hi{color:var(--green);display:flex;align-items:center;gap:5px}
-.pj-item .h{font-size:14px;font-weight:600;font-family:var(--font-display);margin-bottom:8px;line-height:1.3}
-.pj-item .d{font-size:12px;color:var(--dim);line-height:1.5;margin-bottom:14px}
-.pj-item .track{background:#232323;border-radius:7px;padding:6px 12px;font-size:12px;font-weight:600;display:inline-flex;gap:6px;align-items:center}
-.pj-track-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border);font-size:13px;color:var(--muted)}
-.pj-track-row .st{width:16px;height:16px;border-radius:50%;background:rgba(0,199,88,.2);color:var(--green);font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-@media(max-width:520px){.pj-sug{grid-template-columns:1fr}}
+.sigpick{width:100%;display:flex;flex-direction:column;gap:8px}
+.sp-row{display:flex;align-items:center;gap:13px;background:#141414;border:1px solid var(--border);border-radius:10px;padding:12px 15px;transition:border-color .15s}
+.sp-row.on{border-color:rgba(0,212,245,.45);background:#0f1719}
+.sp-row .ab{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cyan);border:1px solid rgba(0,212,245,.3);border-radius:6px;padding:4px 7px;flex-shrink:0;width:42px;text-align:center}
+.sp-row .nm{font-size:14px;font-weight:500;font-family:var(--font-display)}
+.sp-row .ds{font-size:12px;color:var(--dim);margin-top:1px}
+.sp-row .win{margin-left:auto;font-family:var(--mono);font-size:10px;color:var(--dim);letter-spacing:.06em;white-space:nowrap;flex-shrink:0}
 
-/* ---- quote ---- */
+.iscore{background:#141414;border:1px solid var(--border2);border-radius:14px;padding:20px 22px;width:100%;max-width:380px;box-shadow:0 24px 60px -30px rgba(0,212,245,.22)}
+.iscore-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px}
+.iscore-name{font-weight:600;font-size:15px;font-family:var(--font-display)}
+.iscore-sub{font-size:12px;color:var(--dim);margin-top:2px}
+.i-badge{font-family:var(--mono);font-size:12px;font-weight:600;padding:4px 11px;border-radius:999px;display:flex;align-items:center;gap:6px;flex-shrink:0}
+.i-badge .d{width:5px;height:5px;border-radius:50%}
+.i-badge.hot{background:rgba(255,107,107,.14);color:var(--hot)}.i-badge.hot .d{background:var(--hot)}
+.iscore-row{display:flex;justify-content:space-between;font-size:13px;padding:8px 0;border-bottom:1px solid var(--border)}
+.iscore-row .lbl{color:var(--muted)}
+.iscore-row .val{font-family:var(--mono)}
+.iscore-row .val.pos{color:var(--text)}
+.iscore-row .val.neg{color:var(--dim)}
+.iscore-total{display:flex;justify-content:space-between;align-items:center;padding-top:13px;margin-top:5px;border-top:1px solid var(--border2)}
+.iscore-total .num{font-family:var(--font-display);font-weight:700;font-size:32px;color:var(--cyan);letter-spacing:-.03em}
+
+.kpi-row{display:flex;flex-wrap:wrap;gap:22px 34px;margin-bottom:22px}
+.kpi .kl{color:var(--dim);font-size:13px;margin-bottom:4px}
+.kpi .kv{font-family:var(--font-display);font-weight:600;font-size:24px}
+.kpi .kv small{color:var(--green);font-size:13px;font-weight:500;margin-left:6px;font-family:var(--mono)}
+.leads{display:flex;flex-direction:column;gap:7px;width:100%}
+.lead-row{display:flex;align-items:center;gap:12px;background:#131313;border:1px solid var(--border);border-radius:9px;padding:10px 14px}
+.lead-av{width:30px;height:30px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:600;color:#0b0b0b;font-family:var(--font-display)}
+.lead-nm{font-size:14px;font-weight:500}
+.lead-co{font-size:12px;color:var(--dim)}
+.lead-badge{margin-left:auto;font-family:var(--mono);font-size:12px;font-weight:600;display:flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;flex-shrink:0}
+.lead-badge.hot{background:rgba(255,107,107,.14);color:var(--hot)}
+.lead-badge.warm{background:rgba(227,179,65,.15);color:var(--warm)}
+.lead-badge.mid{background:rgba(84,162,255,.12);color:var(--blue)}
+
+.deliver{width:100%;background:#141414;border:1px solid var(--border2);border-radius:12px;overflow:hidden}
+.deliver .dh{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid var(--border);font-family:var(--font-display);font-weight:600;font-size:14px}
+.deliver .dh .clay{width:20px;height:20px;border-radius:6px;background:linear-gradient(135deg,#f97316,#ea580c)}
+.deliver .dh .live{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--green);display:flex;align-items:center;gap:6px}
+.deliver .dh .live .d{width:6px;height:6px;border-radius:50%;background:var(--green)}
+.deliver .drow{display:flex;justify-content:space-between;align-items:center;padding:11px 16px;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted)}
+.deliver .drow b{color:var(--text);font-family:var(--mono);font-weight:500}
+.deliver .drow:last-child{border-bottom:none}
+.deliver .tag{font-family:var(--mono);font-size:11px;color:var(--cyan);background:rgba(0,212,245,.1);border-radius:5px;padding:2px 7px}
+
 .quote{display:grid;grid-template-columns:1fr 1.05fr;border-top:1px dashed var(--dash);background:var(--panel)}
-.quote .ql{background:#0d0d0d;min-height:340px;border-right:1px solid var(--border)}
-.quote .qr{padding:44px 44px 44px 44px;display:flex;flex-direction:column}
-.quote .qtop{display:flex;align-items:center;justify-content:space-between;margin-bottom:auto}
-.quote .qbrand{font-family:var(--font-display);font-weight:700;font-size:26px;display:flex;align-items:center;gap:8px}
-.quote blockquote{font-family:var(--font-display);font-weight:600;font-size:clamp(22px,2.5vw,33px);letter-spacing:-.02em;line-height:1.28;margin:60px 0 22px}
-.quote .cite{color:var(--muted);font-size:16px}
+.quote .ql{background:#0d0d0d;min-height:340px;border-right:1px solid var(--border);position:relative;overflow:hidden}
+.quote .ql .glow{position:absolute;inset:0;background:radial-gradient(60% 60% at 30% 40%,rgba(0,212,245,.08),transparent 70%)}
+.quote .qr{padding:44px;display:flex;flex-direction:column}
+.quote .qtop{display:flex;align-items:center;justify-content:space-between;margin-bottom:auto;gap:16px}
+.quote .qbrand{font-family:var(--font-display);font-weight:700;font-size:24px;display:flex;align-items:center;gap:9px}
+.quote blockquote{font-family:var(--font-display);font-weight:600;font-size:clamp(23px,2.5vw,33px);letter-spacing:-.02em;line-height:1.28;margin:56px 0 22px}
+.quote .cite{color:var(--muted);font-size:15px}
 .quote .cite b{color:var(--text);font-weight:600}
+.quote .qstat{margin-top:22px;font-family:var(--mono);font-size:13px;color:var(--cyan)}
 @media(max-width:820px){.quote{grid-template-columns:1fr}.quote .ql{min-height:120px;border-right:none;border-bottom:1px solid var(--border)}.quote .qr{padding:32px}}
 
-/* ---- report ---- */
 .report{display:grid;grid-template-columns:1fr 1fr;border-top:1px dashed var(--dash);align-items:stretch}
 .report .rl{padding:44px 44px 44px 40px}
 .report .rl h2{font-size:clamp(26px,3vw,34px);font-weight:600;margin-bottom:16px}
-.report .rl p{color:var(--muted);font-size:16px;line-height:1.5;margin-bottom:28px;max-width:420px}
+.report .rl p{color:var(--muted);font-size:16px;line-height:1.5;margin-bottom:26px;max-width:430px}
 .report .field{width:100%;background:#141414;border:1px solid var(--border2);border-radius:10px;padding:15px 16px;color:var(--text);font-family:var(--font);font-size:15px;margin-bottom:12px}
 .report .field::placeholder{color:var(--dim)}
-.report .analyze{width:100%;background:#fff;color:#000;border:none;border-radius:10px;padding:15px;font-family:var(--font-display);font-weight:600;font-size:15px;cursor:pointer;transition:background .15s}
-.report .analyze:hover{background:#e9e9e9}
-.report .ins{margin-top:32px}
-.report .ins .il{font-size:15px;color:var(--muted);margin-bottom:16px}
-.report .ins ul{list-style:none;display:flex;flex-direction:column;gap:14px;padding-left:6px;border-left:1px solid var(--border)}
+.report .analyze{width:100%;background:var(--cyan);color:#03181d;border:none;border-radius:10px;padding:15px;font-family:var(--font-display);font-weight:600;font-size:15px;cursor:pointer;transition:background .15s,transform .15s}
+.report .analyze:hover{background:var(--cyan-lt);transform:translateY(-1px)}
+.report .ins{margin-top:30px}
+.report .ins .il{font-size:14px;color:var(--muted);margin-bottom:14px}
+.report .ins ul{list-style:none;display:flex;flex-direction:column;gap:13px;border-left:1px solid var(--border)}
 .report .ins li{display:flex;align-items:center;gap:12px;font-size:15px;padding-left:14px}
-.report .ins li .ck{width:18px;height:18px;border-radius:50%;background:var(--text);color:#000;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.report .rr{position:relative;overflow:hidden;padding:44px 0 44px 0}
-.rr-panel{background:var(--panel2);border:1px solid var(--border2);border-radius:14px;width:640px;max-width:none;margin-left:0;overflow:hidden}
-.rr-head{display:flex;gap:7px;padding:14px 16px;border-bottom:1px solid var(--border)}
-.rr-head i{width:10px;height:10px;border-radius:50%;background:#333}
-.rr-body{padding:18px}
-.rr-brand{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-bottom:16px}
-.rr-brand .lg{width:18px;height:18px;border-radius:5px;background:var(--cyan)}
-.rr-brand b{color:var(--text)}
-.rr-sec{font-size:14px;font-weight:600;font-family:var(--font-display);margin-bottom:12px}
-.rank{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:9px;font-size:14px;margin-bottom:4px}
-.rank:first-of-type{background:#1a1a1a;border:1px solid var(--border2)}
-.rank .rn{color:var(--dim);width:14px}
-.rank .rl2{display:flex;align-items:center;gap:9px;flex:1}
-.rank .rl2 .rg{width:18px;height:18px;border-radius:5px;background:var(--cyan)}
-.rank .rp{color:var(--muted);font-family:var(--mono);font-size:13px}
+.report .ins li .ck{width:18px;height:18px;border-radius:50%;background:rgba(0,212,245,.14);color:var(--cyan);font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.report .rr{position:relative;overflow:hidden;padding:44px 0}
+.rr-panel{background:var(--panel2);border:1px solid var(--border2);border-radius:14px;width:640px;max-width:none;overflow:hidden}
+.rr-head{display:flex;align-items:center;gap:10px;padding:13px 16px;border-bottom:1px solid var(--border);font-size:13px;color:var(--muted)}
+.rr-head .dots{display:flex;gap:6px}.rr-head .dots i{width:9px;height:9px;border-radius:50%;background:#333}
+.rr-head b{color:var(--text);font-family:var(--font-display)}
+.rr-head .cnt{margin-left:auto;font-family:var(--mono);font-size:12px;color:var(--dim)}
+.rr-body{padding:14px 16px}
 @media(max-width:900px){.report{grid-template-columns:1fr}.report .rr{padding:0 0 40px 40px}.rr-panel{width:100%}}
 
-/* ---- channels ---- */
-.channels h2{font-size:clamp(34px,5vw,64px);font-weight:500;line-height:1.02;letter-spacing:-.03em;margin-bottom:44px}
+.channels h2{font-size:clamp(32px,4.8vw,60px);font-weight:600;line-height:1.02;letter-spacing:-.03em;margin-bottom:14px}
+.channels .csub{color:var(--muted);font-size:clamp(16px,1.6vw,18px);max-width:580px;margin-bottom:44px}
 .chan-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px dashed var(--dash)}
-.chan{padding:36px 32px 200px;border-right:1px dashed var(--dash);display:flex;flex-direction:column;gap:20px}
+.chan{padding:36px 30px;border-right:1px dashed var(--dash);display:flex;flex-direction:column;gap:14px;min-height:300px}
 .chan:last-child{border-right:none}
-.chan .ct{font-family:var(--font-display);font-weight:600;font-size:22px;letter-spacing:-.02em}
-.chan .cs{color:var(--muted);font-size:15px;margin-top:-8px}
-@media(max-width:820px){.chan-grid{grid-template-columns:1fr}.chan{border-right:none;border-bottom:1px dashed var(--dash);padding:32px 0 120px}}
+.chan .ceyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.chan.live .ceyebrow{color:var(--green)}
+.chan .ct{font-family:var(--font-display);font-weight:600;font-size:21px;letter-spacing:-.02em}
+.chan .cs{color:var(--muted);font-size:14px;line-height:1.5}
+.chan .chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:auto}
+.sig-chip{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border2);border-radius:6px;padding:5px 9px;background:#131313}
+.sig-chip b{color:var(--cyan);font-weight:600}
+.chan.soon .sig-chip b{color:var(--muted)}
+@media(max-width:820px){.chan-grid{grid-template-columns:1fr}.chan{border-right:none;border-bottom:1px dashed var(--dash);min-height:auto;padding:32px 0}}
 
-/* ---- try agent ---- */
-.tryagent{display:grid;grid-template-columns:1fr 1fr;border-top:1px dashed var(--dash);min-height:420px}
+.pricing{border-top:1px dashed var(--dash)}
+.pricing .ph{padding-top:clamp(70px,9vw,120px);padding-bottom:14px}
+.pricing .ph h2{font-size:clamp(30px,4vw,48px);font-weight:600;letter-spacing:-.03em;margin-bottom:12px}
+.pricing .ph p{color:var(--muted);font-size:17px}
+.plan-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px dashed var(--dash);margin-top:36px}
+.plan{padding:38px 30px;border-right:1px dashed var(--dash);display:flex;flex-direction:column}
+.plan:last-child{border-right:none}
+.plan.pop{background:linear-gradient(180deg,rgba(0,212,245,.06),transparent 45%)}
+.plan .ptop{display:flex;align-items:center;gap:10px;margin-bottom:4px}
+.plan .pname{font-family:var(--font-display);font-weight:600;font-size:19px}
+.plan .badge-pop{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(0,212,245,.3);border-radius:999px;padding:3px 9px}
+.plan .amt{font-family:var(--font-display);font-weight:700;font-size:44px;letter-spacing:-.03em;margin:14px 0 2px}
+.plan .amt .per{font-size:15px;color:var(--muted);font-weight:500;font-family:var(--font)}
+.plan .pdesc{color:var(--dim);font-size:13px;margin-bottom:22px;min-height:36px}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:26px;flex:1}
+.plan li{display:flex;gap:10px;font-size:14px;color:var(--muted);align-items:flex-start}
+.plan li b{color:var(--text);font-family:var(--mono);font-weight:500}
+.plan li .ck{color:var(--cyan);flex-shrink:0;margin-top:1px}
+.price-note{color:var(--dim);font-size:13px;padding:24px 0 4px;font-family:var(--mono)}
+@media(max-width:820px){.plan-grid{grid-template-columns:1fr}.plan{border-right:none;border-bottom:1px dashed var(--dash)}}
+
+.roadmap .rh{padding-top:clamp(70px,9vw,120px)}
+.roadmap .rh .rtitle{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.roadmap .rh .rtitle .t{font-family:var(--font-display);font-weight:600;font-size:clamp(36px,5vw,60px);letter-spacing:-.03em}
+.roadmap .rh .rtitle .bar{width:3px;height:clamp(30px,4.5vw,48px);background:var(--cyan);border-radius:2px}
+.roadmap .rh .rtitle .cnt{border:1px solid var(--border2);border-radius:12px;padding:5px 15px;font-family:var(--mono);font-weight:600;font-size:clamp(20px,3vw,30px)}
+.roadmap .rh p{color:var(--muted);font-size:17px;max-width:540px;margin-bottom:40px}
+.rm-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px dashed var(--dash)}
+.rm-card{padding:36px 32px;border-right:1px dashed var(--dash);min-height:280px;display:flex;flex-direction:column;gap:16px}
+.rm-card:last-child{border-right:none}
+.rm-card .rc-eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+.rm-card h3{font-size:22px;font-weight:600}
+.rm-card .rc-desc{color:var(--muted);font-size:14px;line-height:1.5}
+.rm-card .rc-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto}
+.rm-chip{font-family:var(--mono);font-size:12px;color:var(--muted);border:1px solid var(--border2);border-radius:7px;padding:6px 11px;display:flex;gap:8px;align-items:center;background:#121212}
+.rm-chip .ab{color:var(--cyan);font-weight:600}
+@media(max-width:820px){.rm-grid{grid-template-columns:1fr}.rm-card{border-right:none;border-bottom:1px dashed var(--dash)}}
+
+.tryagent{display:grid;grid-template-columns:1fr 1fr;border-top:1px dashed var(--dash);min-height:400px}
 .tryagent .tl{padding:0 40px;display:flex;flex-direction:column;justify-content:center;gap:16px;border-right:1px dashed var(--dash)}
 .tryagent .tl h2{font-size:clamp(26px,3vw,34px);font-weight:600}
-.tryagent .tl p{color:var(--muted);font-size:16px;max-width:420px}
-.tryagent .form{display:flex;gap:10px;margin-top:8px;max-width:460px}
+.tryagent .tl p{color:var(--muted);font-size:16px;max-width:430px}
+.tryagent .form{display:flex;gap:10px;margin-top:8px;max-width:470px}
 .tryagent .form input{flex:1;background:#141414;border:1px solid var(--border2);border-radius:10px;padding:13px 15px;color:var(--text);font-family:var(--font);font-size:15px}
 .tryagent .form input::placeholder{color:var(--dim)}
+.tryagent .tnote{font-family:var(--mono);font-size:12px;color:var(--dim)}
 .tryagent .tr{position:relative}
-.chip{position:absolute;display:flex;align-items:center;gap:9px;background:#141414;border:1px solid var(--border2);border-radius:11px;padding:11px 16px;font-family:var(--font-display);font-weight:600;font-size:16px;box-shadow:0 12px 40px -12px rgba(0,0,0,.6)}
-.chip .ci{width:22px;height:22px;border-radius:6px}
-.chip.c1{top:24%;left:40%}
-.chip.c2{top:47%;left:18%}
-.chip.c3{top:70%;left:46%;color:var(--muted)}
+.chip{position:absolute;display:flex;align-items:center;gap:10px;background:#141414;border:1px solid var(--border2);border-radius:11px;padding:11px 16px;font-family:var(--font-display);font-weight:600;font-size:16px;box-shadow:0 12px 40px -12px rgba(0,0,0,.6)}
+.chip .ab{font-family:var(--mono);font-size:11px;font-weight:600;color:var(--cyan);border:1px solid rgba(0,212,245,.3);border-radius:5px;padding:3px 6px}
+.chip.c1{top:22%;left:38%}.chip.c2{top:47%;left:14%}.chip.c3{top:70%;left:42%}
 .cursor{position:absolute;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent}
-.cursor.k1{top:20%;left:37%;border-bottom:14px solid var(--blue);transform:rotate(-20deg)}
-.cursor.k2{top:43%;left:15%;border-bottom:14px solid var(--red);transform:rotate(-20deg)}
-.cursor.k3{top:66%;left:43%;border-bottom:14px solid var(--green);transform:rotate(-20deg)}
+.cursor.k1{top:18%;left:35%;border-bottom:14px solid var(--blue);transform:rotate(-20deg)}
+.cursor.k2{top:43%;left:11%;border-bottom:14px solid var(--red);transform:rotate(-20deg)}
+.cursor.k3{top:66%;left:39%;border-bottom:14px solid var(--green);transform:rotate(-20deg)}
 @media(max-width:820px){.tryagent{grid-template-columns:1fr}.tryagent .tl{padding:40px 0;border-right:none}.tryagent .tr{min-height:280px}}
 
-/* ---- event ---- */
-.event .eh{display:flex;align-items:center;gap:16px;margin-bottom:14px}
-.event .eh .ttl{font-family:var(--font-display);font-weight:600;font-size:clamp(40px,6vw,72px);letter-spacing:-.03em}
-.event .eh .bar{width:3px;height:clamp(34px,5vw,56px);background:var(--orange);border-radius:2px}
-.event .eh .yr{border:1px solid var(--border2);border-radius:12px;padding:4px 16px;font-family:var(--font-display);font-weight:600;font-size:clamp(26px,4vw,40px)}
-.event .esub{color:var(--muted);font-size:17px;max-width:460px;margin-bottom:40px}
-.ev-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px dashed var(--dash)}
-.ev-card{position:relative;min-height:420px;padding:36px 32px;border-right:1px dashed var(--dash);overflow:hidden}
-.ev-card:last-child{border-right:none}
-.ev-card .cty{display:flex;align-items:baseline;justify-content:space-between}
-.ev-card h3{font-size:26px;font-weight:600}
-.ev-card h3 span{color:var(--dim);font-weight:500}
-.ev-card .code{font-family:var(--mono);font-size:13px;color:var(--dim)}
-.ev-card .rec{color:var(--muted);font-size:14px;margin:6px 0 20px}
-.ev-art{position:absolute;bottom:0;right:0;left:0;height:62%;pointer-events:none;background-image:radial-gradient(circle,rgba(120,190,220,.5) 1px,transparent 1.6px);background-size:7px 7px;background-position:bottom center;-webkit-mask-image:linear-gradient(to top,#000 8%,rgba(0,0,0,.35) 55%,transparent 90%);mask-image:linear-gradient(to top,#000 8%,rgba(0,0,0,.35) 55%,transparent 90%);opacity:.55}
-.ev-card:nth-child(2) .ev-art{background-image:radial-gradient(circle,rgba(150,160,180,.5) 1px,transparent 1.6px)}
-@media(max-width:820px){.ev-grid{grid-template-columns:1fr}.ev-card{border-right:none;border-bottom:1px dashed var(--dash)}}
-
-/* ---- final cta ---- */
 .cta{text-align:center;border-top:1px dashed var(--dash);position:relative;overflow:hidden;padding-top:clamp(70px,9vw,120px);padding-bottom:clamp(70px,9vw,120px)}
 .cta::before{content:'';position:absolute;inset:0;background:radial-gradient(80% 90% at 50% 120%,rgba(0,212,245,.13),transparent 62%);pointer-events:none}
-.cta h2{position:relative;font-size:clamp(32px,5.5vw,62px);font-weight:500;line-height:1.04;letter-spacing:-.03em;margin-bottom:22px}
-.cta h2 .l2{display:inline-flex;align-items:center;gap:14px;margin-top:.05em}
-.cta p{position:relative;color:var(--muted);font-size:clamp(16px,1.8vw,19px);margin-bottom:30px}
+.cta h2{position:relative;font-size:clamp(32px,5vw,60px);font-weight:600;line-height:1.04;letter-spacing:-.03em;margin-bottom:20px}
+.cta p{position:relative;color:var(--muted);font-size:clamp(16px,1.8vw,19px);margin-bottom:28px}
 .cta .hero-cta{margin-bottom:0}
 
-/* ---- footer ---- */
 .footer{border-top:1px solid var(--border);padding:64px 0 40px}
 .foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px 24px}
-.foot-brand p{color:var(--dim);font-size:13px;margin-top:16px;max-width:230px;line-height:1.5}
+.foot-brand p{color:var(--dim);font-size:13px;margin-top:16px;max-width:240px;line-height:1.5}
 .foot-col h5{font-family:var(--font-display);font-size:15px;font-weight:600;margin-bottom:18px}
 .foot-col a{display:block;color:var(--muted);font-size:14px;margin-bottom:13px;transition:color .15s}
 .foot-col a:hover{color:var(--text)}
@@ -295,6 +322,7 @@ img{max-width:100%;display:block}
   .nav-links{display:none}
   .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#000;border-bottom:1px solid var(--border);padding:16px var(--pad);gap:18px;z-index:99}
   .nav-burger{display:flex}
+  .lang-btn .cur{display:none}
   .hero-cta{flex-direction:column;align-items:center}
   .pipe{grid-template-columns:1fr}
   .pipe-col{border-right:none;border-bottom:1px solid var(--border)}
@@ -317,24 +345,34 @@ img{max-width:100%;display:block}
         </svg>
       </a>
       <nav class="nav-links">
-        <a href="#features">Plataforma</a>
-        <a href="#report">Relatório de Intenção</a>
-        <a href="#channels">Soluções</a>
-        <a href="#event">Signal Day</a>
+        <a href="#features">Sinais</a>
+        <a href="#pricing">Preços</a>
+        <a href="#roadmap">Roadmap</a>
       </nav>
       <div class="nav-right">
+        <div class="lang" id="lang">
+          <button class="lang-btn" aria-haspopup="true" aria-expanded="false" onclick="toggleLang(event)">
+            <svg class="globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18"/></svg>
+            <span class="cur">PT</span>
+            <svg class="caret" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+          </button>
+          <div class="lang-menu" role="menu">
+            <a href="/" role="menuitem">English<span class="code">EN</span></a>
+            <a href="/pt-br/" class="active" role="menuitem">Português (Brasil)<span class="code">PT</span></a>
+          </div>
+        </div>
         <a href="#demo" class="btn primary" style="padding:9px 18px;font-size:14px">Agendar demo</a>
         <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
 
-  <!-- INDEX BANNER -->
+  <!-- BANNER -->
   <div class="banner">
     <div class="pad banner-inner">
-      <a href="#report">
-        <span class="banner-tag">O Índice Sygnals</span>
-        <span class="b-txt">Veja quanta intenção de compra o seu mercado está sinalizando agora →</span>
+      <a href="#features">
+        <span class="banner-tag">NOVO</span>
+        <span class="b-txt">LENS e WAVE ao vivo — transforme visitantes de perfil e novos seguidores em leads pontuados →</span>
       </a>
     </div>
   </div>
@@ -342,57 +380,52 @@ img{max-width:100%;display:block}
   <!-- HERO -->
   <section class="hero pad">
     <h1 class="pre-reveal">
-      Sinais de vendas para vencer no
-      <span class="l2">
-        <svg viewBox="0 0 24 24" width="0.92em" height="0.92em" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M7.2 9.6H4.5V19h2.7V9.6ZM5.85 8.4a1.57 1.57 0 1 0 0-3.15 1.57 1.57 0 0 0 0 3.15ZM19.5 19v-5.15c0-2.76-.59-4.62-3.8-4.62-1.55 0-2.58.85-3 1.65h-.04V9.6H10v9.4h2.7v-4.65c0-1.23.23-2.42 1.75-2.42 1.5 0 1.52 1.4 1.52 2.5V19h2.53Z"/></svg>
-        LinkedIn
-      </span>
+      <span class="l1">Seu ICP está se movendo no
+        <svg viewBox="0 0 24 24" width="0.9em" height="0.9em" aria-hidden="true" style="border-radius:5px"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M7.2 9.6H4.5V19h2.7V9.6ZM5.85 8.4a1.57 1.57 0 1 0 0-3.15 1.57 1.57 0 0 0 0 3.15ZM19.5 19v-5.15c0-2.76-.59-4.62-3.8-4.62-1.55 0-2.58.85-3 1.65h-.04V9.6H10v9.4h2.7v-4.65c0-1.23.23-2.42 1.75-2.42 1.5 0 1.52 1.4 1.52 2.5V19h2.53Z"/></svg>
+        LinkedIn agora.</span>
+      <span class="l2">Em <b>72h</b>, o sinal some.</span>
     </h1>
-    <p class="hero-sub pre-reveal">Alcance os compradores que já demonstram intenção no LinkedIn — antes mesmo dos seus concorrentes perceberem.</p>
+    <p class="hero-sub pre-reveal">O Sygnals captura quem reage, comenta, visita e segue no LinkedIn, pontua cada engajador de 0 a 100 e envia os leads qualificados direto pro Clay — sem cookies, sem sua conta em risco.</p>
     <div class="hero-cta pre-reveal">
       <a href="#demo" class="btn primary">Agendar demo</a>
-      <a href="#features" class="btn dark">Veja como funciona</a>
+      <a href="#features" class="btn dark">Ver os sinais</a>
     </div>
+    <p class="hero-note pre-reveal">Primeiro sinal capturado em menos de 10 minutos · Sem cartão</p>
 
     <!-- product panel -->
     <div class="panel pre-reveal" aria-label="Pipeline de sinais da Sygnals">
       <div class="panel-head">
-        <div class="t"><span class="chev">‹</span>Pipeline de Sinais de Intenção</div>
-        <div class="actions"><button class="btn ghost">Publicar ⌄</button><button class="btn ghost" style="background:#232323">▶ Rodar</button></div>
+        <div class="t"><span class="ab">SPARK</span>Monitor de engajamento</div>
+        <div class="actions"><button class="btn ghost">Filtros</button><button class="btn ghost" style="background:#232323">Rodando</button></div>
       </div>
       <div class="pipe">
-        <!-- left sidebar -->
         <div class="pipe-col">
-          <div class="tabs"><button class="on">Nós</button><button>Assistente</button></div>
-          <div class="pipe-lbl">Modelos</div>
-          <div class="node-item"><span class="ic" style="background:#e40014"></span>Monitorar página de empresa</div>
-          <div class="node-item"><span class="ic" style="background:var(--cyan)"></span>Pontuar engajamento</div>
-          <div class="node-item"><span class="ic" style="background:var(--violet)"></span>Acompanhar lista-alvo</div>
-          <div class="node-item"><span class="ic" style="background:var(--green)"></span>Gatilho de mudança de cargo</div>
-          <div class="node-item"><span class="ic" style="background:var(--orange)"></span>Sentimento de comentário</div>
-          <div class="pipe-lbl">Agente</div>
-          <div class="node-item"><span class="ic" style="background:#444"></span>Condicional</div>
-          <div class="pipe-lbl">Enriquecer</div>
-          <div class="node-item"><span class="ic" style="background:var(--blue)"></span>Enriquecer contato</div>
+          <div class="tabs"><button class="on">Sinais</button><button>Guia</button></div>
+          <div class="pipe-lbl">Demanda · ao vivo</div>
+          <div class="node-item"><span class="ab">SPK</span>Engajamento em post</div>
+          <div class="node-item"><span class="ab">RVL</span>Monitor de concorrente</div>
+          <div class="node-item"><span class="ab">HLO</span>Monitor de influencer</div>
+          <div class="node-item"><span class="ab">FLR</span>Post específico</div>
+          <div class="node-item"><span class="ab">LNS</span>Visitantes de perfil</div>
+          <div class="node-item"><span class="ab">WVE</span>Novos seguidores</div>
+          <div class="pipe-lbl">Direto · em breve</div>
+          <div class="node-item dim"><span class="ab">PNG</span>DM recebida</div>
         </div>
-        <!-- canvas -->
         <div class="pipe-col canvas">
-          <div class="cnode"><div class="cnode-h"><span class="dot"></span>Início</div><div class="cnode-b"><span>Entradas</span><span class="pill-out" style="background:#232323;color:var(--muted)">1</span></div></div>
+          <div class="cnode"><div class="cnode-h"><span class="dot"></span>Monitorar perfil</div><div class="cnode-b"><span>Fonte</span><span class="pill-out">Apify</span></div></div>
           <div class="connector"></div>
-          <div class="badge-ok">Concluído</div>
-          <div class="cnode ok"><div class="cnode-h"><span class="dot" style="background:var(--red)"></span>Monitorar atividade no LinkedIn</div><div class="cnode-b"><span>Saída</span><span class="pill-out">Eventos de engajamento</span></div></div>
+          <div class="badge-ok">ok</div>
+          <div class="cnode ok"><div class="cnode-h"><span class="dot" style="background:var(--red)"></span>Capturar engajamentos</div><div class="cnode-b"><span>Saída</span><span class="pill-out">Reações + comentários</span></div></div>
           <div class="connector"></div>
-          <div class="badge-ok">Concluído</div>
-          <div class="cnode ok"><div class="cnode-h"><span class="dot" style="background:var(--cyan)"></span>Pontuar intenção de compra</div><div class="cnode-b"><span>Saída</span><span class="pill-out">Score de Intenção</span></div></div>
+          <div class="badge-ok">ok</div>
+          <div class="cnode ok"><div class="cnode-h"><span class="dot" style="background:var(--cyan)"></span>Pontuar intenção</div><div class="cnode-b"><span>Saída</span><span class="pill-out">0–100</span></div></div>
           <div class="connector"></div>
         </div>
-        <!-- right output -->
         <div class="pipe-col">
-          <div class="out-item"><div class="name"><span class="ck">✓</span>Início</div><div class="out-row"><span class="ch">›</span>Entrada</div></div>
-          <div class="out-item"><div class="name"><span class="ck">✓</span>Monitorar atividade no LinkedIn</div><div class="out-row"><span class="ch">›</span>Entrada</div><div class="out-row"><span class="ch">›</span>Saída<span class="pill-out" style="margin-left:auto">Eventos de engajamento</span></div></div>
-          <div class="out-item"><div class="name"><span class="ck">✓</span>Pontuar intenção de compra</div><div class="out-row"><span class="ch">›</span>Entrada</div><div class="out-row"><span class="ch">›</span>Saída<span class="pill-out" style="margin-left:auto">Score de Intenção</span></div></div>
-          <div class="out-item"><div class="name"><span class="ck">✓</span>Revelar leads quentes</div><div class="out-row"><span class="ch">›</span>Entrada</div><div class="out-row"><span class="ch">›</span>Saída<span class="pill-out" style="margin-left:auto">Lista priorizada</span></div></div>
-          <div class="out-item"><div class="name"><span class="ck">✓</span>Rotear alerta</div><div class="out-row"><span class="ch">›</span>Saída<span class="pill-out" style="margin-left:auto">Slack · CRM</span></div></div>
+          <div class="out-item"><div class="name"><span class="ck">✓</span>Buscar posts</div><div class="out-row"><span class="ch">›</span>Saída<span class="pill-out" style="margin-left:auto">Posts · 72h</span></div></div>
+          <div class="out-item"><div class="name"><span class="ck">✓</span>Capturar engajamentos</div><div class="out-row"><span class="ch">›</span>Reações<span class="pill-out" style="margin-left:auto">312</span></div><div class="out-row"><span class="ch">›</span>Comentários<span class="pill-out" style="margin-left:auto">87</span></div></div>
+          <div class="out-item"><div class="name"><span class="ck">✓</span>Pontuar e enriquecer</div><div class="out-row"><span class="ch">›</span>Quente ≥80<span class="pill-out" style="margin-left:auto">41</span></div><div class="out-row"><span class="ch">›</span>Morno ≥60<span class="pill-out" style="margin-left:auto">73</span></div></div>
+          <div class="out-item"><div class="name"><span class="ck">✓</span>Entregar</div><div class="out-row"><span class="ch">›</span>Destino<span class="pill-out" style="margin-left:auto">Clay · CSV</span></div></div>
         </div>
       </div>
     </div>
@@ -400,158 +433,141 @@ img{max-width:100%;display:block}
 
   <!-- LOGOS -->
   <section class="logos pad dsep">
-    <p class="lead pre-reveal">Usado pelos melhores times de receita do mundo</p>
+    <p class="lead pre-reveal">Feito para os times de receita que vendem no LinkedIn</p>
     <div class="logo-grid pre-reveal">
-      <span>Northwind</span><span>Ravel</span><span>Lumina</span><span>Cobalt</span><span>Meridian</span><span>Halcyon</span>
-      <span>Verto</span><span>Fathom</span><span>Quanta</span><span>Aperture</span><span>Solstice</span><span>Praxis</span>
-      <span> Orbit</span><span>Cinder</span><span>Vantage</span><span>Halo</span><span>Ledger</span><span>Nimbus</span>
+      <span>Nubank</span><span>Pipefy</span><span>Totvs</span><span>Stone</span><span>QuintoAndar</span><span>Gympass</span>
+      <span>Cloudwalk</span><span>Loft</span><span>Creditas</span><span>Neon</span><span>Hotmart</span><span>RD Station</span>
+      <span>Conta Azul</span><span>Olist</span><span>VTEX</span><span>Loggi</span><span>Sanar</span><span>Descomplica</span>
     </div>
   </section>
 
   <!-- STATEMENT -->
   <section class="statement pad">
-    <p class="pre-reveal"><span class="hl">Milhares de compradores sinalizam intenção no LinkedIn todos os dias.</span> <span class="lo">A maioria passa despercebida — abordada semanas depois por um pitch frio que perdeu o momento certo.</span></p>
+    <p class="pre-reveal"><span class="hl">Cada post no LinkedIn é um sinal de compra em tempo real.</span> <span class="lo">Uma reação ou comentário declara atenção ativa — o ativo mais escasso em outbound. Ele dura 24–48h, depois esfria e some. Nenhuma ferramenta nativa captura, pontua e roteia esse sinal antes disso.</span></p>
   </section>
 
   <!-- FEATURES -->
   <section class="features" id="features">
     <div class="pad" style="padding-top:clamp(80px,10vw,140px);padding-bottom:clamp(40px,5vw,70px)">
       <h2 class="big pre-reveal">Venda por sinal,<br>não por achismo</h2>
-      <p class="intro pre-reveal">A Sygnals é a plataforma completa de sinais para o time de receita moderno. Monitore, pontue, aja e meça — tudo em um só lugar.</p>
+      <p class="intro pre-reveal">O Sygnals monitora seis tipos de sinal ao vivo, pontua cada engajador de 0 a 100 e entrega os quentes no seu Clay — automático, com credit cap por sinal.</p>
     </div>
 
-    <!-- row 1: signal search -->
+    <!-- row 1: biblioteca de sinais -->
     <div class="frow pad">
       <div class="fleft pre-reveal">
-        <h3>Busca de Sinais</h3>
-        <p>Veja exatamente com o que o seu mercado está engajando e direcione o monitoramento para onde está a intenção.</p>
-        <button class="learn">Saiba mais</button>
+        <span class="eyebrow">Biblioteca de sinais</span>
+        <h3>Seis formas de capturar intenção</h3>
+        <p>Aponte um sinal para um perfil, um concorrente, um influencer ou um único post — o Sygnals vigia a janela de engajamento por você.</p>
+        <button class="learn">Ver todos os sinais</button>
       </div>
       <div class="fdiv"></div>
       <div class="fright pre-reveal">
-        <div class="mock">
-          <div class="m-title">Descubra com o que seus compradores engajam</div>
-          <div class="searchbox">
-            <div class="q">VP de Vendas<span class="cur">|</span></div>
-            <div class="qrow"><div class="l"><i></i><i></i></div><div class="r"><span>Monitorando</span><span class="an">Acompanhar</span></div></div>
-          </div>
-          <div class="klist">
-            <div class="klbl">Sinais correspondentes</div>
-            <div class="krow"><span><b>VP</b> de Vendas</span><span class="kv">46,4K</span></div>
-            <div class="krow"><span><b>VP</b> de Receita</span><span class="kv">12,1K</span></div>
-            <div class="krow"><span><b>VP</b>s contratando SDRs</span><span class="kv">11K</span></div>
-          </div>
+        <div class="sigpick">
+          <div class="sp-row on"><span class="ab">SPK</span><div><div class="nm">Engajamento em post</div><div class="ds">Quem reagiu e comentou num perfil monitorado</div></div><span class="win">72H</span></div>
+          <div class="sp-row"><span class="ab">RVL</span><div><div class="nm">Monitor de concorrente</div><div class="ds">Prospects engajando com posts dos concorrentes</div></div><span class="win">72H</span></div>
+          <div class="sp-row"><span class="ab">LNS</span><div><div class="nm">Visitantes de perfil</div><div class="ds">Quem visitou seu perfil, filtrado por ICP</div></div><span class="win">AO VIVO</span></div>
+          <div class="sp-row"><span class="ab">WVE</span><div><div class="nm">Novos seguidores</div><div class="ds">Um sinal deliberado de inscrição</div></div><span class="win">48H</span></div>
+          <div class="sp-row"><span class="ab">FLR</span><div><div class="nm">Post específico</div><div class="ds">Todo mundo que engajou com um post de lançamento</div></div><span class="win">ÚNICA</span></div>
         </div>
       </div>
     </div>
 
-    <!-- row 2: intent insights chart -->
+    <!-- row 2: score de intenção -->
     <div class="frow pad">
       <div class="fleft pre-reveal">
-        <h3>Insights de Intenção</h3>
-        <p>Veja como a intenção de compra evolui entre seus segmentos, em cada conversa.</p>
-        <button class="learn">Saiba mais</button>
+        <span class="eyebrow">Score de intenção</span>
+        <h3>Um número, quatro fatores</h3>
+        <p>Cada engajador recebe um score nativo de 0 a 100 a partir de frequência, senioridade, tipo de engajamento e recência. Quente ≥80, Morno ≥60.</p>
+        <button class="learn">Como o score funciona</button>
       </div>
       <div class="fdiv"></div>
       <div class="fright pre-reveal">
-        <div class="chart-wrap">
-          <div class="m-title" style="text-align:left;color:var(--text);font-family:var(--font-display);font-weight:600">Score de Intenção por Segmento</div>
-          <div class="persona-row">
-            <div class="persona"><span class="nm"><span class="d" style="background:var(--violet)"></span>Fundadores</span><span class="pv">89,2%<small style="color:var(--green)">+5%</small></span></div>
-            <div class="persona"><span class="nm"><span class="d" style="background:var(--blue)"></span>VP Vendas</span><span class="pv">73,4%<small style="color:var(--green)">+3%</small></span></div>
-            <div class="persona"><span class="nm"><span class="d" style="background:var(--green)"></span>RevOps</span><span class="pv">66,4%<small style="color:var(--green)">+2%</small></span></div>
-            <div class="persona"><span class="nm"><span class="d" style="background:var(--orange)"></span>Marketing</span><span class="pv">50,5%<small style="color:var(--red)">-7%</small></span></div>
-            <div class="persona"><span class="nm"><span class="d" style="background:var(--red)"></span>Ops</span><span class="pv">40,5%<small style="color:var(--green)">+8%</small></span></div>
+        <div class="iscore">
+          <div class="iscore-head">
+            <div><div class="iscore-name">Carolina Duarte</div><div class="iscore-sub">Head of Growth · Nubank</div></div>
+            <span class="i-badge hot"><span class="d"></span>Quente</span>
           </div>
-          <svg viewBox="0 0 640 260" width="100%" style="overflow:visible" aria-hidden="true">
-            <g stroke="#1c1c1c" stroke-width="1">
-              <line x1="40" y1="20" x2="640" y2="20"/><line x1="40" y1="80" x2="640" y2="80"/><line x1="40" y1="140" x2="640" y2="140"/><line x1="40" y1="200" x2="640" y2="200"/>
-            </g>
-            <g fill="#3a3a3a" font-size="11" font-family="Inter">
-              <text x="10" y="24">100%</text><text x="14" y="84">80%</text><text x="14" y="144">40%</text><text x="20" y="204">0%</text>
-            </g>
-            <polyline fill="none" stroke="#54a2ff" stroke-width="2.2" points="40,60 140,40 240,110 340,140 440,150 540,55 620,80"/>
-            <polyline fill="none" stroke="#a685ff" stroke-width="2.2" points="40,150 140,120 240,90 340,120 440,60 540,45 620,60"/>
-            <polyline fill="none" stroke="#00c758" stroke-width="2.2" points="40,110 140,120 240,160 340,175 440,90 540,140 620,40"/>
-            <polyline fill="none" stroke="#ff8b1a" stroke-width="2.2" points="40,110 140,120 240,185 340,205 440,110 540,205 620,150"/>
-            <polyline fill="none" stroke="#ff6568" stroke-width="2.2" points="40,120 140,150 240,205 340,215 440,160 540,205 620,140"/>
-            <g fill="#3a3a3a" font-size="11" font-family="Inter"><text x="120" y="248">Seg</text><text x="220" y="248">Ter</text><text x="320" y="248">Qua</text><text x="420" y="248">Qui</text><text x="520" y="248">Sex</text></g>
-          </svg>
+          <div class="iscore-row"><span class="lbl">Frequência (4× em 30d)</span><span class="val pos">+40</span></div>
+          <div class="iscore-row"><span class="lbl">Senioridade (Líder)</span><span class="val pos">+40</span></div>
+          <div class="iscore-row"><span class="lbl">Comentário</span><span class="val pos">+20</span></div>
+          <div class="iscore-row"><span class="lbl">Decaimento (recência)</span><span class="val neg">−8</span></div>
+          <div class="iscore-total"><span class="iscore-sub">Score de Intenção</span><span class="num" data-countup="92">92</span></div>
         </div>
       </div>
     </div>
 
-    <!-- row 3: agents pipeline -->
+    <!-- row 3: pipeline -->
     <div class="frow pad">
       <div class="fleft pre-reveal">
-        <h3>Agentes de Sinal</h3>
-        <p>Trabalhadores autônomos para cada jogada — monitoram, enriquecem e roteiam leads quentes sem esforço.</p>
-        <button class="learn">Saiba mais</button>
+        <span class="eyebrow">Pipeline automático</span>
+        <h3>Conecte uma vez, capture todo dia</h3>
+        <p>Conecte uma conta LinkedIn via Unipile para LENS e WAVE — sem senha armazenada, sem cookies. Sinais de perfil público não precisam de conta. As execuções atualizam todo dia.</p>
+        <button class="learn">Ver o fluxo</button>
       </div>
       <div class="fdiv"></div>
       <div class="fright pre-reveal">
-        <div class="mock" style="display:flex;gap:14px">
+        <div class="mock" style="display:flex;gap:14px;width:100%">
           <div style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center">
-            <div class="cnode ok" style="width:230px"><div class="cnode-h"><span class="dot" style="background:var(--cyan)"></span>Pontuar intenção</div><div class="cnode-b"><span>Saída</span><span class="pill-out">Score de Intenção</span></div></div>
+            <div class="cnode ok" style="width:210px"><div class="cnode-h"><span class="dot" style="background:var(--blue)"></span>Conectar conta</div><div class="cnode-b"><span>Unipile</span><span class="pill-out">1 conta</span></div></div>
             <div class="connector"></div>
-            <div class="cnode ok" style="width:230px"><div class="cnode-h"><span class="dot" style="background:var(--violet)"></span>Rotear lead quente</div><div class="cnode-b"><span>Saída</span><span class="pill-out">Tarefa no CRM</span></div></div>
+            <div class="cnode ok" style="width:210px"><div class="cnode-h"><span class="dot" style="background:var(--cyan)"></span>Pontuar intenção</div><div class="cnode-b"><span>Saída</span><span class="pill-out">0–100</span></div></div>
           </div>
           <div style="flex:1;min-width:0">
-            <div class="out-item"><div class="name"><span class="ck">✓</span>Pontuar intenção</div><div class="out-row"><span class="ch">›</span>Saída<span class="pill-out" style="margin-left:auto">Score de Intenção</span></div></div>
-            <div class="out-item"><div class="name"><span class="ck">✓</span>Rotear lead quente</div><div class="out-row"><span class="ch">›</span>Saída<span class="pill-out" style="margin-left:auto">Tarefa no CRM</span></div></div>
-            <div class="out-item"><div class="name"><span class="ck">✓</span>Rascunhar abordagem</div>
-              <div class="out-row" style="display:block;color:var(--muted);font-size:12px;line-height:1.5">Guilherme reagiu a 3 posts sobre previsão de pipeline esta semana — uma abordagem quente citando o cargo dele em RevOps está pronta para enviar.</div>
+            <div class="out-item"><div class="name"><span class="ck">✓</span>Conectar LinkedIn</div><div class="out-row"><span class="ch">›</span>Link mágico<span class="pill-out" style="margin-left:auto">Conectado</span></div></div>
+            <div class="out-item"><div class="name"><span class="ck">✓</span>Criar um sinal</div><div class="out-row"><span class="ch">›</span>Cole a URL do perfil</div></div>
+            <div class="out-item"><div class="name"><span class="ck">✓</span>Rodar e pontuar</div>
+              <div class="out-row" style="display:block;color:var(--muted);font-size:12px;line-height:1.5">A primeira execução captura engajadores em 5–15 min, depois atualiza todo dia. 1 crédito = 1 engajamento capturado.</div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- row 4: analytics -->
+    <!-- row 4: painel de engagers -->
     <div class="frow pad">
       <div class="fleft pre-reveal">
-        <h3>Análise de Sinais</h3>
-        <p>Acompanhe como a intenção se move pelas suas contas — quais segmentos estão esquentando e quais estão silenciando.</p>
-        <button class="learn">Saiba mais</button>
+        <span class="eyebrow">Engagers</span>
+        <h3>Seus hot leads, ranqueados</h3>
+        <p>Cada engajador chega pontuado, deduplicado e enriquecido com cargo, empresa, função e senioridade — ordenado por intenção, de cima pra baixo.</p>
+        <button class="learn">Conhecer o painel</button>
       </div>
       <div class="fdiv"></div>
       <div class="fright pre-reveal">
-        <div class="chart-wrap">
-          <div class="stat-row">
-            <div class="stat"><div class="sl">Sinais rastreados</div><div class="sv">32,6K<small>+12k</small></div></div>
-            <div class="stat"><div class="sl">Leads quentes</div><div class="sv">72,3K<small>+12k</small></div></div>
-            <div class="stat"><div class="sl">Respostas</div><div class="sv">13,2K<small>+0,3k</small></div></div>
-            <div class="stat"><div class="sl">Reuniões</div><div class="sv">18,2K<small>+0,2k</small></div></div>
+        <div class="chart-wrap" style="width:100%">
+          <div class="kpi-row">
+            <div class="kpi"><div class="kl">Engagers</div><div class="kv">3.284</div></div>
+            <div class="kpi"><div class="kl">Leads quentes</div><div class="kv">214<small>+31</small></div></div>
+            <div class="kpi"><div class="kl">Sinais ativos</div><div class="kv">9</div></div>
+            <div class="kpi"><div class="kl">Créditos</div><div class="kv">6.240<small>/10k</small></div></div>
           </div>
-          <svg viewBox="0 0 640 200" width="100%" aria-hidden="true">
-            <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(0,212,245,.28)"/><stop offset="1" stop-color="rgba(0,212,245,0)"/></linearGradient></defs>
-            <path d="M0,150 C80,120 140,130 220,90 C300,55 360,80 440,60 C520,45 580,70 640,50 L640,200 L0,200 Z" fill="url(#ag)"/>
-            <polyline fill="none" stroke="#00d4f5" stroke-width="2.4" points="0,150 80,120 140,130 220,90 300,55 360,80 440,60 520,45 580,70 640,50"/>
-            <polyline fill="none" stroke="#ff8b1a" stroke-width="2" points="0,175 80,160 140,168 220,150 300,140 360,155 440,150 520,120 580,140 640,130"/>
-          </svg>
+          <div class="leads">
+            <div class="lead-row"><span class="lead-av" style="background:linear-gradient(135deg,#8a2be2,#5f1aa8)">CD</span><div><div class="lead-nm">Carolina Duarte</div><div class="lead-co">Head of Growth · Nubank</div></div><span class="lead-badge hot">92 Quente</span></div>
+            <div class="lead-row"><span class="lead-av" style="background:linear-gradient(135deg,#00c758,#00994a)">MF</span><div><div class="lead-nm">Marcos Ferraz</div><div class="lead-co">VP de Vendas · Pipefy</div></div><span class="lead-badge warm">74 Morno</span></div>
+            <div class="lead-row"><span class="lead-av" style="background:linear-gradient(135deg,#ff8b1a,#d96e00)">AM</span><div><div class="lead-nm">André Mattos</div><div class="lead-co">Líder de RevOps · Totvs</div></div><span class="lead-badge warm">68 Morno</span></div>
+            <div class="lead-row"><span class="lead-av" style="background:linear-gradient(135deg,#54a2ff,#2f7fe0)">JR</span><div><div class="lead-nm">Juliana Rocha</div><div class="lead-co">Gerente de Growth · Stone</div></div><span class="lead-badge mid">58</span></div>
+          </div>
         </div>
       </div>
     </div>
 
-    <!-- row 5: aim / projects -->
+    <!-- row 5: entrega -->
     <div class="frow pad">
       <div class="fleft pre-reveal">
-        <h3>Foco</h3>
-        <p>Encontre as contas de maior impacto para trabalhar, toda semana.</p>
-        <button class="learn">Saiba mais</button>
+        <span class="eyebrow">Entrega</span>
+        <h3>Direto no seu stack</h3>
+        <p>Envie os leads pontuados pro Clay, um webhook, CSV ou a API — filtrados por senioridade, função e intenção mínima. Assinado por HMAC, só HTTPS.</p>
+        <button class="learn">Ver integrações</button>
       </div>
       <div class="fdiv"></div>
       <div class="fright pre-reveal">
-        <div class="projcard">
-          <h4>Alvos da semana</h4>
-          <div class="pj-lbl">Contas sugeridas</div>
-          <div class="pj-sug">
-            <div class="pj-item"><div class="top"><span># Alta intenção</span><span class="hi">▮▮▮ Quente</span></div><div class="h">Aborde Raphael Bozza na Northwind</div><div class="d">Engajou 6× em 48h em posts sobre gargalos de pipeline. Score de Intenção 92 — o maior da sua lista.</div><span class="track">+ Acompanhar</span></div>
-            <div class="pj-item"><div class="top"><span># Esquentando</span><span class="hi">▮▮ Morno</span></div><div class="h">Acompanhe o time de RevOps na Meridian</div><div class="d">Três cargos do ICP começaram a engajar esta semana. Score subindo de 41 → 68.</div><span class="track">+ Acompanhar</span></div>
-          </div>
-          <div class="pj-lbl">Contas acompanhadas</div>
-          <div class="pj-track-row"><span class="st">✓</span>Aborde Raphael Bozza na Northwind<span style="margin-left:auto;color:var(--dim)">4 tarefas · Quente</span></div>
-          <div class="pj-track-row"><span class="st">✓</span>Acompanhe o time de RevOps na Meridian<span style="margin-left:auto;color:var(--dim)">3 tarefas · Morno</span></div>
+        <div class="deliver">
+          <div class="dh"><span class="clay"></span>Destino Clay<span class="live"><span class="d"></span>Entregando</span></div>
+          <div class="drow"><span>Modo</span><b>1 lead / request</b></div>
+          <div class="drow"><span>Intenção mínima</span><b>≥ 60</b></div>
+          <div class="drow"><span>Senioridade</span><span class="tag">Líder · Gerente</span></div>
+          <div class="drow"><span>Função</span><span class="tag">Vendas · Marketing</span></div>
+          <div class="drow"><span>Entregues hoje</span><b>128</b></div>
         </div>
       </div>
     </div>
@@ -559,110 +575,176 @@ img{max-width:100%;display:block}
 
   <!-- QUOTE -->
   <section class="quote">
-    <div class="ql"></div>
+    <div class="ql"><div class="glow"></div></div>
     <div class="qr pre-reveal">
       <div class="qtop">
-        <div class="qbrand">Ravel <span style="color:var(--cyan)">◆</span></div>
-        <a href="#" class="btn light" style="font-size:14px;padding:9px 16px">Ver caso de sucesso</a>
+        <div class="qbrand">TRA Studio <span style="color:var(--cyan)">◆</span></div>
+        <a href="#demo" class="btn light" style="font-size:14px;padding:9px 16px">Ler a história</a>
       </div>
-      <blockquote>"Antes da Sygnals, nosso pipeline era um jogo de adivinhação. Agora é uma fila de pessoas que já levantaram a mão."</blockquote>
-      <div class="cite"><b>George Bonaci</b>, VP de Growth &amp; Demanda</div>
+      <blockquote>"De 0 a 3 reuniões marcadas no dia 1 de uso do Sygnals."</blockquote>
+      <div class="cite"><b>Thiago Avelino</b>, Fundador · TRA Studio</div>
+      <div class="qstat">840 leads capturados · esta semana</div>
     </div>
   </section>
 
-  <!-- REPORT -->
+  <!-- REPORT / AMOSTRA GRÁTIS -->
   <section class="report" id="report">
     <div class="rl pre-reveal">
-      <h2>Receba seu Relatório de Intenção grátis</h2>
-      <p>Descubra quanta intenção de compra o seu mercado está sinalizando agora — e os leads quentes que você está perdendo.</p>
-      <input class="field" type="text" placeholder="Digite o domínio da sua empresa" aria-label="Domínio da empresa">
-      <button class="analyze">Analisar meu mercado</button>
+      <h2>Veja quem engaja com o seu ICP</h2>
+      <p>Passe uma URL de perfil do LinkedIn e mostramos uma amostra dos engajadores que o Sygnals capturaria e pontuaria — grátis, em minutos.</p>
+      <input class="field" type="text" placeholder="Cole a URL de um perfil do LinkedIn" aria-label="URL de perfil do LinkedIn">
+      <button class="analyze">Ver minha amostra grátis</button>
       <div class="ins">
-        <div class="il">Veja insights sobre:</div>
+        <div class="il">Você vai ver:</div>
         <ul>
-          <li><span class="ck">✓</span>Sinais de compra ativos</li>
-          <li><span class="ck">✓</span>Contas quentes</li>
-          <li><span class="ck">✓</span>Intenção por segmento</li>
-          <li><span class="ck">✓</span>Sobreposição com concorrentes</li>
+          <li><span class="ck">✓</span>Quem reagiu e comentou</li>
+          <li><span class="ck">✓</span>O score de intenção, 0–100</li>
+          <li><span class="ck">✓</span>Cargo, empresa, senioridade</li>
+          <li><span class="ck">✓</span>Divisão Quente e Morno</li>
         </ul>
       </div>
     </div>
     <div class="rr pre-reveal">
       <div class="rr-panel">
-        <div class="rr-head"><i></i><i></i><i></i></div>
+        <div class="rr-head"><span class="dots"><i></i><i></i><i></i></span><b>SPARK</b> · prévia de engagers<span class="cnt">312 capturados</span></div>
         <div class="rr-body">
-          <div class="rr-brand"><span class="lg"></span>Relatório de Intenção · <b>Ravel</b></div>
-          <div class="rr-sec">Ranking de Intenção de Compra</div>
-          <div class="rank"><span class="rn">1</span><span class="rl2"><span class="rg"></span>Ravel</span><span class="rp">90,1%</span></div>
-          <div class="rank"><span class="rn">2</span><span class="rl2"><span class="rg" style="background:var(--green)"></span>Cobalt</span><span class="rp">88,1%</span></div>
-          <div class="rank"><span class="rn">3</span><span class="rl2"><span class="rg" style="background:var(--violet)"></span>Meridian</span><span class="rp">87,3%</span></div>
-          <div class="rank"><span class="rn">4</span><span class="rl2"><span class="rg" style="background:var(--blue)"></span>Halcyon</span><span class="rp">86,9%</span></div>
-          <div class="rank"><span class="rn">5</span><span class="rl2"><span class="rg" style="background:var(--orange)"></span>Lumina</span><span class="rp">82,4%</span></div>
+          <div class="leads">
+            <div class="lead-row"><span class="lead-av" style="background:linear-gradient(135deg,#8a2be2,#5f1aa8)">CD</span><div><div class="lead-nm">Carolina Duarte</div><div class="lead-co">Head of Growth · Nubank</div></div><span class="lead-badge hot">92 Quente</span></div>
+            <div class="lead-row"><span class="lead-av" style="background:linear-gradient(135deg,#00c758,#00994a)">MF</span><div><div class="lead-nm">Marcos Ferraz</div><div class="lead-co">VP de Vendas · Pipefy</div></div><span class="lead-badge warm">74 Morno</span></div>
+            <div class="lead-row"><span class="lead-av" style="background:linear-gradient(135deg,#ff8b1a,#d96e00)">AM</span><div><div class="lead-nm">André Mattos</div><div class="lead-co">Líder de RevOps · Totvs</div></div><span class="lead-badge warm">68 Morno</span></div>
+            <div class="lead-row"><span class="lead-av" style="background:linear-gradient(135deg,#54a2ff,#2f7fe0)">JR</span><div><div class="lead-nm">Juliana Rocha</div><div class="lead-co">Gerente de Growth · Stone</div></div><span class="lead-badge mid">58</span></div>
+            <div class="lead-row"><span class="lead-av" style="background:linear-gradient(135deg,#ff6568,#c8383b)">RB</span><div><div class="lead-nm">Rafael Bianchi</div><div class="lead-co">CMO · Creditas</div></div><span class="lead-badge hot">88 Quente</span></div>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CHANNELS -->
+  <!-- CHANNELS / CATEGORIAS DE SINAL -->
   <section class="channels" id="channels">
     <div class="pad" style="padding-top:clamp(70px,9vw,120px);padding-bottom:0">
-      <h2 class="pre-reveal">Sinais para cada<br>motor de receita</h2>
+      <h2 class="pre-reveal">Um sinal para cada<br>gatilho de compra</h2>
+      <p class="csub pre-reveal">O Sygnals agrupa os sinais por como a intenção aparece — pra você capturá-la no momento exato em que a janela abre.</p>
     </div>
     <div class="chan-grid pad">
-      <div class="chan pre-reveal"><div class="ct">Vendas outbound</div><div class="cs">Alcance quem está no mercado primeiro</div><button class="learn">Saiba mais</button></div>
-      <div class="chan pre-reveal"><div class="ct">Demanda &amp; Marketing</div><div class="cs">Direcione contas quentes para campanhas</div><button class="learn">Saiba mais</button></div>
-      <div class="chan pre-reveal"><div class="ct">Fundadores &amp; Growth</div><div class="cs">Transforme engajamento em pipeline</div><button class="learn">Saiba mais</button></div>
+      <div class="chan live pre-reveal">
+        <span class="ceyebrow">Ao vivo</span>
+        <div class="ct">Demanda em movimento</div>
+        <div class="cs">Alguém já está fazendo algo. Intercepte enquanto o sinal ainda está quente.</div>
+        <div class="chips"><span class="sig-chip"><b>SPARK</b></span><span class="sig-chip"><b>RIVAL</b></span><span class="sig-chip"><b>HALO</b></span><span class="sig-chip"><b>FLARE</b></span><span class="sig-chip"><b>LENS</b></span><span class="sig-chip"><b>WAVE</b></span></div>
+      </div>
+      <div class="chan soon pre-reveal">
+        <span class="ceyebrow">No roadmap</span>
+        <div class="ct">Intenção direta</div>
+        <div class="cs">Eles vieram até você. Os sinais de maior intenção que existem — eles deram o primeiro passo.</div>
+        <div class="chips"><span class="sig-chip"><b>PING</b></span><span class="sig-chip"><b>KNOCK</b></span><span class="sig-chip"><b>GATE</b></span></div>
+      </div>
+      <div class="chan soon pre-reveal">
+        <span class="ceyebrow">No roadmap</span>
+        <div class="ct">Sinais estruturais</div>
+        <div class="cs">Gatilhos baseados em contexto. Sem interação direta — mas o timing cria a janela.</div>
+        <div class="chips"><span class="sig-chip"><b>HIRE</b></span><span class="sig-chip"><b>PIVOT</b></span><span class="sig-chip"><b>CLAN</b></span><span class="sig-chip"><b>PAGE</b></span></div>
+      </div>
     </div>
   </section>
 
-  <!-- TRY AGENT -->
+  <!-- PRICING -->
+  <section class="pricing" id="pricing">
+    <div class="pad ph pre-reveal">
+      <h2>Preços que escalam com o seu pipeline</h2>
+      <p>Um deal fechado paga um ano. Comece grátis, faça upgrade quando os leads fluírem.</p>
+    </div>
+    <div class="plan-grid">
+      <div class="plan pre-reveal">
+        <div class="ptop"><span class="pname">Starter</span></div>
+        <div class="amt">$99<span class="per">/mês</span></div>
+        <div class="pdesc">Para founders rodando os primeiros sinais.</div>
+        <ul>
+          <li><span class="ck">✓</span><span><b>10.000</b> créditos / mês</span></li>
+          <li><span class="ck">✓</span><span><b>10</b> sinais</span></li>
+          <li><span class="ck">✓</span><span><b>1</b> conta LinkedIn</span></li>
+          <li><span class="ck">✓</span><span>Score de intenção e enriquecimento</span></li>
+          <li><span class="ck">✓</span><span>Export Clay, webhook e CSV</span></li>
+        </ul>
+        <a href="#demo" class="btn dark" style="width:100%">Começar grátis</a>
+      </div>
+      <div class="plan pop pre-reveal">
+        <div class="ptop"><span class="pname">Explorer</span><span class="badge-pop">Mais popular</span></div>
+        <div class="amt">$179<span class="per">/mês</span></div>
+        <div class="pdesc">Para times monitorando um ICP inteiro.</div>
+        <ul>
+          <li><span class="ck">✓</span><span><b>25.000</b> créditos / mês</span></li>
+          <li><span class="ck">✓</span><span><b>20</b> sinais</span></li>
+          <li><span class="ck">✓</span><span><b>3</b> contas LinkedIn</span></li>
+          <li><span class="ck">✓</span><span>Tudo do Starter</span></li>
+          <li><span class="ck">✓</span><span>Suporte prioritário</span></li>
+        </ul>
+        <a href="#demo" class="btn primary" style="width:100%">Agendar demo</a>
+      </div>
+      <div class="plan pre-reveal">
+        <div class="ptop"><span class="pname">Pro</span></div>
+        <div class="amt">$349<span class="per">/mês</span></div>
+        <div class="pdesc">Para agências e times multimarca.</div>
+        <ul>
+          <li><span class="ck">✓</span><span><b>50.000</b> créditos / mês</span></li>
+          <li><span class="ck">✓</span><span><b>40</b> sinais</span></li>
+          <li><span class="ck">✓</span><span><b>10</b> contas LinkedIn</span></li>
+          <li><span class="ck">✓</span><span>Workspaces ilimitados</span></li>
+          <li><span class="ck">✓</span><span>Overage menor · $12/1k créditos</span></li>
+        </ul>
+        <a href="#demo" class="btn dark" style="width:100%">Agendar demo</a>
+      </div>
+    </div>
+    <div class="pad"><p class="price-note">Trial grátis: 2.000 créditos · 7 dias · sem cartão. Pacotes de crédito e contas LinkedIn adicionais ($15/conta/mês) disponíveis. Preços em USD.</p></div>
+  </section>
+
+  <!-- ROADMAP -->
+  <section class="roadmap" id="roadmap">
+    <div class="pad rh">
+      <div class="rtitle pre-reveal"><span class="t">Roadmap de sinais</span><span class="bar"></span><span class="cnt">6 / 20</span></div>
+      <p class="pre-reveal">Seis sinais estão ao vivo hoje. Mais quatorze estão a caminho — gatilhos de intenção direta e estruturais que ampliam ainda mais a janela.</p>
+    </div>
+    <div class="rm-grid pad">
+      <div class="rm-card pre-reveal">
+        <span class="rc-eyebrow">Intenção direta · em breve</span>
+        <h3>Eles dão o primeiro passo</h3>
+        <div class="rc-desc">DMs recebidas, convites com nota e conexões aceitas — os atos de maior intenção na plataforma.</div>
+        <div class="rc-chips"><span class="rm-chip"><span class="ab">PING</span>DM recebida</span><span class="rm-chip"><span class="ab">KNOCK</span>Convite + nota</span><span class="rm-chip"><span class="ab">GATE</span>Conexão aceita</span></div>
+      </div>
+      <div class="rm-card pre-reveal">
+        <span class="rc-eyebrow">Estrutural · em breve</span>
+        <h3>O timing abre a porta</h3>
+        <div class="rc-desc">Vagas abertas, mudanças de cargo, membros de grupo, engajamento em página de empresa e monitores de palavra-chave — contexto que cria o momento.</div>
+        <div class="rc-chips"><span class="rm-chip"><span class="ab">HIRE</span>Vaga aberta</span><span class="rm-chip"><span class="ab">PIVOT</span>Mudança de cargo</span><span class="rm-chip"><span class="ab">CLAN</span>Membros de grupo</span><span class="rm-chip"><span class="ab">PAGE</span>Página de empresa</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRY -->
   <section class="tryagent">
     <div class="tl pre-reveal">
-      <h2>Experimente um Agente Sygnals</h2>
-      <p>Rode um dos nossos agentes mais populares e revele leads quentes do seu mercado em minutos.</p>
+      <h2>Experimente seu primeiro sinal grátis</h2>
+      <p>Cole a URL de um perfil, rode o SPARK e veja engajadores pontuados aparecerem em minutos. 2.000 créditos, sem cartão.</p>
       <div class="form">
-        <input type="email" placeholder="Digite seu e-mail" aria-label="E-mail">
-        <button class="btn light">Testar um agente</button>
+        <input type="email" placeholder="Digite seu e-mail profissional" aria-label="E-mail profissional">
+        <button class="btn light">Começar grátis</button>
       </div>
+      <span class="tnote">2.000 créditos · 7 dias · sem cartão</span>
     </div>
     <div class="tr pre-reveal">
-      <div class="cursor k1"></div><div class="chip c1"><span class="ci" style="background:var(--blue)"></span>Agente de Monitoramento</div>
-      <div class="cursor k2"></div><div class="chip c2"><span class="ci" style="background:var(--red)"></span>Agente de Intenção</div>
-      <div class="cursor k3"></div><div class="chip c3"><span class="ci" style="background:var(--green)"></span>Agente de Abordagem</div>
-    </div>
-  </section>
-
-  <!-- EVENT -->
-  <section class="event">
-    <div class="pad" style="padding-top:clamp(70px,9vw,120px)">
-      <div class="eh pre-reveal"><span class="ttl">Signal Day</span><span class="bar"></span><span class="yr">26</span></div>
-      <p class="esub pre-reveal">Participe do Signal Day 2026, o encontro para times de receita que vendem por intenção. Garanta sua vaga hoje.</p>
-    </div>
-    <div class="ev-grid pad">
-      <div class="ev-card pre-reveal">
-        <div class="cty"><h3>São Paulo <span>Liberado</span></h3><span class="code">SAO</span></div>
-        <div class="rec">Libere as gravações</div>
-        <a href="#" class="btn light" style="font-size:14px;padding:9px 16px">Ver detalhes</a>
-        <div class="ev-art"></div>
-      </div>
-      <div class="ev-card pre-reveal">
-        <div class="cty"><h3>Nova York <span>Liberado</span></h3><span class="code">NY</span></div>
-        <div class="rec">Libere as gravações</div>
-        <a href="#" class="btn light" style="font-size:14px;padding:9px 16px">Ver detalhes</a>
-        <div class="ev-art"></div>
-      </div>
+      <div class="cursor k1"></div><div class="chip c1"><span class="ab">SPK</span>Engajamento</div>
+      <div class="cursor k2"></div><div class="chip c2"><span class="ab">RVL</span>Concorrente</div>
+      <div class="cursor k3"></div><div class="chip c3"><span class="ab">LNS</span>Visitantes</div>
     </div>
   </section>
 
   <!-- FINAL CTA -->
   <section class="cta pad" id="demo">
-    <h2 class="pre-reveal">Fique na frente dos compradores no
-      <span class="l2"><svg viewBox="0 0 24 24" width="0.92em" height="0.92em" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M7.2 9.6H4.5V19h2.7V9.6ZM5.85 8.4a1.57 1.57 0 1 0 0-3.15 1.57 1.57 0 0 0 0 3.15ZM19.5 19v-5.15c0-2.76-.59-4.62-3.8-4.62-1.55 0-2.58.85-3 1.65h-.04V9.6H10v9.4h2.7v-4.65c0-1.23.23-2.42 1.75-2.42 1.5 0 1.52 1.4 1.52 2.5V19h2.53Z"/></svg>LinkedIn</span>
-    </h2>
-    <p class="pre-reveal">Alcance os compradores que já demonstram intenção — antes de qualquer outro.</p>
+    <h2 class="pre-reveal">Capture os sinais<br>antes que esfriem</h2>
+    <p class="pre-reveal">Seu próximo cliente está engajando no LinkedIn agora. Agende uma demo e veja-os pontuados.</p>
     <div class="hero-cta pre-reveal">
       <a href="https://cal.com/sygnals/demo" class="btn primary">Agendar demo</a>
-      <a href="#" class="btn dark">Começar agora</a>
+      <a href="#pricing" class="btn dark">Começar grátis</a>
     </div>
   </section>
 </div>
@@ -678,17 +760,17 @@ img{max-width:100%;display:block}
           <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
           <text x="50" y="20" font-family="'DM Sans',sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle"><tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan></text>
         </svg>
-        <p>Aborde no momento em que demonstram intenção de compra.</p>
+        <p>Inteligência de engajamento no LinkedIn. Capture a intenção antes que ela esfrie.</p>
       </div>
-      <div class="foot-col"><h5>Plataforma</h5><a href="#features">Busca de Sinais</a><a href="#features">Agentes de Sinal</a><a href="#features">Insights de Intenção</a><a href="#features">Análise de Sinais</a><a href="#features">Foco</a></div>
-      <div class="foot-col"><h5>Recursos</h5><a href="#">Central de Recursos</a><a href="#">Central de Ajuda</a><a href="#">Clientes</a><a href="#">Blog</a><a href="#report">Relatório de Intenção</a></div>
-      <div class="foot-col"><h5>Empresa</h5><a href="#">Enterprise</a><a href="#">Preços</a><a href="#">Carreiras</a><a href="mailto:hello@sygnals.com">Fale conosco</a><a href="#">Imprensa</a></div>
+      <div class="foot-col"><h5>Produto</h5><a href="#features">Sinais</a><a href="#features">Score de intenção</a><a href="#features">Engagers</a><a href="#features">Entrega</a><a href="#pricing">Preços</a></div>
+      <div class="foot-col"><h5>Sinais</h5><a href="#features">SPARK · Engajamento</a><a href="#features">RIVAL · Concorrente</a><a href="#features">LENS · Visitantes</a><a href="#roadmap">Roadmap</a></div>
+      <div class="foot-col"><h5>Empresa</h5><a href="#demo">Agendar demo</a><a href="#report">Amostra grátis</a><a href="mailto:hello@sygnals.com">Contato</a></div>
     </div>
     <div class="foot-2">
       <div class="foot-status"><span class="d"></span>Todos os serviços online</div>
-      <div class="foot-col"><h5>Soluções</h5><a href="#channels">Vendas outbound</a><a href="#channels">Demanda &amp; Marketing</a><a href="#channels">Fundadores</a><a href="#channels">Agências</a></div>
-      <div class="foot-col"><h5>Dados</h5><a href="#report">Índice Sygnals</a><a href="#">Central de Pesquisa</a></div>
-      <div class="foot-col"><h5>Social</h5><a href="#">X (Twitter)</a><a href="#">LinkedIn</a></div>
+      <div class="foot-col"><h5>Integrações</h5><a href="#features">Clay</a><a href="#features">Webhooks</a><a href="#features">Export CSV</a><a href="#features">API e MCP</a></div>
+      <div class="foot-col"><h5>Jurídico</h5><a href="#">Privacidade</a><a href="#">Termos</a></div>
+      <div class="foot-col"><h5>Idioma</h5><a href="/">English</a><a href="/pt-br/">Português (Brasil)</a></div>
     </div>
     <div class="foot-bot"><span>© 2026 Sygnals. Todos os direitos reservados.</span><a href="/">View in English →</a></div>
   </div>
@@ -696,21 +778,16 @@ img{max-width:100%;display:block}
 </footer>
 
 <script>
-// reveal on scroll
-const io = new IntersectionObserver((entries)=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.remove('pre-reveal'); e.target.classList.add('revealed'); io.unobserve(e.target);} });
-},{threshold:.1});
+const io = new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.remove('pre-reveal');e.target.classList.add('revealed');const n=e.target.querySelector?.('[data-countup]')||(e.target.dataset&&e.target.dataset.countup?e.target:null);if(n&&n.dataset.countup)countUp(n);io.unobserve(e.target);}});},{threshold:.1});
 document.querySelectorAll('.pre-reveal').forEach(el=>io.observe(el));
+function countUp(el){const t=parseInt(el.dataset.countup,10);let n=0;const step=Math.max(1,Math.round(t/26));const iv=setInterval(()=>{n+=step;if(n>=t){n=t;clearInterval(iv);}el.textContent=n;},24);}
 
-// mobile menu
-function toggleMenu(){
-  const l=document.querySelector('.nav-links'); const b=document.getElementById('navBurger');
-  const open=l.classList.toggle('open'); b.setAttribute('aria-expanded',open);
-}
-document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
-  document.querySelector('.nav-links').classList.remove('open');
-  document.getElementById('navBurger')?.setAttribute('aria-expanded','false');
-}));
+function toggleLang(e){e.stopPropagation();const l=document.getElementById('lang');const open=l.classList.toggle('open');l.querySelector('.lang-btn').setAttribute('aria-expanded',open);}
+document.addEventListener('click',(e)=>{const l=document.getElementById('lang');if(l&&!l.contains(e.target)){l.classList.remove('open');l.querySelector('.lang-btn')?.setAttribute('aria-expanded','false');}});
+document.addEventListener('keydown',(e)=>{if(e.key==='Escape'){document.getElementById('lang')?.classList.remove('open');}});
+
+function toggleMenu(){const l=document.querySelector('.nav-links');const b=document.getElementById('navBurger');const open=l.classList.toggle('open');b.setAttribute('aria-expanded',open);}
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{document.querySelector('.nav-links').classList.remove('open');document.getElementById('navBurger')?.setAttribute('aria-expanded','false');}));
 </script>
 </body>
 </html>
