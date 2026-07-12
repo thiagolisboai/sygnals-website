@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sygnals — Reach out the moment they show buying intent</title>
-  <meta name="description" content="Sygnals monitors LinkedIn engagement, scores buying intent in real time, and hands you warm leads. Book a demo.">
-  <meta property="og:title" content="Sygnals — LinkedIn intent signals">
+  <title>Sygnals — Sales signals to win on LinkedIn</title>
+  <meta name="description" content="Sygnals monitors LinkedIn activity, scores buying intent in real time, and surfaces the warm leads worth your time.">
+  <meta property="og:title" content="Sygnals — Sales signals to win on LinkedIn">
   <meta property="og:description" content="Reach out the moment they show buying intent.">
   <meta property="og:type" content="website">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -14,454 +14,703 @@
   <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --cyan:#00d4f5;--cyan-lt:#0094b3;--black:#000;--surf:#0a0a0a;--elev:#181818;
-  --border:#1a1a1a;--border2:#262626;--text:#edf2f5;--muted:#9f9f9f;--dim:#3a3a3a;--caption:#6b6b6b;
-  --green:#00c758;--red:#ff2323;--amber:#edb200;--blue:#47a8ff;
-  --font-display:'DM Sans',-apple-system,sans-serif;
-  --font:'Inter',-apple-system,sans-serif;
-  --mono:ui-monospace,'SF Mono',monospace;
-  --maxw:1160px;
+  --cyan:#00d4f5;--cyan-lt:#3ce0ff;
+  --bg:#000;--panel:#0a0a0a;--panel2:#111;--elev:#161616;--elev2:#1d1d1d;
+  --border:#232323;--border2:#2c2c2c;--dash:#2a2a2a;
+  --text:#edf2f5;--muted:#9f9f9f;--dim:#6b6b6b;--faint:#3a3a3a;
+  --green:#00c758;--blue:#54a2ff;--violet:#a685ff;--orange:#ff8b1a;--red:#ff6568;--amber:#edb200;
+  --font-display:'DM Sans',-apple-system,BlinkMacSystemFont,sans-serif;
+  --font:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  --mono:ui-monospace,'SF Mono','JetBrains Mono',Menlo,monospace;
+  --maxw:1180px;--pad:40px;
 }
-html{scroll-behavior:smooth}
-body{background:var(--black);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
-.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
-h1,h2,h3{font-family:var(--font-display);font-weight:700;letter-spacing:-.03em;line-height:1.05}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{background:var(--bg);color:var(--text);font-family:var(--font);-webkit-font-smoothing:antialiased;line-height:1.5;overflow-x:hidden}
 a{color:inherit;text-decoration:none}
-.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--cyan);font-weight:600}
-.section{padding:clamp(64px,9vw,120px) 0;border-top:1px solid var(--border)}
-.section-surf{background:var(--surf)}
-/* buttons — brand spec */
-.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-display);font-weight:700;font-size:15px;letter-spacing:-.02em;border-radius:999px;padding:13px 26px;cursor:pointer;border:none;transition:transform .15s ease,background .15s ease}
+h1,h2,h3,h4{font-family:var(--font-display);font-weight:600;letter-spacing:-.03em;line-height:1.02}
+img{max-width:100%;display:block}
+
+/* ---- blueprint frame ---- */
+.frame{max-width:var(--maxw);margin:0 auto;position:relative;border-left:1px dashed var(--dash);border-right:1px dashed var(--dash)}
+.pad{padding-left:var(--pad);padding-right:var(--pad)}
+.dsep{border-top:1px dashed var(--dash)}
+.ssep{border-top:1px solid var(--border)}
+
+/* ---- buttons (brand: cyan pill primary) ---- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--font-display);font-weight:600;font-size:15px;letter-spacing:-.01em;border-radius:999px;padding:12px 22px;cursor:pointer;border:1px solid transparent;transition:transform .15s ease,background .15s ease,border-color .15s ease;white-space:nowrap}
 .btn.primary{background:var(--cyan);color:#000}
-.btn.primary:hover{transform:translateY(-1px);background:#3ce0ff}
-.btn.secondary{background:transparent;color:var(--text);border:1px solid var(--border2)}
-.btn.secondary:hover{border-color:var(--cyan);color:var(--cyan)}
+.btn.primary:hover{transform:translateY(-1px);background:var(--cyan-lt)}
+.btn.dark{background:#2a2a2a;color:var(--text);border-color:#333}
+.btn.dark:hover{background:#333;transform:translateY(-1px)}
+.btn.ghost{background:#1c1c1c;color:var(--text);border-color:#2a2a2a;font-size:14px;padding:9px 16px}
+.btn.ghost:hover{border-color:#3a3a3a}
+.btn.light{background:#fff;color:#000}
+.btn.light:hover{background:#e9e9e9;transform:translateY(-1px)}
 .btn:focus-visible{outline:none;box-shadow:0 0 0 2px #000,0 0 0 4px var(--cyan)}
-/* reveal-on-scroll */
-.pre-reveal{opacity:0;transform:translateY(12px)}
+.learn{align-self:flex-start;background:#232323;color:var(--text);font-family:var(--font-display);font-weight:600;font-size:14px;border:none;border-radius:8px;padding:9px 15px;cursor:pointer;transition:background .15s}
+.learn:hover{background:#2e2e2e}
+
+/* reveal */
+.pre-reveal{opacity:0;transform:translateY(14px)}
 .revealed{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
 @media (prefers-reduced-motion:reduce){.pre-reveal{opacity:1;transform:none}.revealed{transition:none}*{scroll-behavior:auto}}
-.nav{position:sticky;top:0;z-index:50;background:rgba(0,0,0,.72);backdrop-filter:blur(12px);border-bottom:1px solid transparent;transition:border-color .2s,background .2s}
-.nav.scrolled{border-bottom-color:var(--border);background:rgba(0,0,0,.9)}
+
+/* ---- nav ---- */
+.nav{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.7);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:64px}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{font-size:14px;color:var(--muted);font-weight:500}
+.nav-links{display:flex;gap:26px;align-items:center}
+.nav-links a{font-size:14px;color:var(--muted);font-weight:500;transition:color .15s}
 .nav-links a:hover{color:var(--text)}
-.nav-right{display:flex;gap:14px;align-items:center}
-.lang-toggle{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border2);border-radius:999px;padding:5px 10px;letter-spacing:.05em}
-.lang-toggle:hover{color:var(--cyan);border-color:var(--cyan)}
-.nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:22px;height:22px;background:none;border:none;cursor:pointer;padding:0}
+.nav-right{display:flex;gap:12px;align-items:center}
+.nav-burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:24px;height:24px;background:none;border:none;cursor:pointer}
 .nav-burger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px}
-@media(max-width:820px){.nav-links{display:none}.nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#000;border-bottom:1px solid var(--border);padding:16px 24px;gap:18px}.nav-burger{display:flex}}
-.hero{position:relative;padding:clamp(72px,11vw,140px) 0 clamp(64px,8vw,110px);overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(120% 90% at 50% -10%,rgba(0,212,245,.14),transparent 55%);pointer-events:none}
-.hero-inner{position:relative;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
-.hero h1{font-size:clamp(38px,6vw,68px);margin:18px 0 20px}
-.hero h1 b{color:var(--cyan);font-weight:700}
-.hero-sub{color:var(--muted);font-size:clamp(16px,1.6vw,19px);max-width:520px;margin-bottom:32px}
-.hero-cta{display:flex;gap:14px;flex-wrap:wrap}
-.hero-trust{margin-top:28px;font-size:13px;color:var(--caption);display:flex;gap:8px;align-items:center}
-/* hero visual card */
-.iscore{background:var(--surf);border:1px solid var(--border2);border-radius:14px;padding:22px 24px;box-shadow:0 24px 60px -24px rgba(0,212,245,.25)}
-.iscore-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px}
-.iscore-name{font-weight:600;font-size:15px}
-.iscore-sub{font-size:12px;color:var(--muted)}
-.badge{display:inline-flex;align-items:center;gap:6px;padding:4px 11px;border-radius:999px;font-size:12px;font-weight:600}
-.badge .dot{width:5px;height:5px;border-radius:50%}
-.badge.warm{background:rgba(237,178,0,.12);color:#e3b341;border:1px solid rgba(237,178,0,.25)}
-.badge.warm .dot{background:var(--amber)}
-.badge.hot{background:rgba(255,35,35,.13);color:#ff6b6b;border:1px solid rgba(255,35,35,.3)}
-.badge.hot .dot{background:var(--red)}
-.iscore-row{display:flex;justify-content:space-between;font-size:13px;padding:7px 0;border-bottom:1px solid var(--border)}
-.iscore-row .lbl{color:var(--muted)}
-.iscore-row .val{font-family:var(--mono)}
-.iscore-row .val.pos{color:var(--text)}
-.iscore-row .val.neg{color:var(--dim)}
-.iscore-total{display:flex;justify-content:space-between;align-items:center;padding-top:14px;margin-top:8px;border-top:1px solid var(--border2)}
-.iscore-total .num{font-family:var(--font-display);font-size:30px;font-weight:700;color:var(--cyan);letter-spacing:-.03em}
-@media(max-width:820px){.hero-inner{grid-template-columns:1fr;gap:36px}.hero-cta{flex-direction:column}.hero-cta .btn{width:100%;justify-content:center}}
-.prob-head{max-width:680px;margin-bottom:44px}
-.prob-head h2{font-size:clamp(28px,4vw,42px);margin-bottom:14px}
-.prob-head p{color:var(--muted);font-size:17px}
-.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.prob-card{background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:26px}
-.prob-card .k{font-family:var(--mono);color:var(--red);font-size:13px;margin-bottom:10px}
-.prob-card h3{font-size:18px;margin-bottom:8px}
-.prob-card p{color:var(--muted);font-size:14px}
-@media(max-width:820px){.prob-grid{grid-template-columns:1fr}}
-.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:44px;border:1px solid var(--border);border-radius:12px;overflow:hidden}
-.how-step{background:var(--surf);padding:34px 30px}
-.how-step .n{font-family:var(--mono);font-size:12px;color:var(--cyan);letter-spacing:.1em}
-.how-step h3{font-size:20px;margin:16px 0 10px}
-.how-step p{color:var(--muted);font-size:14px}
-.how-wave{margin-top:20px;opacity:.5}
-@media(max-width:820px){.how-grid{grid-template-columns:1fr}}
-.showcase{display:grid;grid-template-columns:.95fr 1.05fr;gap:56px;align-items:center;margin-top:24px}
-.showcase-factors{display:flex;flex-direction:column;gap:14px}
-.factor{display:flex;gap:14px;align-items:flex-start}
-.factor .icn{width:34px;height:34px;border-radius:8px;background:rgba(0,212,245,.1);border:1px solid rgba(0,212,245,.25);flex-shrink:0;display:flex;align-items:center;justify-content:center;color:var(--cyan);font-family:var(--mono);font-size:13px}
-.factor h4{font-size:15px;margin-bottom:3px}
-.factor p{color:var(--muted);font-size:13px}
-@media(max-width:820px){.showcase{grid-template-columns:1fr;gap:36px}}
-.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px}
-.feat{background:var(--surf);border:1px solid var(--border);border-radius:12px;padding:26px;transition:border-color .2s}
-.feat:hover{border-color:var(--border2)}
-.feat .ic{width:38px;height:38px;color:var(--cyan);margin-bottom:16px}
-.feat h3{font-size:17px;margin-bottom:8px}
-.feat p{color:var(--muted);font-size:14px}
-.preview{margin-top:56px;background:var(--surf);border:1px solid var(--border2);border-radius:16px;padding:20px;overflow:hidden}
-.preview-bar{display:flex;gap:6px;padding:0 4px 16px}
-.preview-bar i{width:9px;height:9px;border-radius:50%;background:var(--border2)}
-.sig-list{display:flex;flex-direction:column;gap:8px}
-.sig{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:#000;border:1px solid var(--border);border-radius:8px}
-.sig-left{display:flex;align-items:center;gap:11px}
-.sig-dot{width:7px;height:7px;border-radius:50%}
-.sig-name{font-size:14px;font-weight:500}
-@media(max-width:820px){.feat-grid{grid-template-columns:1fr}}
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px;align-items:stretch}
-.price{background:var(--surf);border:1px solid var(--border);border-radius:14px;padding:30px 28px;display:flex;flex-direction:column}
-.price.feat{border-color:var(--cyan);box-shadow:0 20px 60px -30px rgba(0,212,245,.4)}
-.price-tag{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:8px;min-height:14px}
-.price h3{font-size:20px;margin-bottom:6px}
-.price .amt{font-family:var(--font-display);font-size:40px;font-weight:700;letter-spacing:-.03em;margin:10px 0 2px}
-.price .amt span{font-size:15px;color:var(--muted);font-weight:500}
-.price ul{list-style:none;margin:22px 0 26px;display:flex;flex-direction:column;gap:11px;flex:1}
-.price li{font-size:14px;color:var(--muted);display:flex;gap:9px;align-items:flex-start}
-.price li::before{content:'';width:16px;height:16px;flex-shrink:0;margin-top:2px;background:no-repeat center/contain url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2300d4f5' stroke-width='3'%3E%3Cpath d='M20 6 9 17l-5-5'/%3E%3C/svg%3E")}
-.price-note{text-align:center;margin-top:24px;color:var(--caption);font-size:13px}
-@media(max-width:820px){.price-grid{grid-template-columns:1fr}}
-.faq{max-width:820px;margin:44px auto 0}
-.faq-item{border-bottom:1px solid var(--border)}
-.faq-q{width:100%;text-align:left;background:none;border:none;color:var(--text);font-family:var(--font-display);font-weight:600;font-size:17px;padding:22px 0;cursor:pointer;display:flex;justify-content:space-between;gap:16px;align-items:center}
-.faq-q .pm{color:var(--cyan);font-size:22px;line-height:1;flex-shrink:0;transition:transform .2s}
-.faq-item.open .faq-q .pm{transform:rotate(45deg)}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
-.faq-a p{color:var(--muted);font-size:15px;padding:0 0 22px;line-height:1.6}
-.faq-item.open .faq-a{max-height:320px}
-.cta-final{position:relative;text-align:center;overflow:hidden}
-.cta-final::before{content:'';position:absolute;inset:0;background:radial-gradient(90% 120% at 50% 120%,rgba(0,212,245,.16),transparent 60%);pointer-events:none}
-.cta-final h2{position:relative;font-size:clamp(30px,5vw,52px);margin-bottom:18px}
-.cta-final p{position:relative;color:var(--muted);font-size:18px;margin-bottom:32px}
-.footer{border-top:1px solid var(--border);padding:56px 0 40px}
-.footer-inner{display:flex;justify-content:space-between;gap:40px;flex-wrap:wrap;align-items:flex-start}
-.footer-cols{display:flex;gap:64px;flex-wrap:wrap}
-.footer-col h5{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--caption);margin-bottom:14px}
-.footer-col a{display:block;color:var(--muted);font-size:14px;margin-bottom:10px}
-.footer-col a:hover{color:var(--text)}
-.footer-bottom{display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-top:48px;padding-top:24px;border-top:1px solid var(--border);font-size:12px;color:var(--caption)}
-@media(max-width:820px){.footer-inner{flex-direction:column}}
+/* index banner */
+.banner{border-top:1px dashed var(--dash);border-bottom:1px dashed var(--dash);background:#0b0b0b}
+.banner-inner{display:flex;align-items:center;justify-content:center;gap:14px;height:56px;font-size:15px;flex-wrap:wrap}
+.banner-tag{background:rgba(0,212,245,.1);color:var(--cyan);border:1px solid rgba(0,212,245,.2);border-radius:8px;padding:5px 12px;font-weight:600;font-size:14px}
+.banner-inner .b-txt{color:var(--muted)}
+.banner-inner a{display:flex;align-items:center;gap:12px;flex-wrap:wrap;justify-content:center}
+.banner-inner a:hover .b-txt{color:var(--text)}
+
+/* ---- hero ---- */
+.hero{text-align:center;padding-top:clamp(48px,7vw,90px);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(90% 60% at 50% -5%,rgba(0,212,245,.10),transparent 60%);pointer-events:none}
+.hero h1{position:relative;font-size:clamp(44px,8vw,92px);font-weight:500;line-height:.98;letter-spacing:-.04em;margin-bottom:26px}
+.hero h1 .l2{display:inline-flex;align-items:center;justify-content:center;gap:16px;margin-top:.06em}
+.hero-sub{position:relative;color:var(--muted);font-size:clamp(17px,1.9vw,22px);line-height:1.45;max-width:560px;margin:0 auto 34px}
+.hero-cta{position:relative;display:flex;gap:12px;justify-content:center;margin-bottom:clamp(48px,6vw,80px)}
+/* hero product panel */
+.panel{border:1px solid var(--border2);border-top:1px solid var(--border2);border-radius:14px 14px 0 0;background:var(--panel);overflow:hidden;position:relative}
+.panel-head{display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid var(--border)}
+.panel-head .t{display:flex;align-items:center;gap:10px;font-family:var(--font-display);font-weight:600;font-size:14px}
+.panel-head .t .chev{color:var(--dim)}
+.panel-head .actions{display:flex;gap:8px}
+.pipe{display:grid;grid-template-columns:230px 1fr 340px;min-height:560px}
+.pipe-col{padding:16px;border-right:1px solid var(--border)}
+.pipe-col:last-child{border-right:none}
+.tabs{display:flex;gap:4px;background:#161616;border-radius:9px;padding:4px;margin-bottom:18px}
+.tabs button{flex:1;font-family:var(--font);font-size:13px;color:var(--muted);background:none;border:none;padding:7px;border-radius:6px;cursor:pointer}
+.tabs button.on{background:#2a2a2a;color:var(--text)}
+.pipe-lbl{font-size:12px;color:var(--dim);margin:14px 0 9px;text-transform:none}
+.node-item{display:flex;align-items:center;gap:9px;background:#141414;border:1px solid var(--border);border-radius:8px;padding:9px 11px;margin-bottom:7px;font-size:13px}
+.node-item .ic{width:16px;height:16px;border-radius:5px;flex-shrink:0}
+/* canvas */
+.canvas{position:relative;display:flex;flex-direction:column;align-items:center;gap:0;padding:20px 0}
+.cnode{width:270px;background:#141414;border:1px solid var(--border2);border-radius:12px;overflow:hidden}
+.cnode.ok{border-color:rgba(0,199,88,.5)}
+.cnode-h{display:flex;align-items:center;gap:8px;padding:12px 14px;font-size:14px;font-weight:600;font-family:var(--font-display)}
+.cnode-h .dot{width:16px;height:16px;border-radius:5px;background:var(--cyan)}
+.cnode-b{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-top:1px solid var(--border);font-size:13px;color:var(--muted)}
+.pill-out{background:rgba(0,212,245,.12);color:var(--cyan);border-radius:6px;padding:3px 9px;font-size:12px;font-weight:500}
+.connector{width:1px;height:26px;background:var(--border2);position:relative}
+.connector::after{content:'+';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:20px;height:20px;background:#161616;border:1px solid var(--border2);border-radius:50%;font-size:13px;color:var(--dim);display:flex;align-items:center;justify-content:center}
+.badge-ok{display:inline-flex;align-items:center;gap:6px;background:rgba(0,199,88,.12);color:var(--green);border-radius:6px;padding:3px 9px;font-size:12px;font-weight:500;align-self:flex-end;margin:-4px 0 6px auto}
+.badge-ok::before{content:'✓';font-size:11px}
+/* right output list */
+.out-item{margin-bottom:16px}
+.out-item .name{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;font-family:var(--font-display);margin-bottom:8px}
+.out-item .name .ck{width:15px;height:15px;border-radius:50%;background:var(--green);color:#000;font-size:10px;display:flex;align-items:center;justify-content:center}
+.out-row{display:flex;align-items:center;gap:8px;background:#131313;border:1px solid var(--border);border-radius:8px;padding:8px 11px;margin-bottom:6px;font-size:13px;color:var(--muted)}
+.out-row .ch{color:var(--dim)}
+
+/* ---- logos ---- */
+.logos{text-align:center;padding-top:clamp(56px,7vw,90px)}
+.logos .lead{color:var(--muted);font-size:16px;margin-bottom:48px}
+.logo-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:44px 20px;align-items:center;justify-items:center}
+.logo-grid span{font-family:var(--font-display);font-weight:700;font-size:22px;color:#cfd3d6;letter-spacing:-.02em;opacity:.82}
+@media(max-width:820px){.logo-grid{grid-template-columns:repeat(3,1fr);gap:36px 12px}.logo-grid span{font-size:18px}}
+
+/* ---- statement ---- */
+.statement{padding-top:clamp(80px,11vw,150px)}
+.statement p{font-family:var(--font-display);font-weight:500;font-size:clamp(26px,3.4vw,42px);line-height:1.2;letter-spacing:-.02em;max-width:900px}
+.statement .hl{color:var(--text)}
+.statement .lo{color:#2b2b2b}
+
+/* ---- features ---- */
+.features h2.big{font-size:clamp(34px,5vw,58px);font-weight:500;line-height:1.02;letter-spacing:-.03em;margin-bottom:22px}
+.features .intro{color:var(--muted);font-size:clamp(16px,1.7vw,19px);max-width:620px;margin-bottom:8px}
+.frow{display:grid;grid-template-columns:340px 1px 1fr;border-top:1px dashed var(--dash)}
+.frow .fleft{padding:44px 40px 44px 0;display:flex;flex-direction:column;gap:14px}
+.frow .fdiv{background:repeating-linear-gradient(to bottom,var(--dash) 0 5px,transparent 5px 10px)}
+.frow .fright{padding:44px 0 44px 40px;display:flex;align-items:center;min-width:0;overflow:hidden}
+.frow h3{font-size:22px;font-weight:600}
+.frow p{color:var(--muted);font-size:15px;max-width:280px}
+@media(max-width:860px){.frow{grid-template-columns:1fr}.frow .fdiv{display:none}.frow .fleft{padding:36px 0 8px}.frow .fright{padding:8px 0 40px}}
+
+/* feature mock: search */
+.mock{width:100%}
+.m-title{text-align:center;color:var(--muted);font-size:15px;margin-bottom:18px}
+.searchbox{background:#141414;border:1px solid var(--border2);border-radius:12px;padding:16px 18px}
+.searchbox .q{font-size:16px;margin-bottom:14px}
+.searchbox .q .cur{color:var(--cyan)}
+.searchbox .qrow{display:flex;align-items:center;justify-content:space-between}
+.searchbox .qrow .l{display:flex;gap:6px}
+.searchbox .qrow .l i{width:30px;height:26px;background:#1e1e1e;border-radius:7px;display:inline-block}
+.searchbox .qrow .r{display:flex;align-items:center;gap:12px;font-size:13px;color:var(--muted)}
+.searchbox .qrow .r .an{background:#fff;color:#000;border-radius:7px;padding:5px 13px;font-weight:600;font-size:13px}
+.klist{margin-top:14px}
+.klbl{font-size:12px;color:var(--dim);margin-bottom:8px}
+.krow{display:flex;justify-content:space-between;padding:11px 12px;border-radius:8px;font-size:14px}
+.krow:first-of-type{background:#1a1a1a}
+.krow .kv{color:var(--muted)}
+/* feature mock: chart */
+.chart-wrap{width:100%}
+.persona-row{display:flex;flex-wrap:wrap;gap:18px 26px;margin-bottom:20px}
+.persona{font-size:14px}
+.persona .nm{color:var(--muted);display:flex;align-items:center;gap:7px;margin-bottom:3px}
+.persona .nm .d{width:8px;height:8px;border-radius:50%}
+.persona .pv{font-family:var(--font-display);font-weight:600;font-size:17px}
+.persona .pv small{font-size:13px;font-weight:500;margin-left:4px}
+/* analytics stats */
+.stat-row{display:flex;flex-wrap:wrap;gap:26px 40px;margin-bottom:22px}
+.stat .sl{color:var(--dim);font-size:14px;margin-bottom:4px}
+.stat .sv{font-family:var(--font-display);font-weight:600;font-size:24px}
+.stat .sv small{color:var(--green);font-size:14px;font-weight:500;margin-left:6px}
+/* projects mock */
+.projcard{width:100%;border:1px solid var(--border);border-radius:14px;padding:26px;background:var(--panel)}
+.projcard h4{font-size:20px;margin-bottom:20px}
+.pj-lbl{font-size:13px;color:var(--dim);margin-bottom:12px}
+.pj-sug{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:24px}
+.pj-item{background:#141414;border:1px solid var(--border);border-radius:10px;padding:16px}
+.pj-item .top{display:flex;justify-content:space-between;font-size:13px;color:var(--dim);margin-bottom:10px}
+.pj-item .top .hi{color:var(--green);display:flex;align-items:center;gap:5px}
+.pj-item .h{font-size:14px;font-weight:600;font-family:var(--font-display);margin-bottom:8px;line-height:1.3}
+.pj-item .d{font-size:12px;color:var(--dim);line-height:1.5;margin-bottom:14px}
+.pj-item .track{background:#232323;border-radius:7px;padding:6px 12px;font-size:12px;font-weight:600;display:inline-flex;gap:6px;align-items:center}
+.pj-track-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-top:1px solid var(--border);font-size:13px;color:var(--muted)}
+.pj-track-row .st{width:16px;height:16px;border-radius:50%;background:rgba(0,199,88,.2);color:var(--green);font-size:9px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+@media(max-width:520px){.pj-sug{grid-template-columns:1fr}}
+
+/* ---- quote ---- */
+.quote{display:grid;grid-template-columns:1fr 1.05fr;border-top:1px dashed var(--dash);background:var(--panel)}
+.quote .ql{background:#0d0d0d;min-height:340px;border-right:1px solid var(--border)}
+.quote .qr{padding:44px 44px 44px 44px;display:flex;flex-direction:column}
+.quote .qtop{display:flex;align-items:center;justify-content:space-between;margin-bottom:auto}
+.quote .qbrand{font-family:var(--font-display);font-weight:700;font-size:26px;display:flex;align-items:center;gap:8px}
+.quote blockquote{font-family:var(--font-display);font-weight:600;font-size:clamp(24px,2.6vw,34px);letter-spacing:-.02em;line-height:1.28;margin:60px 0 22px}
+.quote .cite{color:var(--muted);font-size:16px}
+.quote .cite b{color:var(--text);font-weight:600}
+@media(max-width:820px){.quote{grid-template-columns:1fr}.quote .ql{min-height:120px;border-right:none;border-bottom:1px solid var(--border)}.quote .qr{padding:32px}}
+
+/* ---- report ---- */
+.report{display:grid;grid-template-columns:1fr 1fr;border-top:1px dashed var(--dash);align-items:stretch}
+.report .rl{padding:44px 44px 44px 40px}
+.report .rl h2{font-size:clamp(26px,3vw,34px);font-weight:600;margin-bottom:16px}
+.report .rl p{color:var(--muted);font-size:16px;line-height:1.5;margin-bottom:28px;max-width:400px}
+.report .field{width:100%;background:#141414;border:1px solid var(--border2);border-radius:10px;padding:15px 16px;color:var(--text);font-family:var(--font);font-size:15px;margin-bottom:12px}
+.report .field::placeholder{color:var(--dim)}
+.report .analyze{width:100%;background:#fff;color:#000;border:none;border-radius:10px;padding:15px;font-family:var(--font-display);font-weight:600;font-size:15px;cursor:pointer;transition:background .15s}
+.report .analyze:hover{background:#e9e9e9}
+.report .ins{margin-top:32px}
+.report .ins .il{font-size:15px;color:var(--muted);margin-bottom:16px}
+.report .ins ul{list-style:none;display:flex;flex-direction:column;gap:14px;padding-left:6px;border-left:1px solid var(--border)}
+.report .ins li{display:flex;align-items:center;gap:12px;font-size:15px;padding-left:14px}
+.report .ins li .ck{width:18px;height:18px;border-radius:50%;background:var(--text);color:#000;font-size:11px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.report .rr{position:relative;overflow:hidden;padding:44px 0 44px 0}
+.rr-panel{background:var(--panel2);border:1px solid var(--border2);border-radius:14px;width:640px;max-width:none;margin-left:0;overflow:hidden}
+.rr-head{display:flex;gap:7px;padding:14px 16px;border-bottom:1px solid var(--border)}
+.rr-head i{width:10px;height:10px;border-radius:50%;background:#333}
+.rr-body{padding:18px}
+.rr-brand{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-bottom:16px}
+.rr-brand .lg{width:18px;height:18px;border-radius:5px;background:var(--cyan)}
+.rr-brand b{color:var(--text)}
+.rr-sec{font-size:14px;font-weight:600;font-family:var(--font-display);margin-bottom:12px}
+.rank{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:9px;font-size:14px;margin-bottom:4px}
+.rank:first-of-type{background:#1a1a1a;border:1px solid var(--border2)}
+.rank .rn{color:var(--dim);width:14px}
+.rank .rl2{display:flex;align-items:center;gap:9px;flex:1}
+.rank .rl2 .rg{width:18px;height:18px;border-radius:5px;background:var(--cyan)}
+.rank .rp{color:var(--muted);font-family:var(--mono);font-size:13px}
+@media(max-width:900px){.report{grid-template-columns:1fr}.report .rr{padding:0 0 40px 40px}.rr-panel{width:100%}}
+
+/* ---- channels ---- */
+.channels h2{font-size:clamp(34px,5vw,64px);font-weight:500;line-height:1.02;letter-spacing:-.03em;margin-bottom:44px}
+.chan-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px dashed var(--dash)}
+.chan{padding:36px 32px 200px;border-right:1px dashed var(--dash);display:flex;flex-direction:column;gap:20px}
+.chan:last-child{border-right:none}
+.chan .ct{font-family:var(--font-display);font-weight:600;font-size:22px;letter-spacing:-.02em}
+.chan .cs{color:var(--muted);font-size:15px;margin-top:-8px}
+@media(max-width:820px){.chan-grid{grid-template-columns:1fr}.chan{border-right:none;border-bottom:1px dashed var(--dash);padding:32px 0 120px}}
+
+/* ---- try agent ---- */
+.tryagent{display:grid;grid-template-columns:1fr 1fr;border-top:1px dashed var(--dash);min-height:420px}
+.tryagent .tl{padding:0 40px;display:flex;flex-direction:column;justify-content:center;gap:16px;border-right:1px dashed var(--dash)}
+.tryagent .tl h2{font-size:clamp(26px,3vw,34px);font-weight:600}
+.tryagent .tl p{color:var(--muted);font-size:16px;max-width:400px}
+.tryagent .form{display:flex;gap:10px;margin-top:8px;max-width:440px}
+.tryagent .form input{flex:1;background:#141414;border:1px solid var(--border2);border-radius:10px;padding:13px 15px;color:var(--text);font-family:var(--font);font-size:15px}
+.tryagent .form input::placeholder{color:var(--dim)}
+.tryagent .tr{position:relative}
+.chip{position:absolute;display:flex;align-items:center;gap:9px;background:#141414;border:1px solid var(--border2);border-radius:11px;padding:11px 16px;font-family:var(--font-display);font-weight:600;font-size:17px;box-shadow:0 12px 40px -12px rgba(0,0,0,.6)}
+.chip .ci{width:22px;height:22px;border-radius:6px}
+.chip.c1{top:24%;left:44%}
+.chip.c2{top:47%;left:24%}
+.chip.c3{top:70%;left:52%;color:var(--muted)}
+.cursor{position:absolute;width:0;height:0;border-left:8px solid transparent;border-right:8px solid transparent}
+.cursor.k1{top:20%;left:41%;border-bottom:14px solid var(--blue);transform:rotate(-20deg)}
+.cursor.k2{top:43%;left:21%;border-bottom:14px solid var(--red);transform:rotate(-20deg)}
+.cursor.k3{top:66%;left:49%;border-bottom:14px solid var(--green);transform:rotate(-20deg)}
+@media(max-width:820px){.tryagent{grid-template-columns:1fr}.tryagent .tl{padding:40px 0;border-right:none}.tryagent .tr{min-height:280px}}
+
+/* ---- event ---- */
+.event .eh{display:flex;align-items:center;gap:16px;margin-bottom:14px}
+.event .eh .ttl{font-family:var(--font-display);font-weight:600;font-size:clamp(40px,6vw,72px);letter-spacing:-.03em}
+.event .eh .bar{width:3px;height:clamp(34px,5vw,56px);background:var(--orange);border-radius:2px}
+.event .eh .yr{border:1px solid var(--border2);border-radius:12px;padding:4px 16px;font-family:var(--font-display);font-weight:600;font-size:clamp(26px,4vw,40px)}
+.event .esub{color:var(--muted);font-size:17px;max-width:420px;margin-bottom:40px}
+.ev-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px dashed var(--dash)}
+.ev-card{position:relative;min-height:420px;padding:36px 32px;border-right:1px dashed var(--dash);overflow:hidden}
+.ev-card:last-child{border-right:none}
+.ev-card .cty{display:flex;align-items:baseline;justify-content:space-between}
+.ev-card h3{font-size:26px;font-weight:600}
+.ev-card h3 span{color:var(--dim);font-weight:500}
+.ev-card .code{font-family:var(--mono);font-size:13px;color:var(--dim)}
+.ev-card .rec{color:var(--muted);font-size:14px;margin:6px 0 20px}
+.ev-art{position:absolute;bottom:0;right:0;left:0;height:62%;pointer-events:none;background-image:radial-gradient(circle,rgba(120,190,220,.5) 1px,transparent 1.6px);background-size:7px 7px;background-position:bottom center;-webkit-mask-image:linear-gradient(to top,#000 8%,rgba(0,0,0,.35) 55%,transparent 90%);mask-image:linear-gradient(to top,#000 8%,rgba(0,0,0,.35) 55%,transparent 90%);opacity:.55}
+.ev-card:nth-child(2) .ev-art{background-image:radial-gradient(circle,rgba(150,160,180,.5) 1px,transparent 1.6px)}
+@media(max-width:820px){.ev-grid{grid-template-columns:1fr}.ev-card{border-right:none;border-bottom:1px dashed var(--dash)}}
+
+/* ---- final cta ---- */
+.cta{text-align:center;border-top:1px dashed var(--dash);position:relative;overflow:hidden;padding-top:clamp(70px,9vw,120px);padding-bottom:clamp(70px,9vw,120px)}
+.cta::before{content:'';position:absolute;inset:0;background:radial-gradient(80% 90% at 50% 120%,rgba(0,212,245,.13),transparent 62%);pointer-events:none}
+.cta h2{position:relative;font-size:clamp(34px,5.5vw,64px);font-weight:500;line-height:1.02;letter-spacing:-.03em;margin-bottom:22px}
+.cta h2 .l2{display:inline-flex;align-items:center;gap:14px;margin-top:.05em}
+.cta p{position:relative;color:var(--muted);font-size:clamp(16px,1.8vw,19px);margin-bottom:30px}
+.cta .hero-cta{margin-bottom:0}
+
+/* ---- footer ---- */
+.footer{border-top:1px solid var(--border);padding:64px 0 40px}
+.foot-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px 24px}
+.foot-brand p{color:var(--dim);font-size:13px;margin-top:16px;max-width:220px;line-height:1.5}
+.foot-col h5{font-family:var(--font-display);font-size:15px;font-weight:600;margin-bottom:18px}
+.foot-col a{display:block;color:var(--muted);font-size:14px;margin-bottom:13px;transition:color .15s}
+.foot-col a:hover{color:var(--text)}
+.foot-2{display:grid;grid-template-columns:1.3fr 1fr 1fr 1fr;gap:40px 24px;margin-top:8px}
+.foot-status{grid-column:1;color:var(--green);font-size:14px;display:flex;align-items:center;gap:8px;align-self:end}
+.foot-status .d{width:8px;height:8px;border-radius:2px;background:var(--green)}
+.foot-bot{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:56px;color:var(--dim);font-size:13px}
+@media(max-width:820px){.foot-grid,.foot-2{grid-template-columns:1fr 1fr}.foot-status{grid-column:auto}}
+
+@media(max-width:820px){
+  .nav-links{display:none}
+  .nav-links.open{display:flex;flex-direction:column;position:absolute;top:64px;left:0;right:0;background:#000;border-bottom:1px solid var(--border);padding:16px var(--pad);gap:18px;z-index:99}
+  .nav-burger{display:flex}
+  .hero-cta{flex-direction:column;align-items:center}
+  .pipe{grid-template-columns:1fr}
+  .pipe-col{border-right:none;border-bottom:1px solid var(--border)}
+  .pipe-col:nth-child(2){display:none}
+  :root{--pad:22px}
+}
   </style>
 </head>
 <body>
-  <!-- CANONICAL LOGO — inline SVG, brand-locked. Copy verbatim. Dark: stroke #00d4f5.
-  <svg class="logo" viewBox="0 0 172 40" fill="none" role="img" aria-label="Sygnals" style="height:28px;width:auto">
-    <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
-    <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
-    <text x="50" y="20" font-family="'DM Sans',sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle">
-      <tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan>
-    </text>
-  </svg>
-  -->
+<div class="frame">
+
+  <!-- NAV -->
   <header class="nav" id="nav">
-    <div class="wrap nav-inner">
+    <div class="pad nav-inner">
       <a href="/" aria-label="Sygnals home">
-        <svg class="logo" viewBox="0 0 172 40" fill="none" role="img" aria-label="Sygnals" style="height:26px;width:auto">
+        <svg viewBox="0 0 172 40" fill="none" role="img" aria-label="Sygnals" style="height:25px;width:auto">
           <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
           <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
           <text x="50" y="20" font-family="'DM Sans',sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle"><tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan></text>
         </svg>
       </a>
       <nav class="nav-links">
-        <a href="#how">How it works</a>
-        <a href="#features">Features</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#faq">FAQ</a>
+        <a href="#features">Platform</a>
+        <a href="#report">Intent Report</a>
+        <a href="#channels">Solutions</a>
+        <a href="#event">Signal Day</a>
       </nav>
       <div class="nav-right">
-        <a href="/pt-br/" class="lang-toggle" id="langToggle">PT-BR</a>
-        <a href="#demo" class="btn primary" style="padding:9px 18px;font-size:14px">Book a demo</a>
+        <a href="#demo" class="btn primary" style="padding:9px 18px;font-size:14px">Get a Demo</a>
         <button class="nav-burger" id="navBurger" aria-label="Menu" aria-expanded="false" onclick="toggleMenu()"><span></span><span></span><span></span></button>
       </div>
     </div>
   </header>
 
-  <section class="hero">
-    <div class="wrap hero-inner">
-      <div class="pre-reveal">
-        <span class="eyebrow">LinkedIn intent signals</span>
-        <h1>Reach out the <b>moment</b> they show buying intent.</h1>
-        <p class="hero-sub">Sygnals monitors LinkedIn activity, scores intent in real time, and hands you warm leads — so you stop cold-pitching and start closing.</p>
-        <div class="hero-cta">
-          <a href="#demo" class="btn primary">Book a demo →</a>
-          <a href="#how" class="btn secondary">See how it works</a>
-        </div>
-        <div class="hero-trust">Built for B2B founders &amp; sales teams · No cold lists</div>
+  <!-- INDEX BANNER -->
+  <div class="banner">
+    <div class="pad banner-inner">
+      <a href="#report">
+        <span class="banner-tag">The Sygnals Index</span>
+        <span class="b-txt">See how much buying intent your market is signaling right now →</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero pad">
+    <h1 class="pre-reveal">
+      Sales signals to win on
+      <span class="l2">
+        <svg viewBox="0 0 24 24" width="0.92em" height="0.92em" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M7.2 9.6H4.5V19h2.7V9.6ZM5.85 8.4a1.57 1.57 0 1 0 0-3.15 1.57 1.57 0 0 0 0 3.15ZM19.5 19v-5.15c0-2.76-.59-4.62-3.8-4.62-1.55 0-2.58.85-3 1.65h-.04V9.6H10v9.4h2.7v-4.65c0-1.23.23-2.42 1.75-2.42 1.5 0 1.52 1.4 1.52 2.5V19h2.53Z"/></svg>
+        LinkedIn
+      </span>
+    </h1>
+    <p class="hero-sub pre-reveal">Reach the buyers already showing intent on LinkedIn — before your competitors even notice them.</p>
+    <div class="hero-cta pre-reveal">
+      <a href="#demo" class="btn primary">Get a Demo</a>
+      <a href="#features" class="btn dark">See how it works</a>
+    </div>
+
+    <!-- product panel -->
+    <div class="panel pre-reveal" aria-label="Sygnals intent pipeline">
+      <div class="panel-head">
+        <div class="t"><span class="chev">‹</span>Intent Signal Pipeline</div>
+        <div class="actions"><button class="btn ghost">Publish ⌄</button><button class="btn ghost" style="background:#232323">▶ Run</button></div>
       </div>
-      <div class="pre-reveal iscore" aria-label="Example intent score">
-        <div class="iscore-head">
-          <div><div class="iscore-name">Guilherme Mussi</div><div class="iscore-sub">VP Sales · commented 3× this week</div></div>
-          <span class="badge warm"><span class="dot"></span>Warm</span>
+      <div class="pipe">
+        <!-- left sidebar -->
+        <div class="pipe-col">
+          <div class="tabs"><button class="on">Nodes</button><button>Assistant</button></div>
+          <div class="pipe-lbl">Templates</div>
+          <div class="node-item"><span class="ic" style="background:#e40014"></span>Monitor a company page</div>
+          <div class="node-item"><span class="ic" style="background:var(--cyan)"></span>Score post engagement</div>
+          <div class="node-item"><span class="ic" style="background:var(--violet)"></span>Watch a target list</div>
+          <div class="node-item"><span class="ic" style="background:var(--green)"></span>Job-change trigger</div>
+          <div class="node-item"><span class="ic" style="background:var(--orange)"></span>Comment sentiment</div>
+          <div class="pipe-lbl">Agent</div>
+          <div class="node-item"><span class="ic" style="background:#444"></span>Conditional</div>
+          <div class="pipe-lbl">Enrich</div>
+          <div class="node-item"><span class="ic" style="background:var(--blue)"></span>Enrich contact</div>
         </div>
-        <div class="iscore-row"><span class="lbl">Frequency (3×)</span><span class="val pos">+30</span></div>
-        <div class="iscore-row"><span class="lbl">Seniority (VP)</span><span class="val pos">+40</span></div>
-        <div class="iscore-row"><span class="lbl">Type (comment)</span><span class="val pos">+20</span></div>
-        <div class="iscore-row"><span class="lbl">Recency (5 days)</span><span class="val neg">−17</span></div>
-        <div class="iscore-total"><span class="iscore-sub">Intent Score</span><span class="num" data-countup="73">73</span></div>
+        <!-- canvas -->
+        <div class="pipe-col canvas">
+          <div class="cnode"><div class="cnode-h"><span class="dot"></span>Start</div><div class="cnode-b"><span>Inputs</span><span class="pill-out" style="background:#232323;color:var(--muted)">1</span></div></div>
+          <div class="connector"></div>
+          <div class="badge-ok">Succeeded</div>
+          <div class="cnode ok"><div class="cnode-h"><span class="dot" style="background:var(--red)"></span>Monitor LinkedIn Activity</div><div class="cnode-b"><span>Output</span><span class="pill-out">Engagement events</span></div></div>
+          <div class="connector"></div>
+          <div class="badge-ok">Succeeded</div>
+          <div class="cnode ok"><div class="cnode-h"><span class="dot" style="background:var(--cyan)"></span>Score Buying Intent</div><div class="cnode-b"><span>Output</span><span class="pill-out">Intent Score</span></div></div>
+          <div class="connector"></div>
+        </div>
+        <!-- right output -->
+        <div class="pipe-col">
+          <div class="out-item"><div class="name"><span class="ck">✓</span>Start</div><div class="out-row"><span class="ch">›</span>Input</div></div>
+          <div class="out-item"><div class="name"><span class="ck">✓</span>Monitor LinkedIn Activity</div><div class="out-row"><span class="ch">›</span>Input</div><div class="out-row"><span class="ch">›</span>Output<span class="pill-out" style="margin-left:auto">Engagement events</span></div></div>
+          <div class="out-item"><div class="name"><span class="ck">✓</span>Score Buying Intent</div><div class="out-row"><span class="ch">›</span>Input</div><div class="out-row"><span class="ch">›</span>Output<span class="pill-out" style="margin-left:auto">Intent Score</span></div></div>
+          <div class="out-item"><div class="name"><span class="ck">✓</span>Surface Warm Leads</div><div class="out-row"><span class="ch">›</span>Input</div><div class="out-row"><span class="ch">›</span>Output<span class="pill-out" style="margin-left:auto">Ranked list</span></div></div>
+          <div class="out-item"><div class="name"><span class="ck">✓</span>Route Alert</div><div class="out-row"><span class="ch">›</span>Output<span class="pill-out" style="margin-left:auto">Slack · CRM</span></div></div>
+        </div>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="wrap">
-      <div class="prob-head pre-reveal">
-        <span class="eyebrow">The problem</span>
-        <h2>Cold outreach is a numbers game you lose.</h2>
-        <p>You blast the same pitch to people who aren't in-market — burning your time, your credits, and your LinkedIn reputation.</p>
-      </div>
-      <div class="prob-grid">
-        <div class="prob-card pre-reveal"><div class="k">01</div><h3>No timing</h3><p>You reach out on your calendar, not theirs. By the time you message, the moment's gone.</p></div>
-        <div class="prob-card pre-reveal"><div class="k">02</div><h3>No signal</h3><p>Every lead looks the same in a spreadsheet. Nothing tells you who's actually paying attention.</p></div>
-        <div class="prob-card pre-reveal"><div class="k">03</div><h3>Wasted effort</h3><p>Hours of manual scrolling to find one warm lead — that a competitor already messaged.</p></div>
-      </div>
+  <!-- LOGOS -->
+  <section class="logos pad dsep">
+    <p class="lead pre-reveal">Trusted by the best revenue teams in the world</p>
+    <div class="logo-grid pre-reveal">
+      <span>Northwind</span><span>Ravel</span><span>Lumina</span><span>Cobalt</span><span>Meridian</span><span>Halcyon</span>
+      <span>Verto</span><span>Fathom</span><span>Quanta</span><span>Aperture</span><span>Solstice</span><span>Praxis</span>
+      <span> Orbit</span><span>Cinder</span><span>Vantage</span><span>Halo</span><span>Ledger</span><span>Nimbus</span>
     </div>
   </section>
 
-  <section class="section section-surf" id="how">
-    <div class="wrap">
-      <div class="prob-head pre-reveal">
-        <span class="eyebrow">How it works</span>
-        <h2>From noise to warm leads in three steps.</h2>
-      </div>
-      <div class="how-grid">
-        <div class="how-step pre-reveal"><div class="n">STEP 01</div><h3>Choose who to monitor</h3><p>Point Sygnals at the people and accounts that matter — prospects, target roles, ICP champions.</p></div>
-        <div class="how-step pre-reveal"><div class="n">STEP 02</div><h3>Sygnals watches LinkedIn</h3><p>We track their engagement — posts, comments, reactions — continuously, in the background.</p></div>
-        <div class="how-step pre-reveal"><div class="n">STEP 03</div><h3>Intent Score surfaces the hot ones</h3><p>Each lead gets a live score. Hot and Warm rise to the top, ready for you to reach out.</p></div>
-      </div>
-    </div>
+  <!-- STATEMENT -->
+  <section class="statement pad">
+    <p class="pre-reveal"><span class="hl">Thousands of buyers signal intent on LinkedIn every day.</span> <span class="lo">Most of them go unnoticed — reached weeks later by a cold pitch that missed the moment entirely.</span></p>
   </section>
 
-  <section class="section">
-    <div class="wrap">
-      <div class="prob-head pre-reveal">
-        <span class="eyebrow">Intent Score</span>
-        <h2>One number that tells you who's ready.</h2>
-        <p>Sygnals weighs four signals into a single 0–100 score, so you always know who to message first.</p>
+  <!-- FEATURES -->
+  <section class="features" id="features">
+    <div class="pad" style="padding-top:clamp(80px,10vw,140px);padding-bottom:clamp(40px,5vw,70px)">
+      <h2 class="big pre-reveal">Sell on signal,<br>not on guesswork</h2>
+      <p class="intro pre-reveal">Sygnals is the full-stack signal platform for the modern revenue team. Monitor, score, act, and measure — all in one place.</p>
+    </div>
+
+    <!-- row 1: signal search -->
+    <div class="frow pad">
+      <div class="fleft pre-reveal">
+        <h3>Signal Search</h3>
+        <p>See exactly what your market is engaging with, and point your monitoring where the intent is.</p>
+        <button class="learn">Learn more</button>
       </div>
-      <div class="showcase">
-        <div class="showcase-factors">
-          <div class="factor pre-reveal"><div class="icn">Hz</div><div><h4>Frequency</h4><p>How often they engage with relevant content. More activity, more intent.</p></div></div>
-          <div class="factor pre-reveal"><div class="icn">Sr</div><div><h4>Seniority</h4><p>Decision-makers weigh heavier. A VP comment beats ten interns.</p></div></div>
-          <div class="factor pre-reveal"><div class="icn">Ty</div><div><h4>Engagement type</h4><p>A thoughtful comment signals more than a passive like.</p></div></div>
-          <div class="factor pre-reveal"><div class="icn">Rc</div><div><h4>Recency</h4><p>Fresh signals score higher. Old activity decays automatically.</p></div></div>
-        </div>
-        <div class="iscore pre-reveal">
-          <div class="iscore-head">
-            <div><div class="iscore-name">Raphael Bozza</div><div class="iscore-sub">Founder · engaged 6× in 48h</div></div>
-            <span class="badge hot"><span class="dot"></span>Hot</span>
+      <div class="fdiv"></div>
+      <div class="fright pre-reveal">
+        <div class="mock">
+          <div class="m-title">Discover who your buyers are engaging</div>
+          <div class="searchbox">
+            <div class="q">VP of Sales<span class="cur">|</span></div>
+            <div class="qrow"><div class="l"><i></i><i></i></div><div class="r"><span>Live monitoring</span><span class="an">Track</span></div></div>
           </div>
-          <div class="iscore-row"><span class="lbl">Frequency (6×)</span><span class="val pos">+45</span></div>
-          <div class="iscore-row"><span class="lbl">Seniority (Founder)</span><span class="val pos">+40</span></div>
-          <div class="iscore-row"><span class="lbl">Type (comment)</span><span class="val pos">+20</span></div>
-          <div class="iscore-row"><span class="lbl">Recency (2 days)</span><span class="val neg">−13</span></div>
-          <div class="iscore-total"><span class="iscore-sub">Intent Score</span><span class="num" data-countup="92">92</span></div>
+          <div class="klist">
+            <div class="klbl">Matching signals</div>
+            <div class="krow"><span><b>VP</b> of Sales</span><span class="kv">46.4K</span></div>
+            <div class="krow"><span><b>VP</b> Revenue</span><span class="kv">12.1K</span></div>
+            <div class="krow"><span><b>VP</b>s hiring SDRs</span><span class="kv">11K</span></div>
+          </div>
         </div>
       </div>
     </div>
-  </section>
 
-  <section class="section" id="features">
-    <div class="wrap">
-      <div class="prob-head pre-reveal">
-        <span class="eyebrow">Features</span>
-        <h2>Everything you need to sell on signal.</h2>
+    <!-- row 2: intent insights chart -->
+    <div class="frow pad">
+      <div class="fleft pre-reveal">
+        <h3>Intent Insights</h3>
+        <p>See how buying intent trends across your segments, in every conversation.</p>
+        <button class="learn">Learn more</button>
       </div>
-      <div class="feat-grid">
-        <div class="feat pre-reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 12h4l3-9 4 18 3-9h4"/></svg><h3>Signal monitoring</h3><p>Track LinkedIn engagement across the people and accounts you care about, 24/7.</p></div>
-        <div class="feat pre-reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg><h3>Real-time intent scoring</h3><p>Every lead gets a live 0–100 Intent Score. Hot and Warm rise to the top automatically.</p></div>
-        <div class="feat pre-reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg><h3>Connect LinkedIn accounts</h3><p>Link one or more LinkedIn accounts to expand reach across your team's network.</p></div>
-        <div class="feat pre-reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 7l10-5 10 5"/></svg><h3>Credit-based usage</h3><p>Pay for what you monitor. Transparent credits, no per-seat lock-in, upgrade anytime.</p></div>
-        <div class="feat pre-reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v12H8l-4 4z"/></svg><h3>Export &amp; integrate</h3><p>Push warm leads to CSV, Clay, or your CRM via webhooks. Sygnals fits your stack.</p></div>
-        <div class="feat pre-reveal"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10 21h4"/></svg><h3>Real-time alerts</h3><p>Get notified the instant a lead crosses into Hot — so you're first to the conversation.</p></div>
-      </div>
-
-      <div class="preview pre-reveal" aria-label="Dashboard preview">
-        <div class="preview-bar"><i></i><i></i><i></i></div>
-        <div class="sig-list">
-          <div class="sig"><div class="sig-left"><span class="sig-dot" style="background:var(--red)"></span><span class="sig-name">Raphael Bozza</span></div><span class="badge hot"><span class="dot"></span>Hot · 92</span></div>
-          <div class="sig"><div class="sig-left"><span class="sig-dot" style="background:var(--amber)"></span><span class="sig-name">Guilherme Mussi</span></div><span class="badge warm"><span class="dot"></span>Warm · 73</span></div>
-          <div class="sig"><div class="sig-left"><span class="sig-dot" style="background:var(--blue)"></span><span class="sig-name">David Costa Lima</span></div><span class="badge" style="background:rgba(71,168,255,.1);color:var(--blue);border:1px solid rgba(71,168,255,.22)"><span class="dot" style="background:var(--blue)"></span>Partial</span></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section-surf" id="pricing">
-    <div class="wrap">
-      <div class="prob-head pre-reveal" style="text-align:center;margin:0 auto 0">
-        <span class="eyebrow">Pricing</span>
-        <h2>Plans that scale with your pipeline.</h2>
-      </div>
-      <div class="price-grid">
-        <div class="price pre-reveal">
-          <div class="price-tag">&nbsp;</div>
-          <h3>Starter</h3>
-          <div class="amt">$99<span>/mo</span></div>
-          <ul>
-            <li>10,000 credits / mo</li>
-            <li>10 signals</li>
-            <li>1 LinkedIn account</li>
-            <li>Intent scoring &amp; alerts</li>
-            <li>CSV &amp; webhook export</li>
-          </ul>
-          <a href="#demo" class="btn secondary" style="justify-content:center">Book a demo</a>
-        </div>
-        <div class="price feat pre-reveal">
-          <div class="price-tag">Most popular</div>
-          <h3>Explorer</h3>
-          <div class="amt">$179<span>/mo</span></div>
-          <ul>
-            <li>25,000 credits / mo</li>
-            <li>20 signals</li>
-            <li>3 LinkedIn accounts</li>
-            <li>Everything in Starter</li>
-            <li>Priority support</li>
-          </ul>
-          <a href="#demo" class="btn primary" style="justify-content:center">Book a demo</a>
-        </div>
-        <div class="price pre-reveal">
-          <div class="price-tag">&nbsp;</div>
-          <h3>Pro</h3>
-          <div class="amt">$349<span>/mo</span></div>
-          <ul>
-            <li>50,000 credits / mo</li>
-            <li>40 signals</li>
-            <li>10 LinkedIn accounts</li>
-            <li>Unlimited workspaces</li>
-            <li>Lower overage rate</li>
-          </ul>
-          <a href="#demo" class="btn secondary" style="justify-content:center">Book a demo</a>
-        </div>
-      </div>
-      <p class="price-note">Credit overage from $12/1k · LinkedIn-account add-on $15/mo · Prices in USD</p>
-    </div>
-  </section>
-
-  <section class="section" id="faq">
-    <div class="wrap">
-      <div class="prob-head pre-reveal" style="text-align:center;margin:0 auto 0">
-        <span class="eyebrow">FAQ</span>
-        <h2>Questions, answered.</h2>
-      </div>
-      <div class="faq">
-        <div class="faq-item open"><button class="faq-q" aria-expanded="true" onclick="toggleFaq(this)">Is Sygnals LinkedIn-compliant?<span class="pm">+</span></button><div class="faq-a"><p>Sygnals monitors public engagement signals and connects through your own LinkedIn account. We never scrape private data or automate outreach on your behalf — you stay in control of every conversation.</p></div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">What is a credit?<span class="pm">+</span></button><div class="faq-a"><p>Credits are consumed as Sygnals monitors activity and enriches leads. Each plan includes a monthly credit allowance; you can add credit packs or let overage cover spikes.</p></div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Which LinkedIn accounts can I connect?<span class="pm">+</span></button><div class="faq-a"><p>Any standard LinkedIn account. Plans include 1 to 10 connected accounts; add more for $15/account/month as your team grows.</p></div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">How is the Intent Score calculated?<span class="pm">+</span></button><div class="faq-a"><p>Four weighted factors: engagement frequency, the person's seniority, the type of engagement, and how recent it is. Together they produce a live 0–100 score, bucketed into Warm (60–79) and Hot (80–100).</p></div></div>
-        <div class="faq-item"><button class="faq-q" aria-expanded="false" onclick="toggleFaq(this)">Can I cancel anytime?<span class="pm">+</span></button><div class="faq-a"><p>Yes. Plans are monthly and you can cancel or change tiers whenever you like — no annual lock-in.</p></div></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="section cta-final" id="demo">
-    <div class="wrap">
-      <h2>See Sygnals on your pipeline.</h2>
-      <p>Book a 20-minute demo — we'll show you live intent signals for your market.</p>
-      <a href="https://cal.com/sygnals/demo" class="btn primary" style="font-size:16px;padding:15px 32px">Book a demo →</a>
-    </div>
-  </section>
-
-  <footer class="footer">
-    <div class="wrap">
-      <div class="footer-inner">
-        <div>
-          <svg class="logo" viewBox="0 0 172 40" fill="none" role="img" aria-label="Sygnals" style="height:26px;width:auto">
-            <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
-            <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
-            <text x="50" y="20" font-family="'DM Sans',sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle"><tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan></text>
+      <div class="fdiv"></div>
+      <div class="fright pre-reveal">
+        <div class="chart-wrap">
+          <div class="m-title" style="text-align:left;color:var(--text);font-family:var(--font-display);font-weight:600">Intent Score by Segment</div>
+          <div class="persona-row">
+            <div class="persona"><span class="nm"><span class="d" style="background:var(--violet)"></span>Founders</span><span class="pv">89.2%<small style="color:var(--green)">+5%</small></span></div>
+            <div class="persona"><span class="nm"><span class="d" style="background:var(--blue)"></span>VP Sales</span><span class="pv">73.4%<small style="color:var(--green)">+3%</small></span></div>
+            <div class="persona"><span class="nm"><span class="d" style="background:var(--green)"></span>RevOps</span><span class="pv">66.4%<small style="color:var(--green)">+2%</small></span></div>
+            <div class="persona"><span class="nm"><span class="d" style="background:var(--orange)"></span>Marketing</span><span class="pv">50.5%<small style="color:var(--red)">-7%</small></span></div>
+            <div class="persona"><span class="nm"><span class="d" style="background:var(--red)"></span>Ops</span><span class="pv">40.5%<small style="color:var(--green)">+8%</small></span></div>
+          </div>
+          <svg viewBox="0 0 640 260" width="100%" style="overflow:visible" aria-hidden="true">
+            <g stroke="#1c1c1c" stroke-width="1">
+              <line x1="40" y1="20" x2="640" y2="20"/><line x1="40" y1="80" x2="640" y2="80"/><line x1="40" y1="140" x2="640" y2="140"/><line x1="40" y1="200" x2="640" y2="200"/>
+            </g>
+            <g fill="#3a3a3a" font-size="11" font-family="Inter">
+              <text x="10" y="24">100%</text><text x="14" y="84">80%</text><text x="14" y="144">40%</text><text x="20" y="204">0%</text>
+            </g>
+            <polyline fill="none" stroke="#54a2ff" stroke-width="2.2" points="40,60 140,40 240,110 340,140 440,150 540,55 620,80"/>
+            <polyline fill="none" stroke="#a685ff" stroke-width="2.2" points="40,150 140,120 240,90 340,120 440,60 540,45 620,60"/>
+            <polyline fill="none" stroke="#00c758" stroke-width="2.2" points="40,110 140,120 240,160 340,175 440,90 540,140 620,40"/>
+            <polyline fill="none" stroke="#ff8b1a" stroke-width="2.2" points="40,110 140,120 240,185 340,205 440,110 540,205 620,150"/>
+            <polyline fill="none" stroke="#ff6568" stroke-width="2.2" points="40,120 140,150 240,205 340,215 440,160 540,205 620,140"/>
+            <g fill="#3a3a3a" font-size="11" font-family="Inter"><text x="120" y="248">Mon</text><text x="220" y="248">Tue</text><text x="320" y="248">Wed</text><text x="420" y="248">Thu</text><text x="520" y="248">Fri</text></g>
           </svg>
-          <p style="color:var(--caption);font-size:13px;margin-top:14px;max-width:240px">Reach out the moment they show buying intent.</p>
         </div>
-        <div class="footer-cols">
-          <div class="footer-col"><h5>Product</h5><a href="#how">How it works</a><a href="#features">Features</a><a href="#pricing">Pricing</a></div>
-          <div class="footer-col"><h5>Company</h5><a href="#demo">Book a demo</a><a href="#">Blog</a><a href="mailto:hello@sygnals.com">Contact</a></div>
-          <div class="footer-col"><h5>Legal</h5><a href="#">Privacy</a><a href="#">Terms</a></div>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© 2026 Sygnals. All rights reserved.</span>
-        <a href="/pt-br/" class="lang-toggle">Ver em Português →</a>
       </div>
     </div>
-  </footer>
 
-  <script>
-// Reveal-on-scroll
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.remove('pre-reveal');
-      e.target.classList.add('revealed');
-      if (e.target.dataset.countup) countUp(e.target);
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
-document.querySelectorAll('.pre-reveal').forEach(el => io.observe(el));
+    <!-- row 3: agents pipeline -->
+    <div class="frow pad">
+      <div class="fleft pre-reveal">
+        <h3>Signal Agents</h3>
+        <p>Autonomous workers for every play — monitor, enrich, and route warm leads without lifting a finger.</p>
+        <button class="learn">Learn more</button>
+      </div>
+      <div class="fdiv"></div>
+      <div class="fright pre-reveal">
+        <div class="mock" style="display:flex;gap:14px">
+          <div style="flex:0 0 auto;display:flex;flex-direction:column;align-items:center">
+            <div class="cnode ok" style="width:230px"><div class="cnode-h"><span class="dot" style="background:var(--cyan)"></span>Score Intent</div><div class="cnode-b"><span>Output</span><span class="pill-out">Intent Score</span></div></div>
+            <div class="connector"></div>
+            <div class="cnode ok" style="width:230px"><div class="cnode-h"><span class="dot" style="background:var(--violet)"></span>Route Warm Lead</div><div class="cnode-b"><span>Output</span><span class="pill-out">CRM task</span></div></div>
+          </div>
+          <div style="flex:1;min-width:0">
+            <div class="out-item"><div class="name"><span class="ck">✓</span>Score Intent</div><div class="out-row"><span class="ch">›</span>Output<span class="pill-out" style="margin-left:auto">Intent Score</span></div></div>
+            <div class="out-item"><div class="name"><span class="ck">✓</span>Route Warm Lead</div><div class="out-row"><span class="ch">›</span>Output<span class="pill-out" style="margin-left:auto">CRM task</span></div></div>
+            <div class="out-item"><div class="name"><span class="ck">✓</span>Draft opener</div>
+              <div class="out-row" style="display:block;color:var(--muted);font-size:12px;line-height:1.5">Guilherme reacted to 3 posts on pipeline forecasting this week — a warm opener referencing his RevOps role is ready to send.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
-// Count-up for Intent Score numbers
-function countUp(el){
-  const target = parseInt(el.dataset.countup, 10);
-  let n = 0; const step = Math.max(1, Math.round(target / 28));
-  const t = setInterval(() => { n += step; if (n >= target){ n = target; clearInterval(t);} el.textContent = n; }, 24);
-}
+    <!-- row 4: analytics -->
+    <div class="frow pad">
+      <div class="fleft pre-reveal">
+        <h3>Signal Analytics</h3>
+        <p>Track how intent moves across your accounts — which segments are heating up, and which are going quiet.</p>
+        <button class="learn">Learn more</button>
+      </div>
+      <div class="fdiv"></div>
+      <div class="fright pre-reveal">
+        <div class="chart-wrap">
+          <div class="stat-row">
+            <div class="stat"><div class="sl">Signals tracked</div><div class="sv">32.6K<small>+12k</small></div></div>
+            <div class="stat"><div class="sl">Warm leads</div><div class="sv">72.3K<small>+12k</small></div></div>
+            <div class="stat"><div class="sl">Replies</div><div class="sv">13.2K<small>+0.3k</small></div></div>
+            <div class="stat"><div class="sl">Meetings</div><div class="sv">18.2K<small>+0.2k</small></div></div>
+          </div>
+          <svg viewBox="0 0 640 200" width="100%" aria-hidden="true">
+            <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="rgba(0,212,245,.28)"/><stop offset="1" stop-color="rgba(0,212,245,0)"/></linearGradient></defs>
+            <path d="M0,150 C80,120 140,130 220,90 C300,55 360,80 440,60 C520,45 580,70 640,50 L640,200 L0,200 Z" fill="url(#ag)"/>
+            <polyline fill="none" stroke="#00d4f5" stroke-width="2.4" points="0,150 80,120 140,130 220,90 300,55 360,80 440,60 520,45 580,70 640,50"/>
+            <polyline fill="none" stroke="#ff8b1a" stroke-width="2" points="0,175 80,160 140,168 220,150 300,140 360,155 440,150 520,120 580,140 640,130"/>
+          </svg>
+        </div>
+      </div>
+    </div>
 
-// FAQ accordion — close siblings on open
-function toggleFaq(btn){
-  const item = btn.closest('.faq-item');
-  const open = item.classList.contains('open');
-  document.querySelectorAll('.faq-item.open').forEach(i => {
-    i.classList.remove('open');
-    i.querySelector('.faq-q')?.setAttribute('aria-expanded', 'false');
-  });
-  if (!open) {
-    item.classList.add('open');
-    btn.setAttribute('aria-expanded', 'true');
-  }
-}
+    <!-- row 5: aim / projects -->
+    <div class="frow pad">
+      <div class="fleft pre-reveal">
+        <h3>Aim</h3>
+        <p>Find the highest-impact accounts to work, every week.</p>
+        <button class="learn">Learn more</button>
+      </div>
+      <div class="fdiv"></div>
+      <div class="fright pre-reveal">
+        <div class="projcard">
+          <h4>This week's targets</h4>
+          <div class="pj-lbl">Suggested accounts</div>
+          <div class="pj-sug">
+            <div class="pj-item"><div class="top"><span># High intent</span><span class="hi">▮▮▮ Hot</span></div><div class="h">Reach out to Raphael Bozza at Northwind</div><div class="d">Engaged 6× in 48h on posts about pipeline gaps. Intent Score 92 — highest in your list.</div><span class="track">+ Track</span></div>
+            <div class="pj-item"><div class="top"><span># Warming up</span><span class="hi">▮▮ Warm</span></div><div class="h">Follow the RevOps team at Meridian</div><div class="d">Three ICP roles started engaging this week. Score climbing from 41 → 68.</div><span class="track">+ Track</span></div>
+          </div>
+          <div class="pj-lbl">Tracked accounts</div>
+          <div class="pj-track-row"><span class="st">✓</span>Reach out to Raphael Bozza at Northwind<span style="margin-left:auto;color:var(--dim)">4 tasks · Hot</span></div>
+          <div class="pj-track-row"><span class="st">✓</span>Follow the RevOps team at Meridian<span style="margin-left:auto;color:var(--dim)">3 tasks · Warm</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-// Mobile nav menu toggle
+  <!-- QUOTE -->
+  <section class="quote">
+    <div class="ql"></div>
+    <div class="qr pre-reveal">
+      <div class="qtop">
+        <div class="qbrand">Ravel <span style="color:var(--cyan)">◆</span></div>
+        <a href="#" class="btn light" style="font-size:14px;padding:9px 16px">Read case study</a>
+      </div>
+      <blockquote>"Before Sygnals, our pipeline was a guessing game. Now it's a queue of people already raising their hand."</blockquote>
+      <div class="cite"><b>George Bonaci</b>, VP of Growth &amp; Demand</div>
+    </div>
+  </section>
+
+  <!-- REPORT -->
+  <section class="report" id="report">
+    <div class="rl pre-reveal">
+      <h2>Get your free Intent Report today</h2>
+      <p>Discover how much buying intent your market is signaling right now — and the warm leads you're missing.</p>
+      <input class="field" type="text" placeholder="Enter your company domain" aria-label="Company domain">
+      <button class="analyze">Analyze my market</button>
+      <div class="ins">
+        <div class="il">Get insights into:</div>
+        <ul>
+          <li><span class="ck">✓</span>Active buying signals</li>
+          <li><span class="ck">✓</span>Warm accounts</li>
+          <li><span class="ck">✓</span>Intent by segment</li>
+          <li><span class="ck">✓</span>Competitor overlap</li>
+        </ul>
+      </div>
+    </div>
+    <div class="rr pre-reveal">
+      <div class="rr-panel">
+        <div class="rr-head"><i></i><i></i><i></i></div>
+        <div class="rr-body">
+          <div class="rr-brand"><span class="lg"></span><b>Ravel</b>&nbsp;Intent Report</div>
+          <div class="rr-sec">Buying Intent Ranking</div>
+          <div class="rank"><span class="rn">1</span><span class="rl2"><span class="rg"></span>Ravel</span><span class="rp">90.1%</span></div>
+          <div class="rank"><span class="rn">2</span><span class="rl2"><span class="rg" style="background:var(--green)"></span>Cobalt</span><span class="rp">88.1%</span></div>
+          <div class="rank"><span class="rn">3</span><span class="rl2"><span class="rg" style="background:var(--violet)"></span>Meridian</span><span class="rp">87.3%</span></div>
+          <div class="rank"><span class="rn">4</span><span class="rl2"><span class="rg" style="background:var(--blue)"></span>Halcyon</span><span class="rp">86.9%</span></div>
+          <div class="rank"><span class="rn">5</span><span class="rl2"><span class="rg" style="background:var(--orange)"></span>Lumina</span><span class="rp">82.4%</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHANNELS -->
+  <section class="channels" id="channels">
+    <div class="pad" style="padding-top:clamp(70px,9vw,120px);padding-bottom:0">
+      <h2 class="pre-reveal">Signals for every<br>revenue motion</h2>
+    </div>
+    <div class="chan-grid pad">
+      <div class="chan pre-reveal"><div class="ct">Outbound Sales</div><div class="cs">Reach in-market buyers first</div><button class="learn">Learn more</button></div>
+      <div class="chan pre-reveal"><div class="ct">Demand &amp; Marketing</div><div class="cs">Route warm accounts to campaigns</div><button class="learn">Learn more</button></div>
+      <div class="chan pre-reveal"><div class="ct">Founders &amp; Growth</div><div class="cs">Turn engagement into pipeline</div><button class="learn">Learn more</button></div>
+    </div>
+  </section>
+
+  <!-- TRY AGENT -->
+  <section class="tryagent">
+    <div class="tl pre-reveal">
+      <h2>Try a Sygnals Agent</h2>
+      <p>Run one of our most popular agents to surface warm leads from your market in minutes.</p>
+      <div class="form">
+        <input type="email" placeholder="Enter your email" aria-label="Email">
+        <button class="btn light">Try an Agent</button>
+      </div>
+    </div>
+    <div class="tr pre-reveal">
+      <div class="cursor k1"></div><div class="chip c1"><span class="ci" style="background:var(--blue)"></span>Monitor Agent</div>
+      <div class="cursor k2"></div><div class="chip c2"><span class="ci" style="background:var(--red)"></span>Intent Agent</div>
+      <div class="cursor k3"></div><div class="chip c3"><span class="ci" style="background:var(--green)"></span>Outreach Agent</div>
+    </div>
+  </section>
+
+  <!-- EVENT -->
+  <section class="event">
+    <div class="pad" style="padding-top:clamp(70px,9vw,120px)">
+      <div class="eh pre-reveal"><span class="ttl">Signal Day</span><span class="bar"></span><span class="yr">26</span></div>
+      <p class="esub pre-reveal">Join us at Signal Day 2026, the summit for revenue teams selling on intent. Request your spot today.</p>
+    </div>
+    <div class="ev-grid pad">
+      <div class="ev-card pre-reveal">
+        <div class="cty"><h3>São Paulo <span>Unlocked</span></h3><span class="code">SAO</span></div>
+        <div class="rec">Unlock the recordings</div>
+        <a href="#" class="btn light" style="font-size:14px;padding:9px 16px">View Details</a>
+        <div class="ev-art"></div>
+      </div>
+      <div class="ev-card pre-reveal">
+        <div class="cty"><h3>New York City <span>Unlocked</span></h3><span class="code">NY</span></div>
+        <div class="rec">Unlock the recordings</div>
+        <a href="#" class="btn light" style="font-size:14px;padding:9px 16px">View Details</a>
+        <div class="ev-art"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL CTA -->
+  <section class="cta pad" id="demo">
+    <h2 class="pre-reveal">Get in front of buyers on
+      <span class="l2"><svg viewBox="0 0 24 24" width="0.92em" height="0.92em" aria-hidden="true"><rect width="24" height="24" rx="4" fill="#0A66C2"/><path fill="#fff" d="M7.2 9.6H4.5V19h2.7V9.6ZM5.85 8.4a1.57 1.57 0 1 0 0-3.15 1.57 1.57 0 0 0 0 3.15ZM19.5 19v-5.15c0-2.76-.59-4.62-3.8-4.62-1.55 0-2.58.85-3 1.65h-.04V9.6H10v9.4h2.7v-4.65c0-1.23.23-2.42 1.75-2.42 1.5 0 1.52 1.4 1.52 2.5V19h2.53Z"/></svg>LinkedIn</span>
+    </h2>
+    <p class="pre-reveal">Reach the buyers already showing intent — before anyone else does.</p>
+    <div class="hero-cta pre-reveal">
+      <a href="https://cal.com/sygnals/demo" class="btn primary">Get a Demo</a>
+      <a href="#" class="btn dark">Get Started</a>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="frame" style="border:none">
+  <div class="pad">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <svg viewBox="0 0 172 40" fill="none" role="img" aria-label="Sygnals" style="height:24px;width:auto">
+          <path d="M 2 20 L 14 20 L 18 8 L 23 32 L 28 20 L 42 20" stroke="#00d4f5" stroke-width="3.2" stroke-linecap="butt" stroke-linejoin="miter"/>
+          <circle cx="18" cy="5.5" r="3.6" fill="#00d4f5"/>
+          <text x="50" y="20" font-family="'DM Sans',sans-serif" font-weight="700" font-size="30" letter-spacing="-1.35" dominant-baseline="middle"><tspan fill="#edf2f5">s</tspan><tspan fill="#00d4f5">y</tspan><tspan fill="#edf2f5">gnals</tspan></text>
+        </svg>
+        <p>Reach out the moment they show buying intent.</p>
+      </div>
+      <div class="foot-col"><h5>Platform</h5><a href="#features">Signal Search</a><a href="#features">Signal Agents</a><a href="#features">Intent Insights</a><a href="#features">Signal Analytics</a><a href="#features">Aim</a></div>
+      <div class="foot-col"><h5>Resources</h5><a href="#">Resource Center</a><a href="#">Help Center</a><a href="#">Customers</a><a href="#">Blog</a><a href="#report">Intent Report</a></div>
+      <div class="foot-col"><h5>Company</h5><a href="#">Enterprise</a><a href="#">Pricing</a><a href="#">Careers</a><a href="mailto:hello@sygnals.com">Contact us</a><a href="#">Media</a></div>
+    </div>
+    <div class="foot-2">
+      <div class="foot-status"><span class="d"></span>All services are online</div>
+      <div class="foot-col"><h5>Solutions</h5><a href="#channels">Outbound Sales</a><a href="#channels">Demand &amp; Marketing</a><a href="#channels">Founders</a><a href="#channels">Agencies</a></div>
+      <div class="foot-col"><h5>Data</h5><a href="#report">Sygnals Index</a><a href="#">Research Hub</a></div>
+      <div class="foot-col"><h5>Social</h5><a href="#">X (Twitter)</a><a href="#">LinkedIn</a></div>
+    </div>
+    <div class="foot-bot"><span>© 2026 Sygnals. All rights reserved.</span><a href="/pt-br/">Ver em Português →</a></div>
+  </div>
+  </div>
+</footer>
+
+<script>
+// reveal on scroll
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.remove('pre-reveal'); e.target.classList.add('revealed'); io.unobserve(e.target);} });
+},{threshold:.1});
+document.querySelectorAll('.pre-reveal').forEach(el=>io.observe(el));
+
+// mobile menu
 function toggleMenu(){
-  const l = document.querySelector('.nav-links');
-  const b = document.getElementById('navBurger');
-  const open = l.classList.toggle('open');
-  b.setAttribute('aria-expanded', open);
+  const l=document.querySelector('.nav-links'); const b=document.getElementById('navBurger');
+  const open=l.classList.toggle('open'); b.setAttribute('aria-expanded',open);
 }
-// Close the mobile menu when a nav link is tapped
-document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => {
-  const l = document.querySelector('.nav-links');
-  l.classList.remove('open');
-  document.getElementById('navBurger')?.setAttribute('aria-expanded', 'false');
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
+  document.querySelector('.nav-links').classList.remove('open');
+  document.getElementById('navBurger')?.setAttribute('aria-expanded','false');
 }));
-
-// Sticky nav condense
-const nav = document.getElementById('nav');
-addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 12), { passive: true });
-
-// Language preference persistence (EN page)
-try {
-  // BR geo-redirect (only if user hasn't explicitly chosen EN)
-  if (!localStorage.getItem('syg_lang')) {
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
-    const lang = (navigator.language || '').toLowerCase();
-    if ((tz.includes('Sao_Paulo') || tz.includes('Fortaleza') || tz.includes('Recife') || tz.includes('Manaus') || lang === 'pt-br' || lang === 'pt') && !location.pathname.startsWith('/pt-br')) {
-      location.replace('/pt-br/');
-    }
-  }
-  if (localStorage.getItem('syg_lang') === 'pt-br' && !location.pathname.startsWith('/pt-br')) {
-    location.replace('/pt-br/');
-  }
-  document.getElementById('langToggle')?.addEventListener('click', () => localStorage.setItem('syg_lang', 'pt-br'));
-} catch(e){}
-  </script>
+</script>
 </body>
 </html>
